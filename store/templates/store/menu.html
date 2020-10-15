@@ -30,16 +30,20 @@
     <div id="shoppingGal" class="">
       <div class="row">
 
+      {% for product in products.all %}
+
         <!-- product 1 -->
         <div class="col-md-6 col-lg-3 mb-5">
           <div class="product">
             <a href="#">
-              <img src="img/img3.jpg" class="img-fluid mt-3">
-              <span class="bonus">20% off</span>
+              <img src="{{ product.image }}" class="img-fluid mt-3">
+              {% if product.discount != 0 %}
+              <span class="bonus">{{ product.discount }}% off</span>
+              {% endif %}
             </a>
             <!-- Description and price-->
             <div class="product-desc text-center border border-top-0 pb-3">
-              <h3><a href="#">Product 1</a></h3>
+              <h3><a href="#">{{ product.name }}</a></h3>
               <p class="mb-0">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               </p>
@@ -87,399 +91,401 @@
         </div>
         <!-- END-Product-->
 
-        <!-- product 2 -->
-        <div class="col-md-6 col-lg-3 mb-5">
-          <div class="product">
-            <a href="#">
-              <img src="img/img1.jpg" class="img-fluid mt-3">
-            </a>
-            <!-- Description and price-->
-            <div class="product-desc text-center border border-top-0 pb-3">
-              <h3><a href="#">Product 1</a></h3>
-              <p class="mb-0">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              </p>
-              <!-- Star rating -->
-              <span class="star-rating">
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star-o" aria-hidden="true"></i>
-              </span>
-              <!-- Price -->
-              <div class="d-flex justify-content-center">
-                <div class="pricing">
-                  <p>
-                    <span><del>$ 120.00</del></span>
-                    <span class="price-actual">$ 96.00</span>
-                  </p>
-                </div>
-              </div>
-              <!-- cart icons -->
-              <div class="d-flex justify-content-center">
-                <div class="d-flex cart-options">
-                  <a href="#">
-                    <span class="rounded-circle mr-1 h5">
-                      <i class="fa fa-info-circle" aria-hidden="true"></i>
-                    </span>
-                  </a>
-                  <a href="#">
-                    <span class="rounded-circle mr-1 h5">
-                      <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                    </span>
-                  </a>
-                  <a href="#">
-                    <span class="rounded-circle h5">
-                      <i class="fa fa-heart-o" aria-hidden="true"></i>
-                    </span>
-                  </a>
-                </div>
-              </div>
-              <!-- END-cart icon-->
-            </div>
-            <!-- END-Description and price -->
-          </div>
-        </div>
-        <!-- END-Product-->
+       {% endfor %}
 
-        <!-- product 3 -->
-        <div class="col-md-6 col-lg-3 mb-5">
-          <div class="product">
-            <a href="#">
-              <img src="img/img2.jpg" class="img-fluid mt-3">
-              <span class="bonus">5% off</span>
-            </a>
-            <!-- Description and price-->
-            <div class="product-desc text-center border border-top-0 pb-3">
-              <h3><a href="#">Product 1</a></h3>
-              <p class="mb-0">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              </p>
-              <!-- Star rating -->
-              <span class="star-rating">
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star-o" aria-hidden="true"></i>
-              </span>
-              <!-- Price -->
-              <div class="d-flex justify-content-center">
-                <div class="pricing">
-                  <p>
-                    <span><del>$ 120.00</del></span>
-                    <span class="price-actual">$ 96.00</span>
-                  </p>
-                </div>
-              </div>
-              <!-- cart icons -->
-              <div class="d-flex justify-content-center">
-                <div class="d-flex cart-options">
-                  <a href="#">
-                    <span class="rounded-circle mr-1 h5">
-                      <i class="fa fa-info-circle" aria-hidden="true"></i>
-                    </span>
-                  </a>
-                  <a href="#">
-                    <span class="rounded-circle mr-1 h5">
-                      <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                    </span>
-                  </a>
-                  <a href="#">
-                    <span class="rounded-circle h5">
-                      <i class="fa fa-heart-o" aria-hidden="true"></i>
-                    </span>
-                  </a>
-                </div>
-              </div>
-              <!-- END-cart icon-->
-            </div>
-            <!-- END-Description and price -->
-          </div>
-        </div>
-        <!-- END-Product-->
+<!--        &lt;!&ndash; product 2 &ndash;&gt;-->
+<!--        <div class="col-md-6 col-lg-3 mb-5">-->
+<!--          <div class="product">-->
+<!--            <a href="#">-->
+<!--              <img src="img/img1.jpg" class="img-fluid mt-3">-->
+<!--            </a>-->
+<!--            &lt;!&ndash; Description and price&ndash;&gt;-->
+<!--            <div class="product-desc text-center border border-top-0 pb-3">-->
+<!--              <h3><a href="#">Product 1</a></h3>-->
+<!--              <p class="mb-0">-->
+<!--                Lorem ipsum dolor sit amet, consectetur adipiscing elit.-->
+<!--              </p>-->
+<!--              &lt;!&ndash; Star rating &ndash;&gt;-->
+<!--              <span class="star-rating">-->
+<!--                <i class="fa fa-star" aria-hidden="true"></i>-->
+<!--                <i class="fa fa-star" aria-hidden="true"></i>-->
+<!--                <i class="fa fa-star" aria-hidden="true"></i>-->
+<!--                <i class="fa fa-star" aria-hidden="true"></i>-->
+<!--                <i class="fa fa-star-o" aria-hidden="true"></i>-->
+<!--              </span>-->
+<!--              &lt;!&ndash; Price &ndash;&gt;-->
+<!--              <div class="d-flex justify-content-center">-->
+<!--                <div class="pricing">-->
+<!--                  <p>-->
+<!--                    <span><del>$ 120.00</del></span>-->
+<!--                    <span class="price-actual">$ 96.00</span>-->
+<!--                  </p>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              &lt;!&ndash; cart icons &ndash;&gt;-->
+<!--              <div class="d-flex justify-content-center">-->
+<!--                <div class="d-flex cart-options">-->
+<!--                  <a href="#">-->
+<!--                    <span class="rounded-circle mr-1 h5">-->
+<!--                      <i class="fa fa-info-circle" aria-hidden="true"></i>-->
+<!--                    </span>-->
+<!--                  </a>-->
+<!--                  <a href="#">-->
+<!--                    <span class="rounded-circle mr-1 h5">-->
+<!--                      <i class="fa fa-shopping-cart" aria-hidden="true"></i>-->
+<!--                    </span>-->
+<!--                  </a>-->
+<!--                  <a href="#">-->
+<!--                    <span class="rounded-circle h5">-->
+<!--                      <i class="fa fa-heart-o" aria-hidden="true"></i>-->
+<!--                    </span>-->
+<!--                  </a>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              &lt;!&ndash; END-cart icon&ndash;&gt;-->
+<!--            </div>-->
+<!--            &lt;!&ndash; END-Description and price &ndash;&gt;-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; END-Product&ndash;&gt;-->
 
-        <!-- product 4 -->
-        <div class="col-md-6 col-lg-3 mb-5">
-          <div class="product">
-            <a href="#">
-              <img src="img/img4.jpg" class="img-fluid mt-3">
-            </a>
-            <!-- Description and price-->
-            <div class="product-desc text-center border border-top-0 pb-3">
-              <h3><a href="#">Product 1</a></h3>
-              <p class="mb-0">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              </p>
-              <!-- Star rating -->
-              <span class="star-rating">
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star-o" aria-hidden="true"></i>
-              </span>
-              <!-- Price -->
-              <div class="d-flex justify-content-center">
-                <div class="pricing">
-                  <p>
-                    <span><del>$ 120.00</del></span>
-                    <span class="price-actual">$ 96.00</span>
-                  </p>
-                </div>
-              </div>
-              <!-- cart icons -->
-              <div class="d-flex justify-content-center">
-                <div class="d-flex cart-options">
-                  <a href="#">
-                    <span class="rounded-circle mr-1 h5">
-                      <i class="fa fa-info-circle" aria-hidden="true"></i>
-                    </span>
-                  </a>
-                  <a href="#">
-                    <span class="rounded-circle mr-1 h5">
-                      <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                    </span>
-                  </a>
-                  <a href="#">
-                    <span class="rounded-circle h5">
-                      <i class="fa fa-heart-o" aria-hidden="true"></i>
-                    </span>
-                  </a>
-                </div>
-              </div>
-              <!-- END-cart icon-->
-            </div>
-            <!-- END-Description and price -->
-          </div>
-        </div>
-        <!-- END-Product-->
+<!--        &lt;!&ndash; product 3 &ndash;&gt;-->
+<!--        <div class="col-md-6 col-lg-3 mb-5">-->
+<!--          <div class="product">-->
+<!--            <a href="#">-->
+<!--              <img src="img/img2.jpg" class="img-fluid mt-3">-->
+<!--              <span class="bonus">5% off</span>-->
+<!--            </a>-->
+<!--            &lt;!&ndash; Description and price&ndash;&gt;-->
+<!--            <div class="product-desc text-center border border-top-0 pb-3">-->
+<!--              <h3><a href="#">Product 1</a></h3>-->
+<!--              <p class="mb-0">-->
+<!--                Lorem ipsum dolor sit amet, consectetur adipiscing elit.-->
+<!--              </p>-->
+<!--              &lt;!&ndash; Star rating &ndash;&gt;-->
+<!--              <span class="star-rating">-->
+<!--                <i class="fa fa-star" aria-hidden="true"></i>-->
+<!--                <i class="fa fa-star" aria-hidden="true"></i>-->
+<!--                <i class="fa fa-star" aria-hidden="true"></i>-->
+<!--                <i class="fa fa-star" aria-hidden="true"></i>-->
+<!--                <i class="fa fa-star-o" aria-hidden="true"></i>-->
+<!--              </span>-->
+<!--              &lt;!&ndash; Price &ndash;&gt;-->
+<!--              <div class="d-flex justify-content-center">-->
+<!--                <div class="pricing">-->
+<!--                  <p>-->
+<!--                    <span><del>$ 120.00</del></span>-->
+<!--                    <span class="price-actual">$ 96.00</span>-->
+<!--                  </p>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              &lt;!&ndash; cart icons &ndash;&gt;-->
+<!--              <div class="d-flex justify-content-center">-->
+<!--                <div class="d-flex cart-options">-->
+<!--                  <a href="#">-->
+<!--                    <span class="rounded-circle mr-1 h5">-->
+<!--                      <i class="fa fa-info-circle" aria-hidden="true"></i>-->
+<!--                    </span>-->
+<!--                  </a>-->
+<!--                  <a href="#">-->
+<!--                    <span class="rounded-circle mr-1 h5">-->
+<!--                      <i class="fa fa-shopping-cart" aria-hidden="true"></i>-->
+<!--                    </span>-->
+<!--                  </a>-->
+<!--                  <a href="#">-->
+<!--                    <span class="rounded-circle h5">-->
+<!--                      <i class="fa fa-heart-o" aria-hidden="true"></i>-->
+<!--                    </span>-->
+<!--                  </a>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              &lt;!&ndash; END-cart icon&ndash;&gt;-->
+<!--            </div>-->
+<!--            &lt;!&ndash; END-Description and price &ndash;&gt;-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; END-Product&ndash;&gt;-->
 
-        <!-- product 2 -->
-        <div class="col-md-6 col-lg-3 mb-5">
-          <div class="product">
-            <a href="#">
-              <img src="img/img5.jpg" class="img-fluid mt-3">
-            </a>
-            <!-- Description and price-->
-            <div class="product-desc text-center border border-top-0 pb-3">
-              <h3><a href="#">Product 1</a></h3>
-              <p class="mb-0">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              </p>
-              <!-- Star rating -->
-              <span class="star-rating">
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star-o" aria-hidden="true"></i>
-              </span>
-              <!-- Price -->
-              <div class="d-flex justify-content-center">
-                <div class="pricing">
-                  <p>
-                    <span><del>$ 120.00</del></span>
-                    <span class="price-actual">$ 96.00</span>
-                  </p>
-                </div>
-              </div>
-              <!-- cart icons -->
-              <div class="d-flex justify-content-center">
-                <div class="d-flex cart-options">
-                  <a href="#">
-                    <span class="rounded-circle mr-1 h5">
-                      <i class="fa fa-info-circle" aria-hidden="true"></i>
-                    </span>
-                  </a>
-                  <a href="#">
-                    <span class="rounded-circle mr-1 h5">
-                      <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                    </span>
-                  </a>
-                  <a href="#">
-                    <span class="rounded-circle h5">
-                      <i class="fa fa-heart-o" aria-hidden="true"></i>
-                    </span>
-                  </a>
-                </div>
-              </div>
-              <!-- END-cart icon-->
-            </div>
-            <!-- END-Description and price -->
-          </div>
-        </div>
-        <!-- END-Product-->
+<!--        &lt;!&ndash; product 4 &ndash;&gt;-->
+<!--        <div class="col-md-6 col-lg-3 mb-5">-->
+<!--          <div class="product">-->
+<!--            <a href="#">-->
+<!--              <img src="img/img4.jpg" class="img-fluid mt-3">-->
+<!--            </a>-->
+<!--            &lt;!&ndash; Description and price&ndash;&gt;-->
+<!--            <div class="product-desc text-center border border-top-0 pb-3">-->
+<!--              <h3><a href="#">Product 1</a></h3>-->
+<!--              <p class="mb-0">-->
+<!--                Lorem ipsum dolor sit amet, consectetur adipiscing elit.-->
+<!--              </p>-->
+<!--              &lt;!&ndash; Star rating &ndash;&gt;-->
+<!--              <span class="star-rating">-->
+<!--                <i class="fa fa-star" aria-hidden="true"></i>-->
+<!--                <i class="fa fa-star" aria-hidden="true"></i>-->
+<!--                <i class="fa fa-star" aria-hidden="true"></i>-->
+<!--                <i class="fa fa-star" aria-hidden="true"></i>-->
+<!--                <i class="fa fa-star-o" aria-hidden="true"></i>-->
+<!--              </span>-->
+<!--              &lt;!&ndash; Price &ndash;&gt;-->
+<!--              <div class="d-flex justify-content-center">-->
+<!--                <div class="pricing">-->
+<!--                  <p>-->
+<!--                    <span><del>$ 120.00</del></span>-->
+<!--                    <span class="price-actual">$ 96.00</span>-->
+<!--                  </p>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              &lt;!&ndash; cart icons &ndash;&gt;-->
+<!--              <div class="d-flex justify-content-center">-->
+<!--                <div class="d-flex cart-options">-->
+<!--                  <a href="#">-->
+<!--                    <span class="rounded-circle mr-1 h5">-->
+<!--                      <i class="fa fa-info-circle" aria-hidden="true"></i>-->
+<!--                    </span>-->
+<!--                  </a>-->
+<!--                  <a href="#">-->
+<!--                    <span class="rounded-circle mr-1 h5">-->
+<!--                      <i class="fa fa-shopping-cart" aria-hidden="true"></i>-->
+<!--                    </span>-->
+<!--                  </a>-->
+<!--                  <a href="#">-->
+<!--                    <span class="rounded-circle h5">-->
+<!--                      <i class="fa fa-heart-o" aria-hidden="true"></i>-->
+<!--                    </span>-->
+<!--                  </a>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              &lt;!&ndash; END-cart icon&ndash;&gt;-->
+<!--            </div>-->
+<!--            &lt;!&ndash; END-Description and price &ndash;&gt;-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; END-Product&ndash;&gt;-->
 
-        <!-- product 2 -->
-        <div class="col-md-6 col-lg-3 mb-5">
-          <div class="product">
-            <a href="#">
-              <img src="img/img6.jpg" class="img-fluid mt-3">
-              <span class="bonus">20% off</span>
-            </a>
-            <!-- Description and price-->
-            <div class="product-desc text-center border border-top-0 pb-3">
-              <h3><a href="#">Product 1</a></h3>
-              <p class="mb-0">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              </p>
-              <!-- Star rating -->
-              <span class="star-rating">
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star-o" aria-hidden="true"></i>
-              </span>
-              <!-- Price -->
-              <div class="d-flex justify-content-center">
-                <div class="pricing">
-                  <p>
-                    <span><del>$ 120.00</del></span>
-                    <span class="price-actual">$ 96.00</span>
-                  </p>
-                </div>
-              </div>
-              <!-- cart icons -->
-              <div class="d-flex justify-content-center">
-                <div class="d-flex cart-options">
-                  <a href="#">
-                    <span class="rounded-circle mr-1 h5">
-                      <i class="fa fa-info-circle" aria-hidden="true"></i>
-                    </span>
-                  </a>
-                  <a href="#">
-                    <span class="rounded-circle mr-1 h5">
-                      <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                    </span>
-                  </a>
-                  <a href="#">
-                    <span class="rounded-circle h5">
-                      <i class="fa fa-heart-o" aria-hidden="true"></i>
-                    </span>
-                  </a>
-                </div>
-              </div>
-              <!-- END-cart icon-->
-            </div>
-            <!-- END-Description and price -->
-          </div>
-        </div>
-        <!-- END-Product-->
+<!--        &lt;!&ndash; product 2 &ndash;&gt;-->
+<!--        <div class="col-md-6 col-lg-3 mb-5">-->
+<!--          <div class="product">-->
+<!--            <a href="#">-->
+<!--              <img src="img/img5.jpg" class="img-fluid mt-3">-->
+<!--            </a>-->
+<!--            &lt;!&ndash; Description and price&ndash;&gt;-->
+<!--            <div class="product-desc text-center border border-top-0 pb-3">-->
+<!--              <h3><a href="#">Product 1</a></h3>-->
+<!--              <p class="mb-0">-->
+<!--                Lorem ipsum dolor sit amet, consectetur adipiscing elit.-->
+<!--              </p>-->
+<!--              &lt;!&ndash; Star rating &ndash;&gt;-->
+<!--              <span class="star-rating">-->
+<!--                <i class="fa fa-star" aria-hidden="true"></i>-->
+<!--                <i class="fa fa-star" aria-hidden="true"></i>-->
+<!--                <i class="fa fa-star" aria-hidden="true"></i>-->
+<!--                <i class="fa fa-star" aria-hidden="true"></i>-->
+<!--                <i class="fa fa-star-o" aria-hidden="true"></i>-->
+<!--              </span>-->
+<!--              &lt;!&ndash; Price &ndash;&gt;-->
+<!--              <div class="d-flex justify-content-center">-->
+<!--                <div class="pricing">-->
+<!--                  <p>-->
+<!--                    <span><del>$ 120.00</del></span>-->
+<!--                    <span class="price-actual">$ 96.00</span>-->
+<!--                  </p>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              &lt;!&ndash; cart icons &ndash;&gt;-->
+<!--              <div class="d-flex justify-content-center">-->
+<!--                <div class="d-flex cart-options">-->
+<!--                  <a href="#">-->
+<!--                    <span class="rounded-circle mr-1 h5">-->
+<!--                      <i class="fa fa-info-circle" aria-hidden="true"></i>-->
+<!--                    </span>-->
+<!--                  </a>-->
+<!--                  <a href="#">-->
+<!--                    <span class="rounded-circle mr-1 h5">-->
+<!--                      <i class="fa fa-shopping-cart" aria-hidden="true"></i>-->
+<!--                    </span>-->
+<!--                  </a>-->
+<!--                  <a href="#">-->
+<!--                    <span class="rounded-circle h5">-->
+<!--                      <i class="fa fa-heart-o" aria-hidden="true"></i>-->
+<!--                    </span>-->
+<!--                  </a>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              &lt;!&ndash; END-cart icon&ndash;&gt;-->
+<!--            </div>-->
+<!--            &lt;!&ndash; END-Description and price &ndash;&gt;-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; END-Product&ndash;&gt;-->
 
-        <!-- product 2 -->
-        <div class="col-md-6 col-lg-3 mb-5">
-          <div class="product">
-            <a href="#">
-              <img src="img/img7.jpg" class="img-fluid mt-3">
-            </a>
-            <!-- Description and price-->
-            <div class="product-desc text-center border border-top-0 pb-3">
-              <h3><a href="#">Product 1</a></h3>
-              <p class="mb-0">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              </p>
-              <!-- Star rating -->
-              <span class="star-rating">
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star-o" aria-hidden="true"></i>
-              </span>
-              <!-- Price -->
-              <div class="d-flex justify-content-center">
-                <div class="pricing">
-                  <p>
-                    <span><del>$ 120.00</del></span>
-                    <span class="price-actual">$ 96.00</span>
-                  </p>
-                </div>
-              </div>
-              <!-- cart icons -->
-              <div class="d-flex justify-content-center">
-                <div class="d-flex cart-options">
-                  <a href="#">
-                    <span class="rounded-circle mr-1 h5">
-                      <i class="fa fa-info-circle" aria-hidden="true"></i>
-                    </span>
-                  </a>
-                  <a href="#">
-                    <span class="rounded-circle mr-1 h5">
-                      <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                    </span>
-                  </a>
-                  <a href="#">
-                    <span class="rounded-circle h5">
-                      <i class="fa fa-heart-o" aria-hidden="true"></i>
-                    </span>
-                  </a>
-                </div>
-              </div>
-              <!-- END-cart icon-->
-            </div>
-            <!-- END-Description and price -->
-          </div>
-        </div>
-        <!-- END-Product-->
+<!--        &lt;!&ndash; product 2 &ndash;&gt;-->
+<!--        <div class="col-md-6 col-lg-3 mb-5">-->
+<!--          <div class="product">-->
+<!--            <a href="#">-->
+<!--              <img src="img/img6.jpg" class="img-fluid mt-3">-->
+<!--              <span class="bonus">20% off</span>-->
+<!--            </a>-->
+<!--            &lt;!&ndash; Description and price&ndash;&gt;-->
+<!--            <div class="product-desc text-center border border-top-0 pb-3">-->
+<!--              <h3><a href="#">Product 1</a></h3>-->
+<!--              <p class="mb-0">-->
+<!--                Lorem ipsum dolor sit amet, consectetur adipiscing elit.-->
+<!--              </p>-->
+<!--              &lt;!&ndash; Star rating &ndash;&gt;-->
+<!--              <span class="star-rating">-->
+<!--                <i class="fa fa-star" aria-hidden="true"></i>-->
+<!--                <i class="fa fa-star" aria-hidden="true"></i>-->
+<!--                <i class="fa fa-star" aria-hidden="true"></i>-->
+<!--                <i class="fa fa-star" aria-hidden="true"></i>-->
+<!--                <i class="fa fa-star-o" aria-hidden="true"></i>-->
+<!--              </span>-->
+<!--              &lt;!&ndash; Price &ndash;&gt;-->
+<!--              <div class="d-flex justify-content-center">-->
+<!--                <div class="pricing">-->
+<!--                  <p>-->
+<!--                    <span><del>$ 120.00</del></span>-->
+<!--                    <span class="price-actual">$ 96.00</span>-->
+<!--                  </p>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              &lt;!&ndash; cart icons &ndash;&gt;-->
+<!--              <div class="d-flex justify-content-center">-->
+<!--                <div class="d-flex cart-options">-->
+<!--                  <a href="#">-->
+<!--                    <span class="rounded-circle mr-1 h5">-->
+<!--                      <i class="fa fa-info-circle" aria-hidden="true"></i>-->
+<!--                    </span>-->
+<!--                  </a>-->
+<!--                  <a href="#">-->
+<!--                    <span class="rounded-circle mr-1 h5">-->
+<!--                      <i class="fa fa-shopping-cart" aria-hidden="true"></i>-->
+<!--                    </span>-->
+<!--                  </a>-->
+<!--                  <a href="#">-->
+<!--                    <span class="rounded-circle h5">-->
+<!--                      <i class="fa fa-heart-o" aria-hidden="true"></i>-->
+<!--                    </span>-->
+<!--                  </a>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              &lt;!&ndash; END-cart icon&ndash;&gt;-->
+<!--            </div>-->
+<!--            &lt;!&ndash; END-Description and price &ndash;&gt;-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; END-Product&ndash;&gt;-->
 
-        <!-- product 2 -->
-        <div class="col-md-6 col-lg-3 mb-5">
-          <div class="product">
-            <a href="#">
-              <img src="img/img8.jpg" class="img-fluid mt-3">
-            </a>
-            <!-- Description and price-->
-            <div class="product-desc text-center border border-top-0 pb-3">
-              <h3><a href="#">Product 1</a></h3>
-              <p class="mb-0">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              </p>
-              <!-- Star rating -->
-              <span class="star-rating">
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star-o" aria-hidden="true"></i>
-              </span>
-              <!-- Price -->
-              <div class="d-flex justify-content-center">
-                <div class="pricing">
-                  <p>
-                    <span><del>$ 120.00</del></span>
-                    <span class="price-actual">$ 96.00</span>
-                  </p>
-                </div>
-              </div>
-              <!-- cart icons -->
-              <div class="d-flex justify-content-center">
-                <div class="d-flex cart-options">
-                  <a href="#">
-                    <span class="rounded-circle mr-1 h5">
-                      <i class="fa fa-info-circle" aria-hidden="true"></i>
-                    </span>
-                  </a>
-                  <a href="#">
-                    <span class="rounded-circle mr-1 h5">
-                      <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                    </span>
-                  </a>
-                  <a href="#">
-                    <span class="rounded-circle h5">
-                      <i class="fa fa-heart-o" aria-hidden="true"></i>
-                    </span>
-                  </a>
-                </div>
-              </div>
-              <!-- END-cart icon-->
-            </div>
-            <!-- END-Description and price -->
-          </div>
-        </div>
-        <!-- END-Product-->
+<!--        &lt;!&ndash; product 2 &ndash;&gt;-->
+<!--        <div class="col-md-6 col-lg-3 mb-5">-->
+<!--          <div class="product">-->
+<!--            <a href="#">-->
+<!--              <img src="img/img7.jpg" class="img-fluid mt-3">-->
+<!--            </a>-->
+<!--            &lt;!&ndash; Description and price&ndash;&gt;-->
+<!--            <div class="product-desc text-center border border-top-0 pb-3">-->
+<!--              <h3><a href="#">Product 1</a></h3>-->
+<!--              <p class="mb-0">-->
+<!--                Lorem ipsum dolor sit amet, consectetur adipiscing elit.-->
+<!--              </p>-->
+<!--              &lt;!&ndash; Star rating &ndash;&gt;-->
+<!--              <span class="star-rating">-->
+<!--                <i class="fa fa-star" aria-hidden="true"></i>-->
+<!--                <i class="fa fa-star" aria-hidden="true"></i>-->
+<!--                <i class="fa fa-star" aria-hidden="true"></i>-->
+<!--                <i class="fa fa-star" aria-hidden="true"></i>-->
+<!--                <i class="fa fa-star-o" aria-hidden="true"></i>-->
+<!--              </span>-->
+<!--              &lt;!&ndash; Price &ndash;&gt;-->
+<!--              <div class="d-flex justify-content-center">-->
+<!--                <div class="pricing">-->
+<!--                  <p>-->
+<!--                    <span><del>$ 120.00</del></span>-->
+<!--                    <span class="price-actual">$ 96.00</span>-->
+<!--                  </p>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              &lt;!&ndash; cart icons &ndash;&gt;-->
+<!--              <div class="d-flex justify-content-center">-->
+<!--                <div class="d-flex cart-options">-->
+<!--                  <a href="#">-->
+<!--                    <span class="rounded-circle mr-1 h5">-->
+<!--                      <i class="fa fa-info-circle" aria-hidden="true"></i>-->
+<!--                    </span>-->
+<!--                  </a>-->
+<!--                  <a href="#">-->
+<!--                    <span class="rounded-circle mr-1 h5">-->
+<!--                      <i class="fa fa-shopping-cart" aria-hidden="true"></i>-->
+<!--                    </span>-->
+<!--                  </a>-->
+<!--                  <a href="#">-->
+<!--                    <span class="rounded-circle h5">-->
+<!--                      <i class="fa fa-heart-o" aria-hidden="true"></i>-->
+<!--                    </span>-->
+<!--                  </a>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              &lt;!&ndash; END-cart icon&ndash;&gt;-->
+<!--            </div>-->
+<!--            &lt;!&ndash; END-Description and price &ndash;&gt;-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; END-Product&ndash;&gt;-->
+
+<!--        &lt;!&ndash; product 2 &ndash;&gt;-->
+<!--        <div class="col-md-6 col-lg-3 mb-5">-->
+<!--          <div class="product">-->
+<!--            <a href="#">-->
+<!--              <img src="img/img8.jpg" class="img-fluid mt-3">-->
+<!--            </a>-->
+<!--            &lt;!&ndash; Description and price&ndash;&gt;-->
+<!--            <div class="product-desc text-center border border-top-0 pb-3">-->
+<!--              <h3><a href="#">Product 1</a></h3>-->
+<!--              <p class="mb-0">-->
+<!--                Lorem ipsum dolor sit amet, consectetur adipiscing elit.-->
+<!--              </p>-->
+<!--              &lt;!&ndash; Star rating &ndash;&gt;-->
+<!--              <span class="star-rating">-->
+<!--                <i class="fa fa-star" aria-hidden="true"></i>-->
+<!--                <i class="fa fa-star" aria-hidden="true"></i>-->
+<!--                <i class="fa fa-star" aria-hidden="true"></i>-->
+<!--                <i class="fa fa-star" aria-hidden="true"></i>-->
+<!--                <i class="fa fa-star-o" aria-hidden="true"></i>-->
+<!--              </span>-->
+<!--              &lt;!&ndash; Price &ndash;&gt;-->
+<!--              <div class="d-flex justify-content-center">-->
+<!--                <div class="pricing">-->
+<!--                  <p>-->
+<!--                    <span><del>$ 120.00</del></span>-->
+<!--                    <span class="price-actual">$ 96.00</span>-->
+<!--                  </p>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              &lt;!&ndash; cart icons &ndash;&gt;-->
+<!--              <div class="d-flex justify-content-center">-->
+<!--                <div class="d-flex cart-options">-->
+<!--                  <a href="#">-->
+<!--                    <span class="rounded-circle mr-1 h5">-->
+<!--                      <i class="fa fa-info-circle" aria-hidden="true"></i>-->
+<!--                    </span>-->
+<!--                  </a>-->
+<!--                  <a href="#">-->
+<!--                    <span class="rounded-circle mr-1 h5">-->
+<!--                      <i class="fa fa-shopping-cart" aria-hidden="true"></i>-->
+<!--                    </span>-->
+<!--                  </a>-->
+<!--                  <a href="#">-->
+<!--                    <span class="rounded-circle h5">-->
+<!--                      <i class="fa fa-heart-o" aria-hidden="true"></i>-->
+<!--                    </span>-->
+<!--                  </a>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              &lt;!&ndash; END-cart icon&ndash;&gt;-->
+<!--            </div>-->
+<!--            &lt;!&ndash; END-Description and price &ndash;&gt;-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; END-Product&ndash;&gt;-->
 
       </div>
     </div>

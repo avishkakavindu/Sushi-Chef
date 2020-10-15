@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import *
 
 
 # index page
@@ -9,7 +10,8 @@ def home(request):
 
 # menu page
 def menu(request):
-    context = {}
+    products = Product.objects
+    context = {'products': products}
     return render(request, 'store/menu.html', context)
 
 

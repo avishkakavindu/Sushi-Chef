@@ -40,11 +40,17 @@ class Order(models.Model):
     zipcode = models.CharField(max_length=20)
     date = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return str(self.id)
+
 
 class OrderedProducts(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, null=True, on_delete=models.SET_NULL)
     quantity = models.DecimalField(max_digits=2, decimal_places=0)
+
+    def __str__(self):
+        return str(self.id)
 
 
 class Payment(models.Model):
@@ -59,6 +65,9 @@ class Payment(models.Model):
     payment = models.DecimalField(max_digits=10, decimal_places=2)
     date = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return str(self.id)
+
 
 class ProductImages(models.Model):
     PLACEHOLDER= (
@@ -70,6 +79,8 @@ class ProductImages(models.Model):
     image = models.ImageField(upload_to='images/')
     place = models.CharField(max_length=20, choices=PLACEHOLDER)
 
+    def __str__(self):
+        return str(self.id)
 
 
 class ProductReview(models.Model):
@@ -77,7 +88,13 @@ class ProductReview(models.Model):
     review = models.TextField()
     rating = models.DecimalField(max_digits=1, decimal_places=0)
 
+    def __str__(self):
+        return str(self.id)
+
 
 class ChefReview(models.Model):
     chef = models.ForeignKey(Chef, on_delete=models.CASCADE)
     rating = models.DecimalField(max_digits=1, decimal_places=0)
+
+    def __str__(self):
+        return str(self.id)
