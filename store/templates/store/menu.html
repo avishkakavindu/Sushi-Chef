@@ -36,7 +36,7 @@
         <div class="col-md-6 col-lg-3 mb-5">
           <div class="product">
             <a href="#">
-              <img src="{{ product.image }}" class="img-fluid mt-3">
+              <img src="{{ product.main_image.0.image.url }}" class="img-fluid mt-3">
               {% if product.discount != 0 %}
               <span class="bonus">{{ product.discount }}% off</span>
               {% endif %}
@@ -45,22 +45,26 @@
             <div class="product-desc text-center border border-top-0 pb-3">
               <h3><a href="#">{{ product.name }}</a></h3>
               <p class="mb-0">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                {{ product.desc }}
               </p>
               <!-- Star rating -->
               <span class="star-rating">
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star-o" aria-hidden="true"></i>
+                {% for i in five_star %}
+                  {% if i < product.get_avg_rating %}
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                  {% else %}
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                  {% endif %}
+
+                {% endfor %}
               </span>
               <!-- Price -->
               <div class="d-flex justify-content-center">
                 <div class="pricing">
                   <p>
                     <span><del>$ 120.00</del></span>
-                    <span class="price-actual">$ 96.00</span>
+                    <span class="price-actual">$ {{ product.price }}</span>
+                    {{ product.get_sale_price }}
                   </p>
                 </div>
               </div>
