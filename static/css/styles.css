@@ -190,6 +190,22 @@
     color: #989898;
 }
 
+.bonus-front {
+     background-color: #77e365;
+     font-size: 100%;
+     color: #fff;
+     padding: 5px;
+     position: absolute;
+     right: 0;
+     font-weight: bolder;
+     text-shadow: 1px 1px 2px rgba(0,0,0,0.3)
+ }
+
+.rating {
+    color: #FFDF00;
+}
+
+
 /* --- chefs --- */
 #chefsSection {
     background-color: #f7f7f7;
@@ -204,6 +220,7 @@
     font-style: normal;
     color: #202022;
     font-size: x-large;
+    margin-top: 10px;
     margin-bottom: 10px;;
 }
 
@@ -231,6 +248,16 @@
     font-size: small;
     font-style: oblique;
 }
+
+#chef-rating {
+    font-size: large;
+    color:red;
+}
+
+.rate-desc {
+    font-size: 20px;;
+}
+
 .ratings > .fa-star {
     color: #FFDF00;
 }

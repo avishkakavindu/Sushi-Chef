@@ -14,7 +14,7 @@ class Customer(models.Model):
         return self.first_name
 
 
-# Product related
+# Product related models
 class Product(models.Model):
     name = models.CharField(max_length=200)
     desc = models.TextField()
@@ -47,7 +47,7 @@ class ProductImage(models.Model):
         ('Sub Image 1', 'Sub Image 1'),
         ('Sub Image 2', 'Sub Image 2'),
     )
-    product = models.ForeignKey(Product, related_name='image_set', on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, related_name='productimage_set', on_delete=models.CASCADE)
     image = models.ImageField(upload_to='images/')
     place = models.CharField(max_length=20, choices=PLACEHOLDER)
 
@@ -56,7 +56,7 @@ class ProductImage(models.Model):
 
 
 class ProductReview(models.Model):
-    product = models.ForeignKey(Product, related_name='review_set', on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, related_name='productreview_set', on_delete=models.CASCADE)
     review = models.TextField()
     rating = models.DecimalField(max_digits=1, decimal_places=0, default=0)
 
@@ -66,6 +66,7 @@ class ProductReview(models.Model):
 
 # -- End of Product related --
 
+# Chef related models
 class Chef(models.Model):
     name = models.CharField(max_length=200)
     desc = models.TextField()
@@ -73,6 +74,25 @@ class Chef(models.Model):
 
     def __str__(self):
         return self.name
+
+    # returns average ratings of the product
+    @property
+    def get_avg_rating(self):
+        ratings = ChefReview.objects.filter(chef=self).aggregate(rating_avg=Avg('rating'))
+        if ratings['rating_avg'] is None:
+            return 0
+        else:
+            return int(ratings['rating_avg'])
+
+
+class ChefReview(models.Model):
+    chef = models.ForeignKey(Chef,related_name='chefreview_set', on_delete=models.CASCADE)
+    rating = models.DecimalField(max_digits=1, decimal_places=0)
+
+    def __str__(self):
+        return str(self.id)
+
+# -- End of Chef related *--
 
 
 class Order(models.Model):
@@ -112,9 +132,4 @@ class Payment(models.Model):
         return str(self.id)
 
 
-class ChefReview(models.Model):
-    chef = models.ForeignKey(Chef, on_delete=models.CASCADE)
-    rating = models.DecimalField(max_digits=1, decimal_places=0)
 
-    def __str__(self):
-        return str(self.id)

@@ -90,53 +90,36 @@
         <!-- album -->
         <div class="row">
           <!-- item 1 -->
-          <div class="col-md-4">
-            <div class="card mb-4 box-shadow">
-              <img class="card-img-top" src="img/img1.jpg" alt="Card image cap">
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="rating">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+
+          {% for product in products %}
+
+            <div class="col-md-4 product-gal">
+              <div class="card mb-4 box-shadow">
+                <img class="card-img-top" src="{{ product.main_image.0.image.url }}" alt="Card image cap">
+                <div class="card-body">
+                  <p class="card-text">
+                    {{ product.name }}
+                  </p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="rating">
+                      <!-- Star rating -->
+                      {% for i in five_star %}
+                        {% if i < product.get_avg_rating %}
+                          <i class="fa fa-star" aria-hidden="true"></i>
+                        {% else %}
+                          <i class="fa fa-star-o" aria-hidden="true"></i>
+                        {% endif %}
+                      {% endfor %}
+                    </div>
+                    {% if product.discount != 0 %}
+                      <span class="bonus-front">{{ product.discount }}% off</span>
+                    {% endif %}
                   </div>
-                  <small class="text-muted">9 mins</small>
                 </div>
               </div>
             </div>
-          </div>
-          <!-- item 2 -->
-          <div class="col-md-4">
-            <div class="card mb-4 box-shadow">
-              <img class="card-img-top" src="img/img2.jpg" alt="Card image cap">
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                  </div>
-                  <small class="text-muted">9 mins</small>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- item 3 -->
-          <div class="col-md-4">
-            <div class="card mb-4 box-shadow">
-              <img class="card-img-top" src="img/img3.jpg" alt="Card image cap">
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                  </div>
-                  <small class="text-muted">9 mins</small>
-                </div>
-              </div>
-            </div>
-          </div>
+
+          {% endfor %}
         </div>
       </div>
     </div>
@@ -149,42 +132,33 @@
           Our Top <span>Sushi Chefs...</span>
         </h2>
         <div class="row" id="chefs">
-          <div class="col-lg">
-            <img class="rounded-circle" src="img/chef1.jpg">
-            <h2>Heading</h2>
-            <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
-            <div class="ratings border-top mt-3 ">
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-            </div>
-          </div><!-- /.col-lg -->
-          <div class="col-lg">
-            <img class="rounded-circle" src="img/chef2.jpg">
-            <h2>Heading</h2>
-            <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-            <div class="ratings border-top my-3">
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star-o"></i>
-            </div>
-          </div><!-- /.col-lg -->
-          <div class="col-lg">
-            <img class="rounded-circle" src="img/chef3.jpg">
-            <h2>Heading</h2>
-            <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-            <div class="ratings border-top my-3">
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star-o"></i>
-              <i class="fa fa-star-o"></i>
-            </div>
-          </div><!-- /.col-lg -->
+
+          {% for chef in chefs %}
+
+            <div class="col-lg">
+              <img class="rounded-circle" src="{{ chef.image.url }}">
+              <h2>{{ chef.name }}</h2>
+              <p>
+                {{ chef.desc }}
+              </p>
+              <!-- Star rating -->
+              <div class="ratings border-top mt-3 ">
+                <span class="star_rating" id="chef-rating">
+                  {% for i in five_star %}
+                    {% if i < chef.get_avg_rating %}
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                    {% else %}
+                      <i class="fa fa-star-o" aria-hidden="true"></i>
+                    {% endif %}
+
+                  {% endfor %}
+
+                </span>
+              </div>
+            </div><!-- /.col-lg -->
+
+          {% endfor %}
+
         </div>
       </div><!-- /.row -->
     </div>
