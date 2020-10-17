@@ -1,207 +1,72 @@
 {% extends 'store/main.html' %}
+{% load static %}
 {% block content %}
 
+    <!-- Jumatron -->
+  <section>
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-sm-8">
+            <h1 class="display-5 text-center">Sushi Chef <span class="promo">Promotions</span></h1>
+            <blockquote class="blockquote text-center">
+              <p class="mb-0 lead">Sushi is not really about flavor as much as texture. Everything is usually made bite-size so you can eat it in one bite, which is more proper.Prepared fresh with care by our chefs, our products offer great flavour and superior freshness. Our popular Poke Bowls, Sushi Tacos, Blossom and Temari Collections are just among a wide selection of unique creations available for take-out or delivery.</p>
+              <footer class="blockquote-footer">Sushi <cite title="Source Title">Lover</cite></footer>
+            </blockquote>
+          </div>
+          <div class="col-12 col-sm d-none d-sm-block">
+            <img src="{% static 'images/staticimg/chopsticks.png' %}">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- END - Jumbatron -->
   <!-- promotions -->
   <div class="container" id="promo">
     <!-- promo 1 -->
     <div class="row mb-5 promo-col-limit">
       <!-- promo 1 -->
-      <div class="col-lg border">
-        <div class="card mb-3">
-          <div class="row no-gutters">
-            <div class="col-md-4 mt-3">
-              <img src="./img/img3.jpg" class="card-img " alt="...">
 
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h2 class="card-title mt-0">Promo Name <span class="badge badge-danger me-1">50% off</span></h2>
-                <div class="row">
-                  <div class="col col-sm-8">
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididund tempor incididun.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                  </div>
-                  <div class="col col-sm align-self-center text-center border-left" id="containerinfo">
-                    <button type="button" class="btn btn-primary"><i class="fa fa-info-circle fa-fw" aria-hidden="true"></i>more info</button>
-                  </div>
-                </div>
+      {% for promo in promos %}
+        <div class="col-lg border">
+          <div class="card mb-3">
+            <div class="row no-gutters">
+              <!-- product img -->
+              <div class="col-md-4 mt-3">
+                <img src="{{ promo.main_image.0.image.url }}" class="card-img " alt="...">
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg border">
-        <div class="card mb-3">
-          <div class="row no-gutters">
-            <div class="col-md-4 mt-3">
-              <img src="./img/img3.jpg" class="card-img " alt="...">
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h2 class="card-title mt-0">{{ promo.name}}
+                    <span class="badge badge-danger me-1">{{ promo.discount }}% off</span>
+                  </h2>
+                  <div class="row">
+                    <div class="col col-sm-8 desc">
+                      <p class="card-text">
+                        {{ promo.desc }}
+                      </p>
 
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h2 class="card-title mt-0">Promo Name <span class="badge badge-danger me-1">50% off</span></h2>
-                <div class="row">
-                  <div class="col col-sm-8">
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididund tempor incididun.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                  </div>
-                  <div class="col col-sm align-self-center text-center border-left" id="containerinfo">
-                    <button type="button" class="btn btn-primary"><i class="fa fa-info-circle fa-fw" aria-hidden="true"></i>more info</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg border">
-        <div class="card mb-3">
-          <div class="row no-gutters">
-            <div class="col-md-4 mt-3">
-              <img src="./img/img3.jpg" class="card-img " alt="...">
+                    </div>
+                    <div class="col col-sm align-self-center text-center border-left" id="containerinfo">
+                      <button type="button" class="btn btn-primary"><i class="fa fa-info-circle fa-fw" aria-hidden="true"></i>more info</button>
+                    </div>
+                    <div class="updated-on">
+                      <p class="card-text"><small class="text-muted">Last updated: {{ promo.updated_on }}</small></p>
+                    </div>
 
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h2 class="card-title mt-0">Promo Name <span class="badge badge-danger me-1">50% off</span></h2>
-                <div class="row">
-                  <div class="col col-sm-8">
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididund tempor incididun.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                  </div>
-                  <div class="col col-sm align-self-center text-center border-left" id="containerinfo">
-                    <button type="button" class="btn btn-primary"><i class="fa fa-info-circle fa-fw" aria-hidden="true"></i>more info</button>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="col-lg border">
-        <div class="card mb-3">
-          <div class="row no-gutters">
-            <div class="col-md-4 mt-3">
-              <img src="./img/img3.jpg" class="card-img " alt="...">
 
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h2 class="card-title mt-0">Promo Name <span class="badge badge-danger me-1">50% off</span></h2>
-                <div class="row">
-                  <div class="col col-sm-8">
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididund tempor incididun.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                  </div>
-                  <div class="col col-sm align-self-center text-center border-left" id="containerinfo">
-                    <button type="button" class="btn btn-primary"><i class="fa fa-info-circle fa-fw" aria-hidden="true"></i>more info</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg border">
-        <div class="card mb-3">
-          <div class="row no-gutters">
-            <div class="col-md-4 mt-3">
-              <img src="./img/img3.jpg" class="card-img " alt="...">
+      {% endfor %}
 
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h2 class="card-title mt-0">Promo Name <span class="badge badge-danger me-1">50% off</span></h2>
-                <div class="row">
-                  <div class="col col-sm-8">
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididund tempor incididun.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                  </div>
-                  <div class="col col-sm align-self-center text-center border-left" id="containerinfo">
-                    <button type="button" class="btn btn-primary"><i class="fa fa-info-circle fa-fw" aria-hidden="true"></i>more info</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- promo 2 -->
-      <div class="col-lg border">
-        <div class="card mb-3">
-          <div class="row no-gutters">
-            <div class="col-md-4 mt-3">
-              <img src="./img/img1.jpg" class="card-img" alt="...">
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h2 class="card-title mt-0">Promo Name <span class="badge badge-danger me-1">50% off</span></h2>
-                <div class="row">
-                  <div class="col col-sm-8">
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididund tempor incididun.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                  </div>
-                  <div class="col col-sm align-self-center text-center border-left" id="containerinfo">
-                    <button type="button" class="btn btn-primary"><i class="fa fa-info-circle fa-fw" aria-hidden="true"></i>more info</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
 
   </div>
   <!-- END - promotions -->
-
-  <!-- chefs -->
-    <div class="row" id="chefsSection">
-      <div class="container">
-        <h2 class="display-5 text-center">
-          Our Top <span>Sushi Chefs...</span>
-        </h2>
-        <div class="row" id="chefs">
-          <div class="col-lg">
-            <img class="rounded-circle" src="img/chef1.jpg">
-            <h2>Heading</h2>
-            <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
-            <div class="ratings border-top mt-3 ">
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-            </div>
-          </div><!-- /.col-lg -->
-          <div class="col-lg">
-            <img class="rounded-circle" src="img/chef2.jpg">
-            <h2>Heading</h2>
-            <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-            <div class="ratings border-top my-3">
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star-o"></i>
-            </div>
-          </div><!-- /.col-lg -->
-          <div class="col-lg">
-            <img class="rounded-circle" src="img/chef3.jpg">
-            <h2>Heading</h2>
-            <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-            <div class="ratings border-top my-3">
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star-o"></i>
-              <i class="fa fa-star-o"></i>
-            </div>
-          </div><!-- /.col-lg -->
-        </div>
-      </div><!-- /.row -->
-    </div>
-  <!-- END - Chefs -->
-
 
 {% endblock content %}
