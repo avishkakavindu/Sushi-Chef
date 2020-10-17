@@ -285,6 +285,11 @@
     }
 }
 
+.promo-col-limit {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-gap: 10px;
+}
 
 #containerinfo {
     height: 100%;
@@ -303,7 +308,7 @@
 
 
 #promo .col-lg {
-    margin: 15px;
+    margin: 0px;
 }
 
 #promo .btn-primary:hover {

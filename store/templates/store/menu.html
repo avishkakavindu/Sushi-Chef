@@ -62,9 +62,14 @@
               <div class="d-flex justify-content-center">
                 <div class="pricing">
                   <p>
-                    <span><del>$ 120.00</del></span>
-                    <span class="price-actual">$ {{ product.price }}</span>
-                    {{ product.get_sale_price }}
+                    {% if product.discount != 0 %}
+                      <span><del>
+                        ${{ product.price }}
+                      </del></span>
+                      <span class="price-actual">${{ product.get_sale_price|floatformat:2 }}</span>
+                    {% else %}
+                      <span class="price-actual">${{ product.price }}</span>
+                    {% endif %}
                   </p>
                 </div>
               </div>

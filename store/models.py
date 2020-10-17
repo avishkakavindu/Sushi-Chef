@@ -36,9 +36,8 @@ class Product(models.Model):
     # returns sale price (= Store price - discount)
     @property
     def get_sale_price(self):
-        sale_price = Product.objects.filter(name=self).annotate(s_price=(
-                F('price') - (F('price') * F('discount') * 100)))
-        return sale_price
+        sale_price = Product.objects.filter(name=self).annotate(s_price=(F('price')*(100 - F('discount'))/100))
+        return sale_price[0].s_price
 
 
 class ProductImage(models.Model):

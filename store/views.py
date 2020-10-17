@@ -19,13 +19,26 @@ def menu(request):
         )
     )
 
-    context = {'products': products, 'five_star': [0, 1, 2, 3, 4]}
+    context = {
+        'products': products,
+        'five_star': [0, 1, 2, 3, 4]
+    }
+
     return render(request, 'store/menu.html', context)
 
 
 # promo page
 def promo(request):
-    context = {}
+    promos = Product.objects.exclude(discount='0').prefetch_related(
+        Prefetch(
+            'image_set',
+            ProductImage.objects.filter(place='Main Product Image'),
+            to_attr='main_image'
+        )
+    )
+    context = {
+        'promos': promos
+    }
     return render(request, 'store/promo.html', context)
 
 
