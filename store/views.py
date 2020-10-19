@@ -30,7 +30,7 @@ def home(request):
 def menu(request):
     products = Product.objects.prefetch_related(
         Prefetch(
-            'image_set',
+            'productimage_set',
             ProductImage.objects.filter(place='Main Product Image'),
             to_attr='main_image'
         )
@@ -48,7 +48,7 @@ def menu(request):
 def promo(request):
     promos = Product.objects.exclude(discount='0').prefetch_related(
         Prefetch(
-            'image_set',
+            'productimage_set',
             ProductImage.objects.filter(place='Main Product Image'),
             to_attr='main_image'
         )

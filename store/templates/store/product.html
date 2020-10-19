@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.1.1/bootstrap-social.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
+
+    <!-- custom styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animate.css">
+
+    <link rel="icon" type="image/png" href="img/menu.ico" />
+    <title>Menu</title>
+  </head>
+  <body>
+  
+    <header>
+    <!-- top nav social-media -->
+      <nav class="navbar navbar-dark navbar-expand">
+        <div class="container" id="navIcons"> 
+          <ul class="nav navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-item nav-link" href="#"><i class="fa fa-facebook fa-lg fa-fw"></i></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-item nav-link" href="#"><i class="fa fa-twitter fa-lg fa-fw"></i></a>
+            </li>
+            <li class="nav-item">    
+                <a class="nav-item nav-link" href="#"><i class="fa fa-instagram fa-lg fa-fw"></i></a>
+            </li>
+            <li class="nav-item">    
+                <a class="nav-item nav-link" href="#"><i class="fa fa-linkedin fa-lg fa-fw"></i></a>
+            </li>
+          </ul>    
+                  
+          <ul class="nav navbar-nav ml-auto" >
+            <a class="nav-item nav-link" href="#">
+              <i class="fa fa-shopping-cart fa-fw"></i>
+              <i class="badge badge-warning">2</i>
+            </a>
+          </ul>
+        </div>
+      </nav>
+    <!-- END - top nav social-media -->
+    </header>
+
+  <!-- Sticky Main nav -->
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-white">
+      <div class="container">
+        <div class="navbar-brand" href="#" id="site-logo">
+          <img src="img/logo.png">
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">
+                <i class="fa fa-home text-dark"></i>
+                  HOME
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="menu.html">MENU</a>
+          </li>
+            <li class="nav-item">
+              <a class="nav-link" href="promo.html">PROMOTIONS</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="cart.html">CART</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                ABOUT
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">About Us</a>
+                <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Our Retaurants</a>
+              </div>
+            </li>
+          </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="button" data-toggle="modal" data-target="#modalLRForm">SignIn</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+  <!-- END - Sticky Main nav -->
+
+  <!--Modal: Login / Register Form-->
+    <div class="modal fade" id="modalLRForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog cascading-modal" role="document">
+        <!--Content-->
+        <div class="modal-content">
+          <!--Modal cascading tabs-->
+          <div class="modal-c-tabs">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs md-tabs tabs-2 darken-3" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#panel7" role="tab"><i class="fa fa-user mr-1"></i>
+                  Login
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#panel8" role="tab"><i class="fa fa-user-plus mr-1"></i>
+                  Register
+                </a>
+              </li>
+            </ul>
+            <!-- Tab panels -->
+            <div class="tab-content">
+              <!--Panel 7-->
+              <div class="tab-pane fade in show active" id="panel7" role="tabpanel">
+
+                <!--Body-->
+                <div class="modal-body mb-1">
+                  <div class="md-form form-sm mb-2">
+                    <i class="fa fa-envelope prefix"></i>
+                    <label data-error="wrong" data-success="right" for="modalLRInput10">Your email</label>
+                    <input type="email" id="modalLRInput10" class="form-control form-control-sm validate">
+                  </div>
+
+                  <div class="md-form form-sm mb-2">
+                    <i class="fa fa-lock prefix"></i>
+                    <label data-error="wrong" data-success="right" for="modalLRInput11">Your password</label>
+                    <input type="password" id="modalLRInput11" class="form-control form-control-sm validate">                    
+                  </div>
+                  <div class="text-right mt-2">
+                    <p>Forgot <a href="#" class="blue-text">Password?</a></p>
+                    <button class="btn btn-outline-primary">Log in <i class="fa fa-sign-in ml-1"></i></button>
+                    <button type="button" class="btn btn-outline-warning waves-effect ml-auto" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+                
+              </div>
+              <!--/.Panel Login-->
+              <!--Panel Register-->
+              <div class="tab-pane fade" id="panel8" role="tabpanel">
+                <!--Body-->
+                <div class="modal-body">
+                  <div class="md-form form-sm mb-2">
+                    <i class="fa fa-envelope prefix"></i>
+                    <label data-error="wrong" data-success="right" for="modalLRInput12">Your email</label>
+                    <input type="email" id="modalLRInput12" class="form-control form-control-sm validate">
+                  </div>
+                  <div class="md-form form-sm mb-2">
+                    <i class="fa fa-lock prefix"></i>
+                    <label data-error="wrong" data-success="right" for="modalLRInput13">Your password</label>
+                    <input type="password" id="modalLRInput13" class="form-control form-control-sm validate">
+                  </div>
+                  <div class="md-form form-sm mb-2">
+                    <i class="fa fa-lock prefix"></i>
+                    <label data-error="wrong" data-success="right" for="modalLRInput14">Repeat password</label>
+                    <input type="password" id="modalLRInput14" class="form-control form-control-sm validate">
+                  </div>
+                  <div class="text-right form-sm mt-2">
+                    <button class="btn btn-outline-success">Sign up <i class="fa fa-sign-in ml-1"></i></button>
+                    <button type="button" class="btn btn-outline-warning waves-effect ml-auto" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+                
+              </div>
+              <!--/.Panel Register-->
+            </div>
+          </div>
+        </div>
+        <!--/.Content-->
+      </div>
+    </div>
+  <!--Modal: Login / Register Form-->
+
+  <!-- Jumatron -->
+    <section>
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 col-sm-8">
+              <h1 class="display-5 text-center">Sushi Chef <span class="promo"></span></h1>
+              <blockquote class="blockquote text-center">
+                <p class="mb-0 lead">Sushi is not really about flavor as much as texture. Everything is usually made bite-size so you can eat it in one bite, which is more proper.Prepared fresh with care by our chefs, our products offer great flavour and superior freshness. Our popular Poke Bowls, Sushi Tacos, Blossom and Temari Collections are just among a wide selection of unique creations available for take-out or delivery.</p>
+                <footer class="blockquote-footer">Sushi <cite title="Source Title">Lover</cite></footer>
+              </blockquote>
+            </div>
+            <div class="col-12 col-sm d-none d-sm-block">
+              <img src="img/chopsticks.png">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  <!-- END - Jumbatron -->
+
+  <!-- Product -->
+  <div class="container mb-4">
+    <div id="product" class="row">
+      <!-- for images -->
+      <div class="col-md col-lg-5">
+          <div class="row">
+              <div class="main-img">
+                  <img src="img/img1.jpg" class="img-fluid">
+              </div>
+              <div class="sub-img">
+                  <img src="img/img2.jpg" class="img-fluid">
+              </div>
+              <div class="sub-img">
+                  <img src="img/img3.jpg" class="img-fluid">
+              </div>
+          </div>
+      </div>
+      <!-- for description -->
+      <div class="col-md col-lg product-details">
+        <h1>Product 1</h1>
+        <!-- Star rating -->
+        <span class="star-rating">
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star-o" aria-hidden="true"></i>
+        </span>
+        <small>3 reviews</small>
+        <hr>
+        <p class="p-desc">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.ipsum dolor sit amet, consectetur adipiscing elit.
+        ipsum dolor sit amet, consectetur adipiscing elit.
+        </p>
+        <div class="pricing">
+            <p>
+                <span>Price:</span>
+                <span class="price-actual">$ 96.00</span>
+                <span><del>$ 120.00</del></span>
+            </p>
+            <p>
+                <span>Servings: </span>
+                <input class="quantity" min="0" name="quantity" value="1" type="number">
+            </p>
+            <button type="button" class="btn btn-outline-success">
+                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                <span> Add to cart</span>
+            </button>
+        </div>
+        <!-- Review summary -->
+        <div class="col-md col-lg mt-5">
+          <div class="row  graphical-avg">
+            <div class="col-md col-lg-5 self-align-right">
+              <h5> Average user rating</h5>
+              <h4>4.3<span>/5</span></h4>
+              
+              <!-- Star rating -->
+              <span class="star-rating">
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star-half-o" aria-hidden="true"></i>
+              </span>
+            </div>
+
+            <div class="col-md col-lg rating-breakdown">
+              <h5>Rating breakdown</h5>
+              <div class="progressbars">
+                <!-- 5 stars -->
+                <div class="flex-grow-1">
+                  <div class="row align-items-center">
+                    <div class="col-md col-lg-4  text-lg-right" style="font-size: 10px;">
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                    </div>
+                    <div class="col-sm col-lg-8">
+                      <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- 4 stars -->
+                <div class="flex-grow-1">
+                  <div class="row align-items-center">
+                    <div class="col-md col-lg-4  text-lg-right" style="font-size: 10px;">
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                    </div>
+                    <div class="col-sm col-lg-8">
+                      <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- 3 stars -->
+                <div class="flex-grow-1">
+                  <div class="row align-items-center">
+                    <div class="col-md col-lg-4  text-lg-right" style="font-size: 10px;">
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                    </div>
+                    <div class="col-sm col-lg-8">
+                      <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- 2 stars -->
+                <div class="flex-grow-1">
+                  <div class="row align-items-center">
+                    <div class="col-md col-lg-4  text-lg-right" style="font-size: 10px;">
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                    </div>
+                    <div class="col-sm col-lg-8">
+                      <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- 1 stars -->
+                <div class="flex-grow-1">
+                  <div class="row align-items-center">
+                    <div class="col-md col-lg-4  text-lg-right" style="font-size: 10px;">
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                    </div>
+                    <div class="col-sm col-lg-8">
+                      <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- END-Review summary -->
+        <div class="row mt-5" id="reviews">
+          <div class="col-md col-lg">
+            <!-- Review tabs -->
+            <nav>
+              <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                  <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Reviews</a>
+                  <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Your review</a>       
+              </div>
+            </nav>
+            <div class="tab-content" id="nav-tabContent">
+              <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                <!-- Review -->
+                <div class="row mt-3 mb-3 border-bottom pb-3">
+                  <div class="col-md col-lg-3 text-center">
+                    <img src="img/chef1.jpg" class="img-thumbnail rounded-circle img-fluid">
+                    <small>Reviewer name</small>
+                  </div>
+                  <div class="col-md col-lg">
+                    <p class="review-desc">
+                      Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. 
+                    </p>
+                      <!-- Star rating -->
+                      <span class="star-rating">
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                      </span>
+                      <span class="review-date">June 7, 2020 </span>
+                  </div>
+                </div>
+                <!-- End of review -->
+                <!-- Review -->
+                <div class="row mt-3 mb-3 border-bottom pb-3">
+                  <div class="col-md col-lg-3 text-center">
+                    <img src="img/chef2.jpg" class="img-thumbnail rounded-circle img-fluid">
+                    <small>Reviewer name</small>
+                  </div>
+                  <div class="col-md col-lg">
+                    <p class="review-desc">
+                      Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. 
+                    </p>
+                      <!-- Star rating -->
+                      <span class="star-rating">
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                      </span>
+                      <span class="review-date">June 7, 2020 </span>
+                  </div>
+                </div>
+                <!-- End of review -->
+              </div>
+                  
+              </div>
+              <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                  
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- END-product -->
+  
+
+  <!-- footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3 offset-1">
+            <h5>Navigation</h5>
+            <hr><hr class="mb-1">
+            <ul class="list-unstyled">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Menu</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+          </div>
+          <div class="col-md-3" id="footer-contact">
+            <h5>Contact</h5>
+            <hr><hr class="mb-1">
+            <address class="address">
+		          121, Clear Water Bay Road<br>
+              Clear Water Bay, Kowloon<br>
+              HONG KONG<br>
+              <i class="fa fa-phone fa-lg fa-fw"></i>: +852 1234 5678<br>
+              <i class="fa fa-fax fa-lg fa-fw"></i>: +852 8765 4321<br>
+              <i class="fa fa-envelope fa-lg fa-fw"></i>: <a href="mailto:confusion@food.net">confusion@food.net</a>
+            </address>
+          </div>
+          <div class="col-12 col-sm align-self-center">
+            <div class="text-center">
+              <a class="btn btn-social-icon btn-google" href="http://google.com/+" ><i class="fa fa-google-plus "></i></a>
+              <a class="btn btn-social-icon btn-facebook" href="http://www.facebook.com/profile.php?id="><i class="fa fa-facebook "></i></a>
+              <a class="btn btn-social-icon btn-linkedin" href="http://www.linkedin.com/in/"><i class="fa fa-linkedin "></i></a>
+              <a class="btn btn-social-icon btn-twitter" href="http://twitter.com/"><i class="fa fa-twitter "></i></a>
+              <a class="btn btn-social-icon btn-google" href="http://youtube.com/"><i class="fa fa-youtube "></i></a>
+              <a class="btn btn-social-icon btn-google" href="mailto:"><i class="fa fa-envelope "></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center">             
+          <div class="col-auto">
+              <p>© Copyright 2018 Ristorante Con Fusion</p>
+          </div>
+      </div>
+    </footer>
+        
+
+       
+
+                                                             
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    
+    <!-- custom scripts -->
+    <script src="scripts/scripts.js"></script>
+  </body>
+</html> 

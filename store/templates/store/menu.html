@@ -44,9 +44,11 @@
             <!-- Description and price-->
             <div class="product-desc text-center border border-top-0 pb-3">
               <h3><a href="#">{{ product.name }}</a></h3>
-              <p class="mb-0">
-                {{ product.desc }}
-              </p>
+              <div class="p-desc">
+                <p class="mb-0">
+                  {{ product.desc }}
+                </p>
+              </div>
               <!-- Star rating -->
               <span class="star-rating">
                 {% for i in five_star %}
