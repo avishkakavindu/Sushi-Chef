@@ -1,5 +1,5 @@
 from django.db.models import Prefetch
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import *
 
 
@@ -11,7 +11,7 @@ def home(request):
             ProductImage.objects.filter(place='Main Product Image'),
             to_attr='main_image'
         )
-    ).order_by('?')[3:] # random 3 record pass
+    ).order_by('?')[3:]  # random 3 record pass
 
     chefs = Chef.objects.all()
 
@@ -70,3 +70,11 @@ def checkout(request):
     context = {}
     return render(request, 'store/checkout.html', context)
 
+
+# product detail page
+def product_detail(request, product_id):
+    product_detail = get_object_or_404(Product, pk=product_id)
+    context = {
+        'product': product_detail
+    }
+    return render(request, 'store/product.html', context)
