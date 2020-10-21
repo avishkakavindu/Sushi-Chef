@@ -15,7 +15,7 @@
               </blockquote>
             </div>
             <div class="col-12 col-sm d-none d-sm-block">
-              <img src="img/chopsticks.png">
+              <img src="{% static 'images/staticimg/chopsticks.png' %}">
             </div>
           </div>
         </div>
@@ -30,13 +30,13 @@
       <div class="col-md col-lg-5">
           <div class="row">
               <div class="main-img">
-                  <img src="img/img1.jpg" class="img-fluid">
+                  <img src="{{ main_img.0.image.url }}" class="img-fluid">
               </div>
               <div class="sub-img">
-                  <img src="img/img2.jpg" class="img-fluid">
+                  <img src="{{ sub_img1.0.image.url }}" class="img-fluid">
               </div>
               <div class="sub-img">
-                  <img src="img/img3.jpg" class="img-fluid">
+                  <img src="{{ sun_img2.0.image.url }}" class="img-fluid">
               </div>
           </div>
       </div>
@@ -240,5 +240,6 @@
     </div>
   </div>
   <!-- END-product -->
+
   
 {% endblock content %}

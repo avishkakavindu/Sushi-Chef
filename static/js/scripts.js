@@ -1,3 +1,15 @@
+// change image -product
+
+$(".sub-img").click(function(){
+    sub_url = $(this).find('img').attr('src');
+    $(this).find('img').attr('src', $('.main-img').find('img').attr('src'));
+    $('.main-img').find('img').attr('src', sub_url);
+})
+
+
+
+
+
 var updateBtns = document.getElementsByClassName('update-cart');
 
 // update cart items (quantity, newitems) 
