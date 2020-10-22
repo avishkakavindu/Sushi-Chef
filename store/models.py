@@ -37,7 +37,7 @@ class Product(models.Model):
         if ratings['rating_avg'] is None:
             return 0
         else:
-            return ratings['rating_avg']
+            return [ratings['rating_avg'], int(ratings['rating_avg'])]
 
     # returns sale price (= Store price - discount)
     @property
