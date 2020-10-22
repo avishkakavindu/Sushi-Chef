@@ -45,13 +45,17 @@
         <h1>{{ product.name }}</h1>
         <!-- Star rating -->
         <span class="star-rating">
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star-o" aria-hidden="true"></i>
+          {% for i in five_star %}
+            {% if i < product.get_avg_rating %}
+              <i class="fa fa-star" aria-hidden="true"></i>
+            {% else %}
+              <i class="fa fa-star-o" aria-hidden="true"></i>
+            {% endif %}
+
+          {% endfor %}
+          <h1> {{ product.get_avg_rating|float" }} </h1>
         </span>
-        <small>3 reviews</small>
+        <small> {{ product.get_rating_count }} reviews</small>
         <hr>
         <p class="p-desc">
           {{ product.desc }}

@@ -25,6 +25,11 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
+    # returns number of ratings
+    @property
+    def get_rating_count(self):
+        return ProductReview.objects.filter(product=self).count()
+
     # returns average ratings of the product
     @property
     def get_avg_rating(self):
@@ -32,7 +37,7 @@ class Product(models.Model):
         if ratings['rating_avg'] is None:
             return 0
         else:
-            return int(ratings['rating_avg'])
+            return ratings['rating_avg']
 
     # returns sale price (= Store price - discount)
     @property
