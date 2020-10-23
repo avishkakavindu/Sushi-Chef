@@ -62,9 +62,15 @@
         </p>
         <div class="pricing">
             <p>
-                <span>Price:</span>
-                <span class="price-actual">$ 96.00</span>
-                <span><del>$ 120.00</del></span>
+              <span>Price:</span>
+              {% if product.discount != 0 %}
+                <span class="price-actual">${{ product.get_sale_price|floatformat:2 }}</span>
+                <span class="price-actual">
+                  <del><small>$ {{ product.price }}</small></del>
+                </span>
+              {% else %}
+                <span class="price-actual">${{ product.price }}</span>
+              {% endif %}
             </p>
             <p>
                 <span>Servings: </span>
@@ -80,8 +86,7 @@
           <div class="row  graphical-avg">
             <div class="col-md col-lg-5 self-align-right">
               <h5> Average user rating</h5>
-              <h4>{{ product.get_avg_rating.0|floatformat:1 }}<span>/5</span></h4>
-              
+
               <!-- Star rating -->
               <span class="star-rating">
                 <i class="fa fa-star" aria-hidden="true"></i>
