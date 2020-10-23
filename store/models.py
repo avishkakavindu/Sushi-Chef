@@ -8,6 +8,7 @@ class Customer(models.Model):
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
     email = models.EmailField()
+    profile_pic = models.ImageField(upload_to='images/user')
     date_created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -66,7 +67,7 @@ class ProductImage(models.Model):
         ('Sub Image 2', 'Sub Image 2'),
     )
     product = models.ForeignKey(Product, related_name='productimage_set', on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='images/')
+    image = models.ImageField(upload_to='images/product')
     place = models.CharField(max_length=20, choices=PLACEHOLDER)
 
     def __str__(self):
@@ -74,6 +75,7 @@ class ProductImage(models.Model):
 
 
 class ProductReview(models.Model):
+    customer = models.ForeignKey(Customer, related_name='customerreview_set', on_delete=models.SET('Anonymous User'))
     product = models.ForeignKey(Product, related_name='productreview_set', on_delete=models.CASCADE)
     review = models.TextField()
     rating = models.DecimalField(max_digits=1, decimal_places=0, default=0)
