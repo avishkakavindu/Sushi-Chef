@@ -42,8 +42,21 @@ class Product(models.Model):
     # returns sale price (= Store price - discount)
     @property
     def get_sale_price(self):
-        sale_price = Product.objects.filter(name=self).annotate(s_price=(F('price')*(100 - F('discount'))/100))
+        sale_price = Product.objects.filter(name=self).annotate(s_price=(F('price') * (100 - F('discount')) / 100))
         return sale_price[0].s_price
+
+    # returns rating breakdown as percentage
+    @property
+    def get_rating_breakdown(self):
+        all_obj = ProductReview.objects.filter(product=self)
+        breakdown = {
+            'one_star': all_obj.filter(rating=1).count() / self.get_rating_count * 100,
+            'two_star': all_obj.filter(rating=2).count() / self.get_rating_count * 100,
+            'three_star': all_obj.filter(rating=3).count() / self.get_rating_count * 100,
+            'four_star': all_obj.filter(rating=4).count() / self.get_rating_count * 100,
+            'five_star': all_obj.filter(rating=5).count() / self.get_rating_count * 100,
+        }
+        return breakdown
 
 
 class ProductImage(models.Model):
@@ -66,7 +79,7 @@ class ProductReview(models.Model):
     rating = models.DecimalField(max_digits=1, decimal_places=0, default=0)
 
     def __str__(self):
-        return str(self.id)
+        return 'Ratings of: ' + str(self.product)
 
 
 # -- End of Product related --
@@ -91,11 +104,12 @@ class Chef(models.Model):
 
 
 class ChefReview(models.Model):
-    chef = models.ForeignKey(Chef,related_name='chefreview_set', on_delete=models.CASCADE)
+    chef = models.ForeignKey(Chef, related_name='chefreview_set', on_delete=models.CASCADE)
     rating = models.DecimalField(max_digits=1, decimal_places=0)
 
     def __str__(self):
         return str(self.id)
+
 
 # -- End of Chef related *--
 
@@ -135,6 +149,3 @@ class Payment(models.Model):
 
     def __str__(self):
         return str(self.id)
-
-
-
