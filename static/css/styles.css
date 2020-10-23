@@ -152,7 +152,7 @@
     background-color: #f5f5f5;
     padding-top: 5vh;
     padding-bottom: 0;
-    background: url("../img/background.png");
+    background: url("/static/images/staticimg/background.png");
 }
 
 .jumbotron  h1 {
@@ -481,8 +481,9 @@ button.btn.btn-secondary:hover {
 }
 
 .star-rating > .fa-star-o {
-    color: #6c757d;
+    color: #b8b8b8b8;
 }
+
 
 /* -- price -- */
 .price-actual {

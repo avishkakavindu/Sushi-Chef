@@ -51,7 +51,6 @@
             {% else %}
               <i class="fa fa-star-o" aria-hidden="true"></i>
             {% endif %}
-
           {% endfor %}
 
         </span>
@@ -72,6 +71,10 @@
                 <span class="price-actual">${{ product.price }}</span>
               {% endif %}
             </p>
+            {% if product.get_avg_rating.0 > product.get_avg_rating.1 %}
+              <h1>lol</h1>
+              <h1>lol</h1>
+            {% endif %}
             <p>
                 <span>Servings: </span>
                 <input class="quantity" min="0" name="quantity" value="1" type="number">
@@ -86,15 +89,24 @@
           <div class="row  graphical-avg">
             <div class="col-md col-lg-5 self-align-right">
               <h5> Average user rating</h5>
+              <h4>{{ product.get_avg_rating.0|floatformat:1 }}<span>/5</span></h4>
 
               <!-- Star rating -->
               <span class="star-rating">
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                {% for i in five_star %}
+                  {% if i < product.get_avg_rating.1 %}
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                  {% elif i == product.get_avg_rating.1 %}
+                    {% if product.get_avg_rating.0 > product.get_avg_rating.1 %}
+                      <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                    {% endif %}
+                  {% else %}
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                  {% endif %}
+
+                {% endfor %}
               </span>
+
             </div>
 
             <div class="col-md col-lg rating-breakdown">
