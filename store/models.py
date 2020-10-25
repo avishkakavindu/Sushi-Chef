@@ -59,6 +59,12 @@ class Product(models.Model):
         }
         return breakdown
 
+    # get reviews
+    def get_reviews(self):
+        all_reviews = ProductReview.objects.filter(product=self)
+
+        return all_reviews
+
 
 class ProductImage(models.Model):
     PLACEHOLDER = (
