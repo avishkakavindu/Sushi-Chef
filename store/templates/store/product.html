@@ -23,164 +23,165 @@
     </section>
   <!-- END - Jumbatron -->
 
-  <!-- Product -->
-  <div class="container mb-4">
-    <div id="product" class="row">
-      <!-- for images -->
-      <div class="col-md col-lg-5">
-          <div class="row">
-              <div class="main-img">
-                  <img src="{{ main_img.0.image.url }}" class="img-fluid">
-              </div>
-              <div class="sub-img">
-                  <img src="{{ sub_img1.0.image.url }}" class="img-fluid">
-              </div>
-              <div class="sub-img">
-                  <img src="{{ sun_img2.0.image.url }}" class="img-fluid">
-              </div>
-          </div>
-      </div>
-      <!-- for description -->
-      <div class="col-md col-lg product-details">
-        <h1>{{ product_details.0.product.name }}</h1>
-        <!-- Star rating -->
-        <span class="star-rating">
-          {% for i in five_star %}
-            {% if i < product_details.0.product.get_avg_rating.1 %}
-              <i class="fa fa-star" aria-hidden="true"></i>
-            {% else %}
-              <i class="fa fa-star-o" aria-hidden="true"></i>
-            {% endif %}
-          {% endfor %}
-
-        </span>
-        <small> {{ product_details.0.product.get_rating_count }} reviews</small>
-        <hr>
-        <p class="p-desc">
-          {{ product_details.0.product.desc }}
-        </p>
-        <div class="pricing">
-            <p>
-              <span>Price:</span>
-              {% if product_details.0.product.discount != 0 %}
-                <span class="price-actual">${{ product_details.0.product.get_sale_price|floatformat:2 }}</span>
-                <span class="price-actual">
-                  <del><small>$ {{ product_details.0.product.price }}</small></del>
-                </span>
+    <!-- Product -->
+    <div class="container mb-4">
+      <div id="product" class="row">
+        <!-- for images -->
+        <div class="col-md col-lg-5">
+            <div class="row">
+                <div class="main-img">
+                    <img src="{{ main_img.0.image.url }}" class="img-fluid">
+                </div>
+                <div class="sub-img">
+                    <img src="{{ sub_img1.0.image.url }}" class="img-fluid">
+                </div>
+                <div class="sub-img">
+                    <img src="{{ sun_img2.0.image.url }}" class="img-fluid">
+                </div>
+            </div>
+        </div>
+        <!-- for description -->
+        <div class="col-md col-lg product-details">
+          <h1>{{ product_details.0.product.name }}</h1>
+          <!-- Star rating -->
+          <span class="star-rating">
+            {% for i in five_star %}
+              {% if i < product_details.0.product.get_avg_rating.1 %}
+                <i class="fa fa-star" aria-hidden="true"></i>
               {% else %}
-                <span class="price-actual">${{ product_details.0.product.price }}</span>
+                <i class="fa fa-star-o" aria-hidden="true"></i>
               {% endif %}
-            </p>
+            {% endfor %}
 
-            <p>
-                <span>Servings: </span>
-                <input class="quantity" min="0" name="quantity" value="1" type="number">
-            </p>
-            <button type="button" class="btn btn-outline-success">
-                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                <span> Add to cart</span>
-            </button>
-        </div>
-        <!-- Review summary -->
-        <div class="col-md col-lg mt-5">
-          <div class="row  graphical-avg">
-            <div class="col-md col-lg-5 self-align-right">
-              <h5> Average user rating</h5>
-              <h4>{{ product_details.0.product.get_avg_rating.0|floatformat:1 }}<span>/5</span></h4>
+          </span>
+          <small> {{ product_details.0.product.get_rating_count }} reviews</small>
+          <hr>
+          <p class="p-desc">
+            {{ product_details.0.product.desc }}
+          </p>
+          <div class="pricing">
+              <p>
+                <span>Price:</span>
+                {% if product_details.0.product.discount != 0 %}
+                  <span class="price-actual">${{ product_details.0.product.get_sale_price|floatformat:2 }}</span>
+                  <span class="price-actual">
+                    <del><small>$ {{ product_details.0.product.price }}</small></del>
+                  </span>
+                {% else %}
+                  <span class="price-actual">${{ product_details.0.product.price }}</span>
+                {% endif %}
+              </p>
 
-              <!-- Star rating -->
-              <span class="star-rating">
-                {% for i in five_star %}
-                  {% if i < product_details.0.product.get_avg_rating.1 %}
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                  {% elif i == product_details.0.product.get_avg_rating.1 %}
-                    {% if product_details.0.product.get_avg_rating.0 > product_details.0.product.get_avg_rating.1 %}
-                      <i class="fa fa-star-half-o" aria-hidden="true"></i>
+              <p>
+                  <span>Servings: </span>
+                  <input class="quantity" min="0" name="quantity" value="1" type="number">
+              </p>
+              <button type="button" class="btn btn-outline-success">
+                  <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                  <span> Add to cart</span>
+              </button>
+          </div>
+          <!-- Review summary -->
+          <div class="col-md col-lg mt-5">
+            <div class="row  graphical-avg">
+              <div class="col-md col-lg-5 self-align-right">
+                <h5> Average user rating</h5>
+                <h4>{{ product_details.0.product.get_avg_rating.0|floatformat:1 }}<span>/5</span></h4>
+
+                <!-- Star rating -->
+                <span class="star-rating">
+                  {% for i in five_star %}
+                    {% if i < product_details.0.product.get_avg_rating.1 %}
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                    {% elif i == product_details.0.product.get_avg_rating.1 %}
+                      {% if product_details.0.product.get_avg_rating.0 > product_details.0.product.get_avg_rating.1 %}
+                        <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                      {% endif %}
+                    {% else %}
+                      <i class="fa fa-star-o" aria-hidden="true"></i>
                     {% endif %}
-                  {% else %}
-                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                  {% endif %}
 
-                {% endfor %}
-              </span>
+                  {% endfor %}
+                </span>
 
-            </div>
-            <!-- Rating Breakdown -->
-            <div class="col-md col-lg rating-breakdown">
-              <h5>Rating breakdown</h5>
-              <div class="progressbars">
-                <!-- 5 stars -->
-                <div class="flex-grow-1">
-                  <div class="row align-items-center">
-                    <div class="col-md col-lg-4  text-lg-right" style="font-size: 10px;">
-                      <i class="fa fa-star" aria-hidden="true"></i>
-                      <i class="fa fa-star" aria-hidden="true"></i>
-                      <i class="fa fa-star" aria-hidden="true"></i>
-                      <i class="fa fa-star" aria-hidden="true"></i>
-                      <i class="fa fa-star" aria-hidden="true"></i>
-                    </div>
+              </div>
+              <!-- Rating Breakdown -->
+              <div class="col-md col-lg rating-breakdown">
+                <h5>Rating breakdown</h5>
+                <div class="progressbars">
+                  <!-- 5 stars -->
+                  <div class="flex-grow-1">
+                    <div class="row align-items-center">
+                      <div class="col-md col-lg-4  text-lg-right" style="font-size: 10px;">
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                      </div>
 
-                    <div class="col-sm col-lg-8">
-                      <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: {{ product_details.0.product.get_rating_breakdown.five_star }}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                      <div class="col-sm col-lg-8">
+                        <div class="progress">
+                          <div class="progress-bar" role="progressbar" style="width: {{ product_details.0.product.get_rating_breakdown.five_star }}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <!-- 4 stars -->
-                <div class="flex-grow-1">
-                  <div class="row align-items-center">
-                    <div class="col-md col-lg-4  text-lg-right" style="font-size: 10px;">
-                      <i class="fa fa-star" aria-hidden="true"></i>
-                      <i class="fa fa-star" aria-hidden="true"></i>
-                      <i class="fa fa-star" aria-hidden="true"></i>
-                      <i class="fa fa-star" aria-hidden="true"></i>
-                    </div>
-                    <div class="col-sm col-lg-8">
-                      <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: {{ product_details.0.product.get_rating_breakdown.four_star }}%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                  <!-- 4 stars -->
+                  <div class="flex-grow-1">
+                    <div class="row align-items-center">
+                      <div class="col-md col-lg-4  text-lg-right" style="font-size: 10px;">
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                      </div>
+                      <div class="col-sm col-lg-8">
+                        <div class="progress">
+                          <div class="progress-bar" role="progressbar" style="width: {{ product_details.0.product.get_rating_breakdown.four_star }}%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <!-- 3 stars -->
-                <div class="flex-grow-1">
-                  <div class="row align-items-center">
-                    <div class="col-md col-lg-4  text-lg-right" style="font-size: 10px;">
-                      <i class="fa fa-star" aria-hidden="true"></i>
-                      <i class="fa fa-star" aria-hidden="true"></i>
-                      <i class="fa fa-star" aria-hidden="true"></i>
-                    </div>
-                    <div class="col-sm col-lg-8">
-                      <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: {{ product_details.0.product.get_rating_breakdown.three_star }}%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
+                  <!-- 3 stars -->
+                  <div class="flex-grow-1">
+                    <div class="row align-items-center">
+                      <div class="col-md col-lg-4  text-lg-right" style="font-size: 10px;">
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                      </div>
+                      <div class="col-sm col-lg-8">
+                        <div class="progress">
+                          <div class="progress-bar" role="progressbar" style="width: {{ product_details.0.product.get_rating_breakdown.three_star }}%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <!-- 2 stars -->
-                <div class="flex-grow-1">
-                  <div class="row align-items-center">
-                    <div class="col-md col-lg-4  text-lg-right" style="font-size: 10px;">
-                      <i class="fa fa-star" aria-hidden="true"></i>
-                      <i class="fa fa-star" aria-hidden="true"></i>
-                    </div>
-                    <div class="col-sm col-lg-8">
-                      <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: {{ product_details.0.product.get_rating_breakdown.two_star }}%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                  <!-- 2 stars -->
+                  <div class="flex-grow-1">
+                    <div class="row align-items-center">
+                      <div class="col-md col-lg-4  text-lg-right" style="font-size: 10px;">
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                      </div>
+                      <div class="col-sm col-lg-8">
+                        <div class="progress">
+                          <div class="progress-bar" role="progressbar" style="width: {{ product_details.0.product.get_rating_breakdown.two_star }}%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <!-- 1 stars -->
-                <div class="flex-grow-1">
-                  <div class="row align-items-center">
-                    <div class="col-md col-lg-4  text-lg-right" style="font-size: 10px;">
-                      <i class="fa fa-star" aria-hidden="true"></i>
-                    </div>
-                    <div class="col-sm col-lg-8">
-                      <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: {{ product_details.0.product.get_rating_breakdown.one_star }}%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                  <!-- 1 stars -->
+                  <div class="flex-grow-1">
+                    <div class="row align-items-center">
+                      <div class="col-md col-lg-4  text-lg-right" style="font-size: 10px;">
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                      </div>
+                      <div class="col-sm col-lg-8">
+                        <div class="progress">
+                          <div class="progress-bar" role="progressbar" style="width: {{ product_details.0.product.get_rating_breakdown.one_star }}%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -188,81 +189,58 @@
               </div>
             </div>
           </div>
-        </div>
-        <!-- END-Review summary -->
+          <!-- END-Review summary -->
 
-        <!-- Reviews -->
-        <div class="row mt-5" id="reviews">
-          <div class="col-md col-lg">
-            <!-- Review tabs -->
-            <nav>
-              <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                  <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Reviews</a>
-                  <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Your review</a>       
-              </div>
-            </nav>
-            <div class="tab-content" id="nav-tabContent">
-              <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-
-                {% for review in product_details.0.product.get_reviews %}
-                  <!-- Review -->
-                  <div class="row mt-3 mb-3 border-bottom pb-3">
-                    <div class="col-md col-lg-3 text-center">
-                      <img src="{{ product_details.0.customer.profile_pic.url }}" class="img-thumbnail rounded-circle img-fluid">
-                      <small>{{ product_details.0.customer.first_name|add:' ' |add:product_details.0.customer.last_name}}</small>
-                    </div>
-                    <div class="col-md col-lg">
-                      <p class="review-desc">
-                        Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante.
-                      </p>
-                        <!-- Star rating -->
-                        <span class="star-rating">
-                          <i class="fa fa-star" aria-hidden="true"></i>
-                          <i class="fa fa-star" aria-hidden="true"></i>
-                          <i class="fa fa-star" aria-hidden="true"></i>
-                          <i class="fa fa-star" aria-hidden="true"></i>
-                          <i class="fa fa-star-half-o" aria-hidden="true"></i>
-                        </span>
-                        <span class="review-date">June 7, 2020 </span>
-                    </div>
-                  </div>
-                  <!-- End of review -->
-
-                {% endfor %}
-                <!-- Review -->
-                <div class="row mt-3 mb-3 border-bottom pb-3">
-                  <div class="col-md col-lg-3 text-center">
-                    <img src="img/chef2.jpg" class="img-thumbnail rounded-circle img-fluid">
-                    <small>Reviewer name</small>
-                  </div>
-                  <div class="col-md col-lg">
-                    <p class="review-desc">
-                      Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. 
-                    </p>
-                      <!-- Star rating -->
-                      <span class="star-rating">
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star-half-o" aria-hidden="true"></i>
-                      </span>
-                      <span class="review-date">June 7, 2020 </span>
-                  </div>
+          <!-- Reviews -->
+          <div class="row mt-5" id="reviews">
+            <div class="col-md col-lg">
+              <!-- Review tabs -->
+              <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Reviews</a>
+                    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Your review</a>
                 </div>
-                <!-- End of review -->
-              </div>
-                  
+              </nav>
+              <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+
+                  {% for rev in product_details %}
+                    <!-- Review -->
+                    <div class="row mt-3 mb-3 border-bottom pb-3">
+                      <div class="col-md col-lg-3 text-center">
+                        <img src="{{ rev.customer.profile_pic.url }}" class="img-thumbnail rounded-circle img-fluid">
+                        <small>{{ rev.customer.first_name|add:' ' |add:rev.customer.last_name}}</small>
+                      </div>
+                      <div class="col-md col-lg">
+                        <p class="review-desc">
+                          {{ rev.review }}
+                        </p>
+                        <!-- Star rating -->
+                        <span class="star-rating rev-rating">
+                          {% for i in five_star %}
+                            {% if i < rev.rating %}
+                              <i class="fa fa-star" aria-hidden="true"></i>
+                            {% else %}
+                              <i class="fa fa-star-o" aria-hidden="true"></i>
+                            {% endif %}
+                          {% endfor %}
+                        </span>
+                        <span class="review-date">{{ rev.date }} </span>
+                      </div>
+                    </div>
+                    <!-- End of review -->
+                  {% endfor %}
+                </div>
               </div>
               <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                  
+
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+    </div>
   <!-- END-product -->
 
   

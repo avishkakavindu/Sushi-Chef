@@ -484,6 +484,10 @@ button.btn.btn-secondary:hover {
     color: #b8b8b8b8;
 }
 
+.rev-rating {
+    float: bottom;
+}
+
 
 /* -- price -- */
 .price-actual {

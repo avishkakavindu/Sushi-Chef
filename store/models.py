@@ -85,6 +85,7 @@ class ProductReview(models.Model):
     product = models.ForeignKey(Product, related_name='productreview_set', on_delete=models.CASCADE)
     review = models.TextField()
     rating = models.DecimalField(max_digits=1, decimal_places=0, default=0)
+    date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return 'Ratings of: ' + str(self.product)
