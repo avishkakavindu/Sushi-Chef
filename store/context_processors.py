@@ -1,12 +1,12 @@
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-
+from .forms import CreateUserForm
 
 # Registration form
 def include_registration_form(request):
-    form = UserCreationForm()
+    form = CreateUserForm()
 
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = CreateUserForm(request.POST)
         if form.is_valid():
             form.save()
 

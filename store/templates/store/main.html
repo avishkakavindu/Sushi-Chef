@@ -187,26 +187,30 @@
                 <div class="modal-body">
                   <form action="" method="post">
                     {% csrf_token %}
-                      {{ registration_form }}
-                    <div class="md-form form-sm mb-2">
-                      <i class="fa fa-envelope prefix"></i>
-                      <label data-error="wrong" data-success="right" for="modalLRInput12">Your email</label>
-                      <input type="email" id="modalLRInput12" class="form-control form-control-sm validate">
-                    </div>
-                    <div class="md-form form-sm mb-2">
-                      <i class="fa fa-lock prefix"></i>
-                      <label data-error="wrong" data-success="right" for="modalLRInput13">Your password</label>
-                      <input type="password" id="modalLRInput13" class="form-control form-control-sm validate">
-                    </div>
-                    <div class="md-form form-sm mb-2">
-                      <i class="fa fa-lock prefix"></i>
-                      <label data-error="wrong" data-success="right" for="modalLRInput14">Repeat password</label>
-                      <input type="password" id="modalLRInput14" class="form-control form-control-sm validate">
-                    </div>
-                    <div class="text-right form-sm mt-2">
-                      <button type="submit" class="btn btn-outline-success">Sign up <i class="fa fa-sign-in ml-1"></i></button>
-                      <button type="button" class="btn btn-outline-warning waves-effect ml-auto" data-dismiss="modal">Close</button>
-                    </div>
+                      {% for field in registration_form %}
+                        {{ field.label }}
+                        {{ field }}
+                      {% endfor %}
+
+<!--                    <div class="md-form form-sm mb-2">-->
+<!--                      <i class="fa fa-envelope prefix"></i>-->
+<!--                      <label data-error="wrong" data-success="right" for="modalLRInput12">Your email</label>-->
+<!--                      <input type="email" id="modalLRInput12" class="form-control form-control-sm validate">-->
+<!--                    </div>-->
+<!--                    <div class="md-form form-sm mb-2">-->
+<!--                      <i class="fa fa-lock prefix"></i>-->
+<!--                      <label data-error="wrong" data-success="right" for="modalLRInput13">Your password</label>-->
+<!--                      <input type="password" id="modalLRInput13" class="form-control form-control-sm validate">-->
+<!--                    </div>-->
+<!--                    <div class="md-form form-sm mb-2">-->
+<!--                      <i class="fa fa-lock prefix"></i>-->
+<!--                      <label data-error="wrong" data-success="right" for="modalLRInput14">Repeat password</label>-->
+<!--                      <input type="password" id="modalLRInput14" class="form-control form-control-sm validate">-->
+<!--                    </div>-->
+<!--                    <div class="text-right form-sm mt-2">-->
+<!--                      <button type="submit" class="btn btn-outline-success">Sign up <i class="fa fa-sign-in ml-1"></i></button>-->
+<!--                      <button type="button" class="btn btn-outline-warning waves-effect ml-auto" data-dismiss="modal">Close</button>-->
+<!--                    </div>-->
                   </form>
                 </div>
 
