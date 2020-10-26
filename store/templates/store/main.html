@@ -187,6 +187,7 @@
                 <div class="modal-body">
                   <form action="" method="post">
                     {% csrf_token %}
+                      {{ registration_form }}
                     <div class="md-form form-sm mb-2">
                       <i class="fa fa-envelope prefix"></i>
                       <label data-error="wrong" data-success="right" for="modalLRInput12">Your email</label>
