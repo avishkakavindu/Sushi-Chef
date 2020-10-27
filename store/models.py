@@ -3,6 +3,10 @@ from django.db.models import Avg, F
 from django.contrib.auth.models import User
 
 
+from django.contrib.auth.models import User
+User._meta.get_field('email')._unique = True
+
+
 class Customer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=200)
