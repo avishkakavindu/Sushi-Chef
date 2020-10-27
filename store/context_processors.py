@@ -13,7 +13,6 @@ def include_registration_form(request):
             form.save()
             user = form.cleaned_data.get('username')
             messages.success(request, 'Account was created for {}. Now you can sign in.'.format(user))
-
         else:
             messages.error(request, "Something went wrong. Account not created!")
     context = {

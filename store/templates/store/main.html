@@ -211,12 +211,15 @@
                   <form action="" method="post">
                     {% csrf_token %}
                       {% for field in registration_form %}
-                        <div class="md-form form-sm mb-2">
 
                           {{ field.label }}
                           {% render_field field class="form-control form-control-sm validate" %}
-                          {{ field.errors }}
-                        </div>
+                          {% for error in field.errors %}
+                            <div class="form-control form-control-sm invalid-feedback">
+                              {{ error }}
+                            </div>
+                          {% endfor %}
+
 
                       {% endfor %}
 
