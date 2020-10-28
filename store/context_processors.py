@@ -1,4 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.http import HttpResponseRedirect
+from django.shortcuts import redirect
 from django.contrib import messages
 from .forms import CreateUserForm
 
@@ -13,6 +15,7 @@ def include_registration_form(request):
             form.save()
             user = form.cleaned_data.get('username')
             messages.success(request, 'Account was created for {}. Now you can sign in.'.format(user))
+
         else:
             messages.error(request, "Something went wrong. Account not created!")
     context = {
