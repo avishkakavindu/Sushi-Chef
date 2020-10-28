@@ -208,18 +208,31 @@
               <div class="tab-pane fade" id="panel8" role="tabpanel">
                 <!--Body-->
                 <div class="modal-body">
-                  <form action="" method="post">
+                  <form class="needs-validation" action="" method="post" novalidate>
                     {% csrf_token %}
                       {% for field in registration_form %}
-
-                          {{ field.label }}
-                          {% render_field field class="form-control form-control-sm validate" %}
-                          {% for error in field.errors %}
-                            <div class="form-control form-control-sm invalid-feedback">
-                              {{ error }}
-                            </div>
-                          {% endfor %}
-
+                        <div class="col-sm">
+                            <label>{{ field.label }}</label>
+                            {% if registration_form.is_bound %}
+                                {% if field.errors %}
+                                    {% render_field field class="form-control form-control-sm is-invalid" %}
+                                    {% if field.name == 'username' or 'password1' %}
+                                        <small>
+                                            {{ field.help_text }}
+                                        </small>
+                                    {% endif %}
+                                    <div class="invalid-tooltip d-block float-right" data-placement="bottom">
+                                        {% for error in field.errors %}
+                                            {{ error }}
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {% render_field field class="form-control form-control-sm is-valid" %}
+                                {% endif %}
+                            {% else %}
+                                {% render_field field class="form-control form-control-sm" %}
+                            {% endif %}
+                        </div>
 
                       {% endfor %}
 

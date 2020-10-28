@@ -624,4 +624,9 @@ button.btn.btn-secondary:hover {
  .alert {
     position: absolute;
     right: 10px;
+    z-index: 999;
+ }
+
+ .invalid-tooltip, .valid-tooltip {
+    right: 15px;
  }
