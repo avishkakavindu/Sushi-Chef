@@ -1,6 +1,6 @@
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.http import HttpResponseRedirect
-from django.shortcuts import redirect
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import authenticate
+from django.shortcuts import render
 from django.contrib import messages
 from .forms import CreateUserForm
 
@@ -21,12 +21,21 @@ def include_registration_form(request):
     context = {
         'registration_form': form,
     }
-    return context
+    return render(context)
 
 
 # Login form
 def include_login_form(request):
     form = AuthenticationForm()
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+
     context = {
         'login_form': form,
     }

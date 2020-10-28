@@ -186,22 +186,25 @@
 
                 <!--Body-->
                 <div class="modal-body mb-1">
-                  <div class="md-form form-sm mb-2">
-                    <i class="fa fa-envelope prefix"></i>
-                    <label data-error="wrong" data-success="right" for="modalLRInput10">Your email</label>
-                    <input type="email" id="modalLRInput10" class="form-control form-control-sm validate">
-                  </div>
+                    <form class="needs-validation" action="" method="post" novalidate>
+                      {% csrf_token %}
+                      <div class="md-form form-sm mb-2">
+                        <i class="fa fa-envelope prefix"></i>
+                        <label data-error="wrong" data-success="right" for="modalLRInput10">Your email</label>
+                        <input type="email" id="modalLRInput10" class="form-control form-control-sm validate">
+                      </div>
 
-                  <div class="md-form form-sm mb-2">
-                    <i class="fa fa-lock prefix"></i>
-                    <label data-error="wrong" data-success="right" for="modalLRInput11">Your password</label>
-                    <input type="password" id="modalLRInput11" class="form-control form-control-sm validate">
-                  </div>
-                  <div class="text-right mt-2">
-                    <p>Forgot <a href="#" class="blue-text">Password?</a></p>
-                    <button type="submit" class="btn btn-outline-primary">Log in <i class="fa fa-sign-in ml-1"></i></button>
-                    <button type="button" class="btn btn-outline-warning waves-effect ml-auto" data-dismiss="modal">Close</button>
-                  </div>
+                      <div class="md-form form-sm mb-2">
+                        <i class="fa fa-lock prefix"></i>
+                        <label data-error="wrong" data-success="right" for="modalLRInput11">Your password</label>
+                        <input type="password" id="modalLRInput11" class="form-control form-control-sm validate">
+                      </div>
+                      <div class="text-right mt-2">
+                        <p>Forgot <a href="#" class="blue-text">Password?</a></p>
+                        <button type="submit" class="btn btn-outline-primary">Log in <i class="fa fa-sign-in ml-1"></i></button>
+                        <button type="button" class="btn btn-outline-warning waves-effect ml-auto" data-dismiss="modal">Close</button>
+                      </div>
+                    </form>
                 </div>
 
               </div>
