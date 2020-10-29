@@ -1,0 +1,54 @@
+{% extends "store/main.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% block content %}
+
+<div class="container d-flex justify-content-center mb-4">
+
+        <!-- Alerts -->
+
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Error! </strong>
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        {% endif %}
+
+
+    <!-- END Alerts -->
+
+    <div class="col-lg-5 col-sm border mb-3 mt-3 pt-3 pb-3">
+        <legend class="border-bottom mb-3 pb-3"> Register </legend>
+        <form class="needs-validation" action="" method="post" novalidate>
+        {% csrf_token %}
+            {% for field in registration_form %}
+                <label>{{ field.label }}</label>
+                {% if field.errors %}
+                    {% render_field field class="form-control form-control-sm is-invalid" %}
+                    {% if field.name == 'username' or 'password1' %}
+                        <small>
+                            {{ field.help_text }}
+                        </small>
+                    {% endif %}
+                    <div class="invalid-tooltip d-block float-right" data-placement="bottom">
+                    {% for error in field.errors %}
+                        {{ error }}
+                    {% endfor %}
+                    </div>
+                {% elif registration_form.is_bound %}
+                    {% render_field field class="form-control form-control-sm is-valid" %}
+                {% else %}
+                    {% render_field field class="form-control form-control-sm" %}
+                {% endif %}
+            {% endfor %}
+            <div class="text-right form-sm mt-3">
+                <button type="submit" class="btn btn-outline-success">Sign up <i class="fa fa-sign-in ml-1"></i></button>
+                <button type="button" class="btn btn-outline-warning waves-effect ml-auto" data-dismiss="modal">Close</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock content %}

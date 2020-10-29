@@ -628,5 +628,6 @@ button.btn.btn-secondary:hover {
  }
 
  .invalid-tooltip, .valid-tooltip {
+    position: relative;
     right: 15px;
  }
