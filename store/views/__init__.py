@@ -5,5 +5,4 @@ from .menu import *
 from .product_detail import *
 from .promo import *
 from .profile import *
-from .login import *
 from .register import *
