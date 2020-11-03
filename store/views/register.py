@@ -2,12 +2,10 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from store.models import *
 from store.forms import CreateUserForm
-
-
-# promo page
 from store.decorators import unauthenticated_user
 
 
+# promo page
 @unauthenticated_user
 def register(request):
     form = CreateUserForm()
