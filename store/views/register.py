@@ -5,6 +5,10 @@ from store.forms import CreateUserForm
 
 
 # promo page
+from store.decorators import unauthenticated_user
+
+
+@unauthenticated_user
 def register(request):
     if request.user.is_authenticated:
         return redirect('/')
