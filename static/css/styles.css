@@ -640,3 +640,89 @@ button.btn.btn-secondary:hover {
     position: relative;
     right: 15px;
  }
+
+ /* --- profile.html --- */
+
+ .profile-pic {
+     width: 150px;
+ }
+
+ .profile-summary {
+    height: 450px;
+ }
+
+ .profile-summary h2 {
+    font-family: sans-serif;
+    margin: 10px 0 10px 0;
+    font-size: x-large;
+}
+
+.profile-summary strong {
+    color: #545b62;
+    font-weight: 500;
+}
+
+.related-links{
+    background-color:#fcfcfc;
+}
+
+.related-links p {
+    margin: 0px 0px 1px 0px;
+}
+
+.related-links a{
+    background-color:#f7b3a7;
+    border-color: #f7b3a7;
+    margin: 0px;
+    width: 100%;
+}
+
+.related-links a:hover{
+    background-color: #f17661;
+    border-color: #f7b3a7;
+    margin-bottom: 0px;
+}
+
+.related-links a:hover span {
+    padding-right: 25px;
+    font-weight: bold;
+}
+
+.related-links span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+    font-size: medium;
+    color: #1a1a1a;
+    font-weight: lighter;
+  }
+
+.related-links a span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.related-links a:hover span:after {
+    opacity: 1;
+    right: 0;
+ }
+
+.file-field {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.file-field:hover{
+    color: #383838;
+    text-shadow: #545b62 1px 1px 2px;
+}
+
+.file-field input {
+    display: none;
+}

@@ -1,11 +1,15 @@
 // change image -product
-
 $(".sub-img").click(function(){
     sub_url = $(this).find('img').attr('src');
     $(this).find('img').attr('src', $('.main-img').find('img').attr('src'));
     $('.main-img').find('img').attr('src', sub_url);
 })
 
+// file upload btn
+$(".upload-icon").click(function () {
+    $("input[type='file']").trigger('click');
+
+  });
 
 
 

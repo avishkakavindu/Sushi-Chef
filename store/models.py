@@ -12,6 +12,9 @@ class Customer(models.Model):
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
     email = models.EmailField()
+    address = models.CharField(max_length=200, null=True)
+    city = models.CharField(max_length=200, null=True)
+    zipcode = models.CharField(max_length=20, null=True)
     profile_pic = models.ImageField(upload_to='images/user', default="default.jpg")
     date_created = models.DateTimeField(null=True, auto_now_add=True)
 

@@ -2,9 +2,112 @@
 {% load static %}
 {% load widget_tweaks %}
 {% block content %}
-<div class="container d-flex justify-content-center mb-4">
-    <h1>Profile page</h1>
-</div>
+<!--<div class="container d-flex justify-content-center mb-4">-->
+<!--    <h1>Profile page</h1>-->
+
+<!--    <h2>{{ user_details.profile_pic }}</h2>-->
+
+<!--</div>-->
+
+<div class="container mb-0">
+        <div class="row ml-0 d-flex justify-content-center">
+            <!-- related links to profile -->
+            <div class="col-sm col-lg text-center related-links mr-5 mb-0 pt-3 pl-0 pr-0 ">
+                <p>
+                  <a href="#" class="btn btn-primary btn-lg btn-block animated-btn rounded-0">
+                      <span>My Orders</span>
+                  </a>
+                </p>
+                <p>
+                  <a href="#" class="btn btn-primary btn-lg btn-block animated-btn rounded-0">
+                      <span>My Reviews</span>
+                  </a>
+                </p>
+            </div>
+            <!-- Summary of profile details -->
+            <div class="col-sm col-lg-3 profile-summary text-center border p-3 mt-3 mr-3 mb-5">
+                <img class="rounded-circle profile-pic" src="img/chef1.jpg">
+                <!-- file upload -->
+                <div class="file-field">
+                  <i class="fa fa-pencil-square-o fa-2x upload-icon" aria-hidden="true"></i>
+                  <input type="file">
+                </div>
+
+                <h2>{{ user_details.user }}</h2>
+                <hr>
+                <div class="text-left d-flex">
+                  <div>
+                    <p><strong>Username</strong></p>
+                    <p><strong>Email</strong></p>
+                    <p><strong>First Name</strong></p>
+                    <p><strong>Last Name</strong></p>
+                    <p><strong>Username</strong></p>
+                  </div>
+                  <div class="ml-2">
+                    <p>:</p>
+                    <p>:</p>
+                    <p>:</p>
+                    <p>:</p>
+                    <p>:</p>
+                  </div>
+
+                </div>
+            </div>
+            <!-- Change profile details -->
+            <div class="col-sm col-lg-6 mt-3 mb-5 self-align-center">
+                <h3>Change profile details</h3>
+                <form class="needs-validation mt-3" novalidate>
+                    <div class="col-md mb-3">
+                        <label for="validationCustom01">First name</label>
+                        <input type="text" class="form-control" id="validationCustom01" placeholder="First name" value="Mark" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                    <div class="col-md mb-3">
+                        <label for="validationCustom02">Last name</label>
+                        <input type="text" class="form-control" id="validationCustom02" placeholder="Last name" value="Otto" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                    <div class="col-md mb-3">
+                        <label for="validationCustom02">Email</label>
+                        <input type="email" class="form-control" id="validationCustom03" placeholder="email" value="email" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                    <div class="col-md mb-3">
+                        <label for="validationCustom02">Address</label>
+                        <input type="text" class="form-control" id="validationCustom04" placeholder="address" value="Address" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                    <div class="form-row ml-2">
+                        <div class="col-md-7 mb-3">
+                            <label for="validationCustom02">City</label>
+                            <input type="text" class="form-control" id="validationCustom05" placeholder="City" value="City" required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="validationCustom02">Zip Code</label>
+                            <input type="text" class="form-control" id="validationCustom06" placeholder="zipcode" value="Zip-Code" required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary float-right mt-3" type="submit">Save Changes</button>
+                  </form>
+
+            </div>
+        </div>
+    </div>
 
 
 {% endblock content %}
