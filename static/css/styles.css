@@ -648,8 +648,20 @@ button.btn.btn-secondary:hover {
  }
 
  .profile-summary {
-    height: 450px;
+    font-size: 15px;
+    height: 400px;
  }
+
+.align-me p {
+     display: table-row;
+     align: right;
+}
+
+.align-me strong {
+    display: table-cell;
+    padding-right: 1em;
+    width: 40%;
+}
 
  .profile-summary h2 {
     font-family: sans-serif;

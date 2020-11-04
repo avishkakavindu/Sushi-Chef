@@ -26,29 +26,22 @@
             </div>
             <!-- Summary of profile details -->
             <div class="col-sm col-lg-3 profile-summary text-center border p-3 mt-3 mr-3 mb-5">
-                <img class="rounded-circle profile-pic" src="img/chef1.jpg">
+                <img class="rounded-circle profile-pic" src="{{ user_details.profile_pic.url }}">
                 <!-- file upload -->
                 <div class="file-field">
                   <i class="fa fa-pencil-square-o fa-2x upload-icon" aria-hidden="true"></i>
                   <input type="file">
                 </div>
 
-                <h2>{{ user_details.user }}</h2>
+                <h2>{{ user_details.first_name }} {{ user_details.last_name }}</h2>
                 <hr>
-                <div class="text-left d-flex">
-                  <div>
-                    <p><strong>Username</strong></p>
-                    <p><strong>Email</strong></p>
-                    <p><strong>First Name</strong></p>
-                    <p><strong>Last Name</strong></p>
-                    <p><strong>Username</strong></p>
-                  </div>
-                  <div class="ml-2">
-                    <p>:</p>
-                    <p>:</p>
-                    <p>:</p>
-                    <p>:</p>
-                    <p>:</p>
+                <div class="text-left">
+                  <div class="align-me">
+                      <p><strong>Username</strong>: {{ user_details.user }}</p>
+                      <p><strong>First Name</strong>: {{ user_details.first_name }}</p>
+                      <p><strong>Last Name</strong>: {{ user_details.last_name }}</p>
+                      <p><strong>Email</strong>: {{ user_details.email  }}</p>
+                      <p><strong>Address</strong>: {{ user_details.address }}, {{ user_details.city }} {{ user_details.zipcode }}</p>
                   </div>
 
                 </div>
