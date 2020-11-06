@@ -3,10 +3,11 @@ from django.contrib import messages
 from store.models import *
 from store.forms import CreateUserForm
 from store.decorators import unauthenticated_user
+from store.models import Customer
 from django.contrib.auth.models import Group
 
 
-# promo page
+# Register page
 @unauthenticated_user
 def register(request):
     form = CreateUserForm()
@@ -19,6 +20,9 @@ def register(request):
 
             group = Group.objects.get(name='customer')
             user.groups.add(group)
+            Customer.objects.create(
+                user=user,
+            )
 
             messages.success(request, 'Account was created for {}. Now you can sign in.'.format(username))
             return redirect('login')

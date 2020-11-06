@@ -9,9 +9,6 @@ User._meta.get_field('email')._unique = True
 
 class Customer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    first_name = models.CharField(max_length=200)
-    last_name = models.CharField(max_length=200)
-    email = models.EmailField()
     address = models.CharField(max_length=200, null=True)
     city = models.CharField(max_length=200, null=True)
     zipcode = models.CharField(max_length=20, null=True)
@@ -19,7 +16,8 @@ class Customer(models.Model):
     date_created = models.DateTimeField(null=True, auto_now_add=True)
 
     def __str__(self):
-        return self.first_name
+
+        return str(self.user)
 
 
 # Product related models

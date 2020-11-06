@@ -209,7 +209,7 @@
                     <div class="row mt-3 mb-3 border-bottom pb-3">
                       <div class="col-md col-lg-3 text-center">
                         <img src="{{ rev.customer.profile_pic.url }}" class="img-thumbnail rounded-circle img-fluid">
-                        <small>{{ rev.customer.first_name|add:' ' |add:rev.customer.last_name}}</small>
+                        <small>{{ rev.customer.user.first_name|add:' ' |add:rev.customer.user.last_name}}</small>
                       </div>
                       <div class="col-md col-lg">
                         <p class="review-desc">
