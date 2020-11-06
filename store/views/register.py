@@ -3,6 +3,7 @@ from django.contrib import messages
 from store.models import *
 from store.forms import CreateUserForm
 from store.decorators import unauthenticated_user
+from django.contrib.auth.models import Group
 
 
 # promo page
@@ -13,9 +14,13 @@ def register(request):
     if request.method == 'POST':
         form = CreateUserForm(request.POST)
         if form.is_valid():
-            form.save()
-            user = form.cleaned_data.get('username')
-            messages.success(request, 'Account was created for {}. Now you can sign in.'.format(user))
+            user = form.save()
+            username = form.cleaned_data.get('username')
+
+            group = Group.objects.get(name='customer')
+            user.groups.add(group)
+
+            messages.success(request, 'Account was created for {}. Now you can sign in.'.format(username))
             return redirect('login')
 
         else:
