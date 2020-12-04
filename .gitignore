@@ -3,3 +3,5 @@ __pycache__
 *.swp
 .idea
 static/admin
+/images/user/
+
