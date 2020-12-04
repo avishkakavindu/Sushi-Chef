@@ -656,12 +656,17 @@ button.btn.btn-secondary:hover {
 .align-me p {
      display: table-row;
      align: right;
+     font-size: small;
 }
 
 .align-me strong {
     display: table-cell;
     padding-right: 1em;
     width: 50%;
+}
+
+.align-me span {
+    align: right;
 }
 
  .profile-summary h2 {
@@ -671,8 +676,7 @@ button.btn.btn-secondary:hover {
 }
 
 .profile-summary strong {
-    color: #545b62;
-    font-weight: 500;
+
 }
 
 .related-links{

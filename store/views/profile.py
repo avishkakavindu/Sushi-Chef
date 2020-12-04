@@ -11,6 +11,7 @@ from store.forms import UpdateCustomerForm, UpdateUserForm
 def profile(request):
     if request.method == 'POST':
         user_form = UpdateUserForm(request.POST, instance=request.user)
+        print(user_form)
         customer_form = UpdateCustomerForm(request.POST, request.FILES, instance=request.user.customer)
 
         if customer_form.is_valid() and user_form.is_valid():

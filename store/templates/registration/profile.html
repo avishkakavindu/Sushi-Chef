@@ -32,16 +32,16 @@
                 <hr>
                 <div class="text-left">
                   <div class="align-me">
-                      <p><strong>Username</strong>: <span>{{ user_details.username }}</span></p>
+                      <p><strong>Username</strong> <span>{{ user_details.username }}</span></p>
 
-                      <p><strong>First Name</strong>: <span>{{ user_details.first_name }}</span></p>
+                      <p><strong>First Name</strong> <span>{{ user_details.first_name }}</span></p>
 
-                      <p><strong>Last Name</strong>: <span>{{ user_details.last_name }}</span></p>
+                      <p><strong>Last Name</strong> <span>{{ user_details.last_name }}</span></p>
 
-                      <p><strong>Email</strong>: </p>
-                      <span class="float-right">{{ user_details.email  }}</span>
-                      <p><strong>Address</strong>: </p>
-                      <span class="float-right">{{ user_details.customer.address }}, {{ user_details.customer.city }} {{ user_details.customer.zipcode }}</span>
+                      <p><strong>Email</strong> <span>{{ user_details.email  }}</span></p>
+
+                      <p><strong>Address</strong> <span>{{ user_details.customer.address }},<br> {{ user_details.customer.city }}<br {{ user_details.customer.zipcode }}</span></p>
+
                   </div>
 
                 </div>
@@ -62,43 +62,73 @@
 
                     <div class="col-md mb-3">
                         <label>{{ user_form.first_name.label }}</label>
-                        {% render_field user_form.first_name class="form-control is-invalid" %}
+                        {% if user_form.first_name.errors %}
+                          {% render_field user_form.first_name class="form-control is-invalid" %}
 
-                        <div class="invalid-tooltip d-block float-right" data-placement="bottom">
+                          <div class="invalid-tooltip d-block float-right" data-placement="bottom">
                             {% for error in user_form.first_name.errors %}
                                 {{ error }}
                             {% endfor %}
-                        </div>
+                          </div>
+                        {% else %}
+                            {% render_field user_form.first_name class="form-control" %}
+                        {% endif %}
                     </div>
                     <div class="col-md mb-3">
-                        <label>{{ user_form.first_name.label }}</label>
-                        {% render_field user_form.last_name class="form-control is-invalid" %}
+                        <label>{{ user_form.last_name.label }}</label>
+                        {% if user_form.last_name.errors %}
+                          {% render_field user_form.last_name class="form-control is-invalid" %}
 
-                        <div class="invalid-tooltip d-block float-right" data-placement="bottom">
+                          <div class="invalid-tooltip d-block float-right" data-placement="bottom">
                             {% for error in user_form.last_name.errors %}
                                 {{ error }}
                             {% endfor %}
-                        </div>
+                          </div>
+                        {% else %}
+                          {% render_field user_form.last_name class="form-control" %}
+                        {% endif %}
                     </div>
 
                     <div class="col-md mb-3">
                         <label>{{ customer_form.address.label }}</label>
-                        {% render_field customer_form.address class="form-control is-invalid" %}
+                        {% if customer_form.address.errors %}
+                          {% render_field customer_form.address class="form-control is-invalid" %}
 
-                        <div class="invalid-tooltip d-block float-right" data-placement="bottom">
+                          <div class="invalid-tooltip d-block float-right" data-placement="bottom">
                             {% for error in customer_form.address.errors %}
                                 {{ error }}
                             {% endfor %}
-                        </div>
+                          </div>
+                        {% else %}
+                          {% render_field customer_form.address class="form-control" %}
+                        {% endif %}
                     </div>
                     <div class="form-row ml-2">
                         <div class="col-md-7 mb-3">
                             <label>{{ customer_form.city.label }}</label>
-                            {% render_field customer_form.city class="form-control is-invalid" %}
+                            {% if customer_form.city.errors %}
+                              {% render_field customer_form.city class="form-control is-invalid" %}
+                              <div class="invalid-tooltip d-block float-right" data-placement="bottom">
+                                {% for error in customer_form.city.errors %}
+                                  {{ error }}
+                                {% endfor %}
+                              </div>
+                            {% else %}
+                              {% render_field customer_form.city class="form-control" %}
+                            {% endif %}
                         </div>
                         <div class="col-md-4 mb-3">
                             <label>{{ customer_form.zipcode.label }}</label>
-                            {% render_field customer_form.zipcode class="form-control is-invalid" %}
+                            {% if customer_form.zipcode.errors %}
+                              {% render_field customer_form.zipcode class="form-control is-invalid" %}
+                              <div class="invalid-tooltip d-block float-right" data-placement="bottom">
+                                {% for error in customer_form.zipcode.errors %}
+                                  {{ error }}
+                                {% endfor %}
+                              </div>
+                            {% else %}
+                              {% render_field customer_form.zipcode class="form-control" %}
+                            {% endif %}
                         </div>
                     </div>
 
