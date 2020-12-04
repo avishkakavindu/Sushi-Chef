@@ -57,28 +57,32 @@
                 <form class="needs-validation mt-3" novalidate>
                     <div class="col-md mb-3">
                         <label for="validationCustom01">First name</label>
-                        <input type="text" class="form-control" id="validationCustom01" placeholder="First name" value="Mark" required>
+                        <input type="text" class="form-control" id="validationCustom01" placeholder="First name"
+                               value="{{ user_details.first_name }}" required>
                         <div class="valid-feedback">
                             Looks good!
                         </div>
                     </div>
                     <div class="col-md mb-3">
                         <label for="validationCustom02">Last name</label>
-                        <input type="text" class="form-control" id="validationCustom02" placeholder="Last name" value="Otto" required>
+                        <input type="text" class="form-control" id="validationCustom02" placeholder="Last name"
+                               value="{{ user_details.last_name }}" required>
                         <div class="valid-feedback">
                             Looks good!
                         </div>
                     </div>
                     <div class="col-md mb-3">
                         <label for="validationCustom02">Email</label>
-                        <input type="email" class="form-control" id="validationCustom03" placeholder="email" value="email" required>
+                        <input type="email" class="form-control" id="validationCustom03" placeholder="email"
+                               value="{{ user_details.email }}" required>
                         <div class="valid-feedback">
                             Looks good!
                         </div>
                     </div>
                     <div class="col-md mb-3">
                         <label for="validationCustom02">Address</label>
-                        <input type="text" class="form-control" id="validationCustom04" placeholder="address" value="Address" required>
+                        <input type="text" class="form-control" id="validationCustom04" placeholder="address"
+                               value="{{ user_details.customer.address }}" required>
                         <div class="valid-feedback">
                             Looks good!
                         </div>
@@ -86,14 +90,16 @@
                     <div class="form-row ml-2">
                         <div class="col-md-7 mb-3">
                             <label for="validationCustom02">City</label>
-                            <input type="text" class="form-control" id="validationCustom05" placeholder="City" value="City" required>
+                            <input type="text" class="form-control" id="validationCustom05" placeholder="City"
+                                   value="{{ user_details.customer.city }}" required>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
                         </div>
                         <div class="col-md-4 mb-3">
                             <label for="validationCustom02">Zip Code</label>
-                            <input type="text" class="form-control" id="validationCustom06" placeholder="zipcode" value="Zip-Code" required>
+                            <input type="text" class="form-control" id="validationCustom06" placeholder="zipcode"
+                                   value="{{ user_details.customer.zipcode }}" required>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
