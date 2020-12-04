@@ -12,7 +12,7 @@
 <div class="container mb-0">
         <div class="row ml-0 d-flex justify-content-center">
             <!-- related links to profile -->
-            <div class="col-sm col-lg text-center related-links mr-5 mb-0 pt-3 pl-0 pr-0 ">
+            <div class="col-sm col-lg text-center related-links mr-3 mb-0 pt-3 pl-0 pr-0 ">
                 <p>
                   <a href="#" class="btn btn-primary btn-lg btn-block animated-btn rounded-0">
                       <span>My Orders</span>
@@ -26,7 +26,7 @@
             </div>
             <!-- Summary of profile details -->
             <div class="col-sm col-lg-3 profile-summary text-center border p-3 mt-3 mr-3 mb-5">
-                <img class="rounded-circle profile-pic" src="{{ user_details.profile_pic.url }}">
+                <img class="rounded-circle profile-pic" src="{{ user_details.customer.profile_pic.url }}">
                 <!-- file upload -->
                 <div class="file-field">
                   <i class="fa fa-pencil-square-o fa-2x upload-icon" aria-hidden="true"></i>
@@ -37,11 +37,16 @@
                 <hr>
                 <div class="text-left">
                   <div class="align-me">
-                      <p><strong>Username</strong>: {{ user_details.user }}</p>
-                      <p><strong>First Name</strong>: {{ user_details.first_name }}</p>
-                      <p><strong>Last Name</strong>: {{ user_details.last_name }}</p>
-                      <p><strong>Email</strong>: {{ user_details.email  }}</p>
-                      <p><strong>Address</strong>: {{ user_details.address }}, {{ user_details.city }} {{ user_details.zipcode }}</p>
+                      <p><strong>Username</strong>: <span>{{ user_details.username }}</span></p>
+
+                      <p><strong>First Name</strong>: <span>{{ user_details.first_name }}</span></p>
+
+                      <p><strong>Last Name</strong>: <span>{{ user_details.last_name }}</span></p>
+
+                      <p><strong>Email</strong>: </p>
+                      <span class="float-right">{{ user_details.email  }}</span>
+                      <p><strong>Address</strong>: </p>
+                      <span class="float-right">{{ user_details.customer.address }}, {{ user_details.customer.city }} {{ user_details.customer.zipcode }}</span>
                   </div>
 
                 </div>

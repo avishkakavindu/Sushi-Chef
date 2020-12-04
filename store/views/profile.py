@@ -7,8 +7,9 @@ from store.decorators import allowed_user
 # menu page
 @login_required(login_url='/login')
 # @allowed_user(allowed_roles=['customer'])
-def profile(request, user_name):
-    user_details = request.user.customer
+def profile(request):
+    user_details = User.objects.select_related("customer").get(username=request.user)
+
     context = {
         'user_details': user_details
     }
