@@ -645,6 +645,7 @@ button.btn.btn-secondary:hover {
 
  .profile-pic {
      width: 150px;
+     height: 150px
  }
 
  .profile-summary {
@@ -724,10 +725,11 @@ button.btn.btn-secondary:hover {
     right: 0;
  }
 
-.file-field {
-    position: absolute;
-    top: 0;
-    right: 0;
+#change-pic-detail {
+    font-family: Open Sans;
+    font-weight: 400;
+    font-style: normal;
+    font-size: small;
 }
 
 .file-field:hover{

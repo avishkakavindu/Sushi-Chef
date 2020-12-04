@@ -1,4 +1,4 @@
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
 from django import forms
 from .models import Customer
@@ -20,3 +20,10 @@ class UpdateCustomerForm(forms.ModelForm):
         model = Customer
         fields = '__all__'
         exclude = ['user']
+
+
+class UpdateUserForm(UserChangeForm):
+
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name']
