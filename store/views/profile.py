@@ -12,7 +12,10 @@ def profile(request):
     if request.method == 'POST':
         user_form = UpdateUserForm(request.POST, instance=request.user)
         customer_form = UpdateCustomerForm(request.POST, request.FILES, instance=request.user.customer)
+
         if customer_form.is_valid() and user_form.is_valid():
+            if request.FILES.get('profile_pic', False):
+                Customer.objects.get(user=request.user).profile_pic.delete(save=True)
             user_form.save()
             customer_form.save()
 
