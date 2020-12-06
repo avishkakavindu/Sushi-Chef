@@ -21,6 +21,19 @@
 } 
 /*      ---         */
 
+.profile-link {
+    color: #280000 ;
+    font-size: large;
+    font-weight: bold;
+}
+
+.profile-link:hover {
+    text-decoration: none;
+    color: #f17661;
+    text-shadow: 1px 1px 1px #989898;
+}
+
+
 .navbar-dark {
     background-color: #1a1a1a;
 }

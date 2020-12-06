@@ -15,6 +15,14 @@ id_profile_pic.onchange = function (event) {
     frame.src=URL.createObjectURL(event.target.files[0]);
 }
 
+// alerts auto close
+$(document).ready(function() {
+    // show the alert
+    setTimeout(function() {
+        $(".alert").alert('close');
+    }, 2000);
+});
+
 
 
 var updateBtns = document.getElementsByClassName('update-cart');

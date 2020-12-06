@@ -2,142 +2,156 @@
 {% load static %}
 {% load widget_tweaks %}
 {% block content %}
-<!--<div class="container d-flex justify-content-center mb-4">-->
-<!--    <h1>Profile page</h1>-->
-
-<!--    <h2>{{ user_details.profile_pic }}</h2>-->
-
-<!--</div>-->
 
 <div class="container mb-0">
-        <div class="row ml-0 d-flex justify-content-center">
-            <!-- related links to profile -->
-            <div class="col-sm col-lg text-center related-links mr-3 mb-0 pt-3 pl-0 pr-0 ">
-                <p>
-                  <a href="#" class="btn btn-primary btn-lg btn-block animated-btn rounded-0">
-                      <span>My Orders</span>
-                  </a>
-                </p>
-                <p>
-                  <a href="#" class="btn btn-primary btn-lg btn-block animated-btn rounded-0">
-                      <span>My Reviews</span>
-                  </a>
-                </p>
-            </div>
-            <!-- Summary of profile details -->
-            <div class="col-sm col-lg-3 profile-summary text-center border p-3 mt-3 mr-3 mb-5">
-                <img class="rounded-circle profile-pic" id="frame" src="{{ user_details.customer.profile_pic.url }}">
 
-                <h2>{{ user_details.first_name }} {{ user_details.last_name }}</h2>
-                <hr>
-                <div class="text-left">
-                  <div class="align-me">
-                      <p><strong>Username</strong> <span>{{ user_details.username }}</span></p>
+     <!-- Alerts -->
+    {% if messages %}
+      {% for message in messages %}
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Success! </strong>
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        {% endif %}
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Error! </strong>
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+    <!-- END Alerts -->
 
-                      <p><strong>First Name</strong> <span>{{ user_details.first_name }}</span></p>
 
-                      <p><strong>Last Name</strong> <span>{{ user_details.last_name }}</span></p>
+    <div class="row ml-0 d-flex justify-content-center">
+        <!-- related links to profile -->
+        <div class="col-sm col-lg text-center related-links mr-3 mb-0 pt-3 pl-0 pr-0 ">
+            <p>
+              <a href="#" class="btn btn-primary btn-lg btn-block animated-btn rounded-0">
+                  <span>My Orders</span>
+              </a>
+            </p>
+            <p>
+              <a href="#" class="btn btn-primary btn-lg btn-block animated-btn rounded-0">
+                  <span>My Reviews</span>
+              </a>
+            </p>
+        </div>
+        <!-- Summary of profile details -->
+        <div class="col-sm col-lg-3 profile-summary text-center border p-3 mt-3 mr-3 mb-5">
+            <img class="rounded-circle profile-pic" id="frame" src="{{ user_details.customer.profile_pic.url }}">
 
-                      <p><strong>Email</strong> <span>{{ user_details.email  }}</span></p>
-
-                      <p><strong>Address</strong> <span>{{ user_details.customer.address }},<br> {{ user_details.customer.city }}<br {{ user_details.customer.zipcode }}</span></p>
-
-                  </div>
-
-                </div>
-            </div>
-            <!-- Change profile details -->
-            <div class="col-sm col-lg-6 mt-3 mb-5 self-align-center">
-                <h3>Change profile details</h3>
-                <form class="needs-validation mt-3"  method="post" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <!-- file upload -->
-                    <div class="file-field mb-2">
-                      <i class="fa fa-pencil-square-o fa-2x upload-icon" aria-hidden="true"></i>
-                        <span class="d-none">
-                            {{ customer_form.profile_pic }}
-                        </span>
-                        <span id="change-pic-detail">change profile picture</span>
-                    </div>
-
-                    <div class="col-md mb-3">
-                        <label>{{ user_form.first_name.label }}</label>
-                        {% if user_form.first_name.errors %}
-                          {% render_field user_form.first_name class="form-control is-invalid" %}
-
-                          <div class="invalid-tooltip d-block float-right" data-placement="bottom">
-                            {% for error in user_form.first_name.errors %}
-                                {{ error }}
-                            {% endfor %}
-                          </div>
-                        {% else %}
-                            {% render_field user_form.first_name class="form-control" %}
-                        {% endif %}
-                    </div>
-                    <div class="col-md mb-3">
-                        <label>{{ user_form.last_name.label }}</label>
-                        {% if user_form.last_name.errors %}
-                          {% render_field user_form.last_name class="form-control is-invalid" %}
-
-                          <div class="invalid-tooltip d-block float-right" data-placement="bottom">
-                            {% for error in user_form.last_name.errors %}
-                                {{ error }}
-                            {% endfor %}
-                          </div>
-                        {% else %}
-                          {% render_field user_form.last_name class="form-control" %}
-                        {% endif %}
-                    </div>
-
-                    <div class="col-md mb-3">
-                        <label>{{ customer_form.address.label }}</label>
-                        {% if customer_form.address.errors %}
-                          {% render_field customer_form.address class="form-control is-invalid" %}
-
-                          <div class="invalid-tooltip d-block float-right" data-placement="bottom">
-                            {% for error in customer_form.address.errors %}
-                                {{ error }}
-                            {% endfor %}
-                          </div>
-                        {% else %}
-                          {% render_field customer_form.address class="form-control" %}
-                        {% endif %}
-                    </div>
-                    <div class="form-row ml-2">
-                        <div class="col-md-7 mb-3">
-                            <label>{{ customer_form.city.label }}</label>
-                            {% if customer_form.city.errors %}
-                              {% render_field customer_form.city class="form-control is-invalid" %}
-                              <div class="invalid-tooltip d-block float-right" data-placement="bottom">
-                                {% for error in customer_form.city.errors %}
-                                  {{ error }}
-                                {% endfor %}
-                              </div>
-                            {% else %}
-                              {% render_field customer_form.city class="form-control" %}
-                            {% endif %}
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <label>{{ customer_form.zipcode.label }}</label>
-                            {% if customer_form.zipcode.errors %}
-                              {% render_field customer_form.zipcode class="form-control is-invalid" %}
-                              <div class="invalid-tooltip d-block float-right" data-placement="bottom">
-                                {% for error in customer_form.zipcode.errors %}
-                                  {{ error }}
-                                {% endfor %}
-                              </div>
-                            {% else %}
-                              {% render_field customer_form.zipcode class="form-control" %}
-                            {% endif %}
-                        </div>
-                    </div>
-
-                    <button class="btn btn-primary float-right mt-3" type="submit">Save Changes</button>
-                  </form>
-
+            <h2>{{ user_details.first_name }} {{ user_details.last_name }}</h2>
+            <hr>
+            <div class="text-left">
+              <div class="align-me">
+                  <p><strong>Username</strong> <span>{{ user_details.username }}</span></p>
+                  <p><strong>First Name</strong> <span>{{ user_details.first_name }}</span></p>
+                  <p><strong>Last Name</strong> <span>{{ user_details.last_name }}</span></p>
+                  <p><strong>Email</strong> <span>{{ user_details.email  }}</span></p>
+                  <p><strong>Address</strong> <span>{{ user_details.customer.address }},<br> {{ user_details.customer.city }}<br {{ user_details.customer.zipcode }}</span></p>
+              </div>
             </div>
         </div>
+        <!-- Change profile details -->
+        <div class="col-sm col-lg-6 mt-3 mb-5 self-align-center">
+            <h3>Change profile details</h3>
+            <form class="needs-validation mt-3"  method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <!-- file upload -->
+                <div class="file-field mb-2">
+                  <i class="fa fa-pencil-square-o fa-2x upload-icon" aria-hidden="true"></i>
+                    <span class="d-none">
+                        {{ customer_form.profile_pic }}
+                    </span>
+                    <span id="change-pic-detail">change profile picture</span>
+                </div>
+
+                <div class="col-md mb-3">
+                    <label>{{ user_form.first_name.label }}</label>
+                    {% if user_form.first_name.errors %}
+                      {% render_field user_form.first_name class="form-control is-invalid" %}
+
+                      <div class="invalid-tooltip d-block float-right" data-placement="bottom">
+                        {% for error in user_form.first_name.errors %}
+                            {{ error }}
+                        {% endfor %}
+                      </div>
+                    {% else %}
+                        {% render_field user_form.first_name class="form-control" %}
+                    {% endif %}
+                </div>
+                <div class="col-md mb-3">
+                    <label>{{ user_form.last_name.label }}</label>
+                    {% if user_form.last_name.errors %}
+                      {% render_field user_form.last_name class="form-control is-invalid" %}
+
+                      <div class="invalid-tooltip d-block float-right" data-placement="bottom">
+                        {% for error in user_form.last_name.errors %}
+                            {{ error }}
+                        {% endfor %}
+                      </div>
+                    {% else %}
+                      {% render_field user_form.last_name class="form-control" %}
+                    {% endif %}
+                </div>
+
+                <div class="col-md mb-3">
+                    <label>{{ customer_form.address.label }}</label>
+                    {% if customer_form.address.errors %}
+                      {% render_field customer_form.address class="form-control is-invalid" %}
+
+                      <div class="invalid-tooltip d-block float-right" data-placement="bottom">
+                        {% for error in customer_form.address.errors %}
+                            {{ error }}
+                        {% endfor %}
+                      </div>
+                    {% else %}
+                      {% render_field customer_form.address class="form-control" %}
+                    {% endif %}
+                </div>
+                <div class="form-row ml-2">
+                    <div class="col-md-7 mb-3">
+                        <label>{{ customer_form.city.label }}</label>
+                        {% if customer_form.city.errors %}
+                          {% render_field customer_form.city class="form-control is-invalid" %}
+                          <div class="invalid-tooltip d-block float-right" data-placement="bottom">
+                            {% for error in customer_form.city.errors %}
+                              {{ error }}
+                            {% endfor %}
+                          </div>
+                        {% else %}
+                          {% render_field customer_form.city class="form-control" %}
+                        {% endif %}
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label>{{ customer_form.zipcode.label }}</label>
+                        {% if customer_form.zipcode.errors %}
+                          {% render_field customer_form.zipcode class="form-control is-invalid" %}
+                          <div class="invalid-tooltip d-block float-right" data-placement="bottom">
+                            {% for error in customer_form.zipcode.errors %}
+                              {{ error }}
+                            {% endfor %}
+                          </div>
+                        {% else %}
+                          {% render_field customer_form.zipcode class="form-control" %}
+                        {% endif %}
+                    </div>
+                </div>
+
+                <button class="btn btn-primary float-right mt-3" type="submit">Save Changes</button>
+              </form>
+        </div>
     </div>
+</div>
 
 
 {% endblock content %}
