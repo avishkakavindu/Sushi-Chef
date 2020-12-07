@@ -81,7 +81,7 @@
                   <span>Servings: </span>
                   <input class="quantity" min="0" name="quantity" value="1" type="number">
               </p>
-              <button type="button" class="btn btn-outline-success">
+              <button type="button" class="btn btn-outline-success update-cart" data-action="add" data-product="{{ product_details.0.product.id }}">
                   <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                   <span> Add to cart</span>
               </button>
@@ -249,5 +249,5 @@
     </div>
   <!-- END-product -->
 
-  
+  <script src="{% static 'js/cart.js' %}"></script>
 {% endblock content %}
