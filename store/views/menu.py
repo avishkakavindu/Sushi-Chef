@@ -10,7 +10,7 @@ def menu(request):
             'productimage_set',
             ProductImage.objects.filter(place='Main Product Image'),
             to_attr='main_image'
-        )
+        ),
     )
 
     context = {

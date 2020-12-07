@@ -22,36 +22,7 @@
   </head>
   <body>
     {% load widget_tweaks %}
-    <script>
-      function getCookie(name) {
-        // Get key=value pairs from spilitting cookie
-        var cookieArr = document.cookie.split(";");
 
-        // Loop through the array elements
-        for(var i=0; i<cookieArr.length; i++) {
-          var cookiePair = cookieArr[i].split("=");
-
-          // Remove whitespaces from beginning of the cookie name and compare  with given string
-          if(name == cookiePair[0].trim()) {
-            // Decode cookie value and return
-            return decodeURIComponent(cookiePair[1]);
-          }
-        }
-        // Return null if not found
-        return null;
-      }
-
-      var myCart = JSON.parse(getCookie('myCart'))
-
-      // If no cookie found named 'myCart'
-      if(myCart == undefined) {
-        myCart = {}
-        console.log('cart created!', myCart);
-        // create actual cookie(main domain)
-        document.cookie = 'myCart=' + JSON.stringify(myCart) + ";domain=;path=/";
-      }
-      console.log("Cart(final): ", myCart);
-    </script>
 
     <header>
     <!-- top nav social-media -->
@@ -201,5 +172,6 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     <script src="{% static 'js/scripts.js' %}"></script>
+    <script src="{% static 'js/cart.js' %}">
   </body>
 </html>

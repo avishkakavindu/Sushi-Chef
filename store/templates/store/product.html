@@ -48,9 +48,14 @@
             {% for i in five_star %}
               {% if i < product_details.0.product.get_avg_rating.1 %}
                 <i class="fa fa-star" aria-hidden="true"></i>
+              {% elif i == product_details.0.product.get_avg_rating.1 %}
+                {% if product_details.0.product.get_avg_rating.0 > product_details.0.product.get_avg_rating.1 %}
+                  <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                {% endif %}
               {% else %}
                 <i class="fa fa-star-o" aria-hidden="true"></i>
               {% endif %}
+
             {% endfor %}
 
           </span>
@@ -90,6 +95,7 @@
 
                 <!-- Star rating -->
                 <span class="star-rating">
+                  <h2>{{product_details.0.product.get_avg_rating.1}}</h2>
                   {% for i in five_star %}
                     {% if i < product_details.0.product.get_avg_rating.1 %}
                       <i class="fa fa-star" aria-hidden="true"></i>
@@ -208,7 +214,7 @@
                     <!-- Review -->
                     <div class="row mt-3 mb-3 border-bottom pb-3">
                       <div class="col-md col-lg-3 text-center">
-                        <img src="{{ rev.customer.profile_pic.url }}" class="img-thumbnail rounded-circle img-fluid">
+                        <img src="{{ rev.customer.profile_pic.url }}" class="img-thumbnail rounded-circle review-pic">
                         <small>{{ rev.customer.user.first_name|add:' ' |add:rev.customer.user.last_name}}</small>
                       </div>
                       <div class="col-md col-lg">

@@ -35,7 +35,7 @@
         <!-- product 1 -->
         <div class="col-md-6 col-lg-3 mb-5">
           <div class="product">
-            <a href="#">
+            <a href="/product/{{ product.id }}" class="product-link">
               <img src="{{ product.main_image.0.image.url }}" class="img-fluid mt-3">
               {% if product.discount != 0 %}
               <span class="bonus">{{ product.discount }}% off</span>
@@ -43,7 +43,7 @@
             </a>
             <!-- Description and price-->
             <div class="product-desc text-center border border-top-0 pb-3">
-              <h3><a href="#">{{ product.name }}</a></h3>
+              <h3><a href="/product/{{ product.id }}">{{ product.name }}</a></h3>
               <div class="p-desc">
                 <p class="mb-0">
                   {{ product.desc }}
@@ -52,12 +52,15 @@
               <!-- Star rating -->
               <span class="star-rating">
                 {% for i in five_star %}
-                  {% if i < product.get_avg_rating %}
+                  {% if i < product.get_avg_rating.1 %}
                     <i class="fa fa-star" aria-hidden="true"></i>
+                  {% elif i == product.get_avg_rating.1 %}
+                    {% if product.get_avg_rating.0 > product.get_avg_rating.1 %}
+                      <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                    {% endif %}
                   {% else %}
                     <i class="fa fa-star-o" aria-hidden="true"></i>
                   {% endif %}
-
                 {% endfor %}
               </span>
               <!-- Price -->
@@ -83,7 +86,7 @@
                       <i class="fa fa-info-circle" aria-hidden="true"></i>
                     </span>
                   </a>
-                  <a href="#">
+                  <a href="#" product-data="add_{{ product.id }}">
                     <span class="rounded-circle mr-1 h5">
                       <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                     </span>

@@ -576,6 +576,13 @@ button.btn.btn-secondary:hover {
      margin: 0px;
  }
 
+ .review-pic {
+    height: 80px;
+    width: 80px;
+    margin-left: 12px;
+    margin-right: 5px;
+ }
+
  .graphical-avg {
      border: 1px solid #dee2e6;
      background-color: #fafafa;

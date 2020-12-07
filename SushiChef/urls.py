@@ -30,7 +30,7 @@ urlpatterns = [
     path('register', views.register, name='register'),
     path('checkout', views.checkout, name='checkout'),
     path('profile/', views.profile, name="profile"),
-    path('products/<str:product_id>', views.product_detail, name="product"),
+    path('product/<str:product_id>', views.product_detail, name="product"),
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
