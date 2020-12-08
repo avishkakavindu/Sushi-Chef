@@ -81,7 +81,8 @@
                   <span>Servings: </span>
                   <input class="quantity" min="0" name="quantity" value="1" type="number">
               </p>
-              <button type="button" class="btn btn-outline-success update-cart" data-action="add" data-product="{{ product_details.0.product.id }}">
+              <button type="button" class="btn btn-outline-success update-cart" data-action="add"
+                      data-product="{{ product_details.0.product.id }}_{{ product_details.0.product.get_sale_price|floatformat:2 }}">
                   <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                   <span> Add to cart</span>
               </button>

@@ -86,7 +86,8 @@
                       <i class="fa fa-info-circle" aria-hidden="true"></i>
                     </span>
                   </a>
-                  <a href="#" data-action="add" data-product="{{ product.id }}" class="update-cart">
+                  <a href="#" data-action="add" class="update-cart"
+                     data-product="{{ product.id }}_{{ product.get_sale_price|floatformat:2 }}" >
                     <span class="rounded-circle mr-1 h5">
                       <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                     </span>

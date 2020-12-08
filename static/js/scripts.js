@@ -1,3 +1,4 @@
+$
 // change image -product
 $(".sub-img").click(function(){
     sub_url = $(this).find('img').attr('src');
@@ -37,4 +38,4 @@ if (cart == undefined){
     console.log('Cart created', cart);
     document.cookie = 'cart=' + JSON.stringify(cart) + ';domain=;path=/';
 }
-console.log('cart:', cart)
+

@@ -15,7 +15,6 @@
     <!-- custom styles -->
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 
-
     <link rel="icon" type="image/png" href="{% static 'images/staticimg/home.ico' %}" />
     <title>Sushi Master</title>
 
@@ -23,6 +22,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
 
   </head>
   <body>
@@ -47,11 +47,11 @@
                 <a class="nav-item nav-link" href="#"><i class="fa fa-linkedin fa-lg fa-fw"></i></a>
             </li>
           </ul>
-
+          <!-- cart icon badge -->
           <ul class="nav navbar-nav ml-auto" >
-            <a class="nav-item nav-link" href="#">
+            <a class="nav-item nav-link" href="cart">
               <i class="fa fa-shopping-cart fa-fw"></i>
-              <i class="badge badge-warning">2</i>
+              <i class="badge badge-warning cart-badge"></i>
             </a>
           </ul>
         </div>
@@ -172,7 +172,7 @@
 
 
     <!-- Optional JavaScript -->
-
     <script src="{% static 'js/scripts.js' %}"></script>
+    <script src="{% static 'js/cart.js' %}"></script>
   </body>
 </html>
