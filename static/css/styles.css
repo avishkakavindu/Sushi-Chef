@@ -410,6 +410,14 @@
     
 }
 
+.cart-product-desc {
+    white-space: nowrap;
+    width: 15em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
 /* 
  *  -- checkout.html --
 */

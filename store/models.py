@@ -82,7 +82,7 @@ class ProductImage(models.Model):
     place = models.CharField(max_length=20, choices=PLACEHOLDER)
 
     def __str__(self):
-        return str(self.id)
+        return str('{}-{}'.format(self.product, self.id))
 
 
 class ProductReview(models.Model):

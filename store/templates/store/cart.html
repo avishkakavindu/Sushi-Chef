@@ -27,90 +27,46 @@
         <h6>Price</h6>
       </div>
     </div>
-    <!-- Product #1 -->
-    <div class="row border-bottom" style="background-color: #F8F8F8">
-      <div class="col-sm-1 d-md-flex justify-content-center align-items-center remove-btn">
-        <button type="button" class="btn bg-transparent">
-          <i class="fa fa-trash" aria-hidden="true"></i>
-        </button>
-      </div>
-      <div class="col-sm-3">
-        <img class="img-fluid img-thumbnail" src="img/img3.jpg" alt="" />
-      </div>
-      <div class="col-sm-3">
-        <h5> Dish Name</h5>
-        <p>Bball High
-        White</p>
-      </div>
-      <div class="col col-sm-2 input-group my-auto">
-        <button data-product="01" data-action="remove" class="btn btn-light border update-cart" type="button" name="minus">
-          <i class="fa fa-minus" aria-hidden="true"></i>
-        </button>
-        <input type="text" class="border" maxlength="2" name="name" value="1" style="width: 30px">
-        <button data-product="01" data-action="add" class="btn btn-light border update-cart" type="button" name="plus">
-          <i class="fa fa-plus" aria-hidden="true"></i>
-        </button>
-      </div>
-      <div class="col col-sm  text-center">
-        <span>$549.00</span>
-      </div>
-    </div>
-    <!-- Product #2 -->
-    <div class="row border-bottom">
-      <div class="col-sm-1 my-auto d-md-flex justify-content-center align-items-center">
-        <button type="button" class="btn bg-transparent">
-          <i class="fa fa-trash" aria-hidden="true"></i>
-        </button>
-      </div>
-      <div class="col-sm-3">
-        <img class="img-fluid img-thumbnail" src="img/img2.jpg" alt="" />
-      </div>
-      <div class="col-sm-3">
-        <h5>Dish Name</h5>
-        <p>Bball High White</p>
-      </div>
-      <div class="col col-sm-2 input-group my-auto">
-        <button data-product="02" data-action="remove" class="btn btn-light border update-cart" type="button" name="minus">
-          <i class="fa fa-minus" aria-hidden="true"></i>
-        </button>
-        <input type="text" class="border" maxlength="2" name="name" value="1" style="width: 30px">
-        <button data-product="02" data-action="add" class="btn btn-light border update-cart" type="button" name="plus">
-          <i class="fa fa-plus" aria-hidden="true"></i>
-        </button>
-      </div>
-      <div class="col col-sm my-auto text-center">
-        <span>$549.00</span>
-      </div>
-    </div>
-    <!-- Product #3 -->
-    <div class="row border-bottom" style="background-color: #F8F8F8">
-      <div class="col-sm-1 my-auto d-md-flex justify-content-center align-items-center">
-        <button type="button" class="btn bg-transparent">
-          <i class="fa fa-trash" aria-hidden="true"></i>
-        </button>
-      </div>
-      <div class="col-sm-3">
-        <img class="img-fluid img-thumbnail" src="img/img1.jpg" alt="" />
-      </div>
-      <div class="col-sm-3">
-        <h5>Dish Name</h5>
-        <p>Bball High
-        White</p>
-      </div>
-      <div class="col col-sm-2 input-group my-auto">
-        <button data-product="03" data-action="remove" class="btn btn-light border update-cart" type="button" name="minus">
-          <i class="fa fa-minus" aria-hidden="true"></i>
-        </button>
-        <input type="text" class="border" maxlength="2" name="name" value="1" style="width: 30px">
-        <button data-product="03" data-action="add" class="btn btn-light border update-cart" type="button" name="plus">
-          <i class="fa fa-plus" aria-hidden="true"></i>
-        </button>
-      </div>
-      <div class="col col-sm my-auto text-center">
-        <span>$549.00</span>
-      </div>
-    </div>
-    <!-- END product #3-->
+    <!-- Product # -->
+    {% for item in data %}
+      {{ item.0.image }}
+    {% endfor %}
+    {% for item in data %}
+      {% if forloop.counter|divisibleby:2 %}
+        <div class="row border-bottom pb-3 pt-1">
+      {% else %}
+        <div class="row border-bottom pb-3 pt-1" style="background-color: #F8F8F8">
+      {% endif %}
+          <div class="col-sm-1 d-md-flex justify-content-center align-items-center remove-btn">
+            <button type="button" class="btn bg-transparent">
+              <i class="fa fa-trash" aria-hidden="true"></i>
+            </button>
+          </div>
+          <div class="col-sm">
+            <img class="img-fluid img-thumbnail" src="{{ item.0.image.url }}" alt="" />
+          </div>
+
+          <div class="col-sm">
+            <a href="product/{{ item.0.product.id }}">
+              <h5> {{ item.0.product.name }}</h5>
+              <p class="cart-product-desc">
+                {{ item.0.product.desc }}
+              </p>
+            </a>
+          </div>
+
+
+          <div class="col col-sm input-group my-auto text-center">
+            <div class="quantity ml-5">
+              <input type="number" min="1" max="20" step="1" value="1" style="width: 50px">
+            </div>
+          </div>
+          <div class="col col-sm mt-lg-5  text-center">
+              <span>$549.00</span>
+          </div>
+        </div>
+
+    {% endfor %}
     <!-- Summary -->
     <div class="row border-bottom justify-content-end">
       <div class="col col-sm-2 ">
