@@ -14,4 +14,27 @@ $(document).ready(function() {
 });
 
 
+// get a cookie
+function getCookie(cname){
+    // get all name=value pairs in an array
+    var cArr =document.cookie.split(';');
+    for(var i=0; i<cArr.length; i++){
+        var cPair = cArr[i].split('=');
+        // remove white spaces and compare with cookie name
+        if(cname == cPair[0].trim()){
+            // decode cookie value and return
+            return decodeURIComponent(cPair[1]);
+        }
+    }
+    // if cookie not found
+    return null;
+}
 
+var cart = JSON.parse(getCookie('cart'));
+// if no cookie named 'cart'
+if (cart == undefined){
+    cart = {};
+    console.log('Cart created', cart);
+    document.cookie = 'cart=' + JSON.stringify(cart) + ';domain=;path=/';
+}
+console.log('cart:', cart)
