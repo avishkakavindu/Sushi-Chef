@@ -58,15 +58,15 @@ $(function(){
     })
 })
 
-// set quantity from cookie
-$(document).ready(function() {
-
-    $('.update-quantity').each(function(){
-        var [productId, unitPrice] = this.dataset.product.split('_');
-        $(this).val(cart[productId]['quantity']);
-        console.log($(this).val(cart[productId]['quantity']))
-    })
-})
+// set quantity from cookie - django filter used
+//$(document).ready(function() {
+//
+//    $('.update-quantity').each(function(){
+//        var [productId, unitPrice] = this.dataset.product.split('_');
+//        $(this).val(cart[productId]['quantity']);
+//        console.log($(this).val(cart[productId]['quantity']))
+//    })
+//})
 
 // remove item from cart
 $(function(){
