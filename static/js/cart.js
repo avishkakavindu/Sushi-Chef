@@ -36,6 +36,7 @@ function updateCartItems(productId, unitPrice, action){
     }
     else if(action == 'delete'){
         delete cart[productId]
+        console.log('delete: ')
     }
     // set the updated cookie
     document.cookie = 'cart=' + JSON.stringify(cart) + ';domain=;path=/'
@@ -45,3 +46,9 @@ function updateCartItems(productId, unitPrice, action){
      $('.cart-badge').text(cartItemCount)
 }
 
+// remove item from cart
+$(function(){
+  $("i.fa-trash").on('click', function(e) {
+    $(this).parent().parent().parent().remove();
+  });
+});

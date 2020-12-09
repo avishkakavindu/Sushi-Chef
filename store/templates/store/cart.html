@@ -29,16 +29,17 @@
     </div>
     <!-- Product # -->
     {% for item in data %}
-      {{ item.0.image }}
+      {{ item.0.product.id }}
     {% endfor %}
     {% for item in data %}
       {% if forloop.counter|divisibleby:2 %}
-        <div class="row border-bottom pb-3 pt-1">
+        <div class="row border-bottom pb-3 pt-1 cart-item">
       {% else %}
-        <div class="row border-bottom pb-3 pt-1" style="background-color: #F8F8F8">
+        <div class="row border-bottom pb-3 pt-1 cart-item" style="background-color: #F8F8F8">
       {% endif %}
           <div class="col-sm-1 d-md-flex justify-content-center align-items-center remove-btn">
-            <button type="button" class="btn bg-transparent">
+            <button type="button" class="btn bg-transparent update-cart"
+                    data-action="delete" data-product="{{ item.0.product.id }}_{{ item.0.product.get_sale_price|floatformat:2 }}">
               <i class="fa fa-trash" aria-hidden="true"></i>
             </button>
           </div>
