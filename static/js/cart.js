@@ -1,9 +1,3 @@
-$(document).ready(function(){
-    // get item count in cart
-    var cartItemCount = Object.keys(cart).length
-    $('.cart-badge').text(cartItemCount)
-})
-
 var updateBtns = document.getElementsByClassName('update-cart');
 
 for(var i=0; i<updateBtns.length; i++){
@@ -27,8 +21,8 @@ function updateCartItems(productId, unitPrice, action){
         }
     }
     else if(action == 'remove'){
-        if(cart[productId][quantity] > 0){
-            cart[productId][quantity] -= 1
+        if(cart[productId]['quantity'] > 0){
+            cart[productId]['quantity'] -= 1
         }
         else {
             delete cart[productId]
@@ -45,6 +39,34 @@ function updateCartItems(productId, unitPrice, action){
      var cartItemCount = Object.keys(cart).length
      $('.cart-badge').text(cartItemCount)
 }
+
+// update quantity
+$(function(){
+    $('.update-quantity').on('change', function(e){
+        var [productId, unitPrice] = this.dataset.product.split('_');
+
+        if ($(this).val() < 0){
+            cart[productId]['quantity'] = parseInt(1)
+            $(this).val(1)
+        }
+        else{
+            cart[productId]['quantity'] = $(this).val()
+        }
+        // set the updated cookie
+        document.cookie = 'cart=' + JSON.stringify(cart) + ';domain=;path=/'
+        console.log(JSON.stringify(cart))
+    })
+})
+
+// set quantity from cookie
+$(document).ready(function() {
+
+    $('.update-quantity').each(function(){
+        var [productId, unitPrice] = this.dataset.product.split('_');
+        $(this).val(cart[productId]['quantity']);
+        console.log($(this).val(cart[productId]['quantity']))
+    })
+})
 
 // remove item from cart
 $(function(){

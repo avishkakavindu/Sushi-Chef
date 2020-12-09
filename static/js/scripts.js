@@ -1,4 +1,10 @@
-$
+$(document).ready(function(){
+    // get item count in cart
+    var cartItemCount = Object.keys(cart).length
+    $('.cart-badge').text(cartItemCount)
+})
+
+
 // change image -product
 $(".sub-img").click(function(){
     sub_url = $(this).find('img').attr('src');

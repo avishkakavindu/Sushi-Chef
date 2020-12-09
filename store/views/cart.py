@@ -14,7 +14,7 @@ def cart(request):
         cart = {}
 
     context = {
-        'data': []
+        'data': [],
     }
 
     for item in cart:
