@@ -67,8 +67,8 @@
             </div>
           </div>
           <!-- cost -->
-          <div class="col col-sm mt-lg-5  text-center">
-              <span>$549.00</span>
+          <div class="col col-sm mt-lg-5  text-center cost-container">
+              <span class="cost">{{ cart|get_cost:item.0.product.id }}</span>
           </div>
         </div>
 

@@ -42,15 +42,18 @@ function updateCartItems(productId, unitPrice, action){
 
 // update quantity
 $(function(){
-    $('.update-quantity').on('change', function(e){
+    $('.cart-item .update-quantity').on('change', function(e){
         var [productId, unitPrice] = this.dataset.product.split('_');
 
         if ($(this).val() < 0){
             cart[productId]['quantity'] = parseInt(1)
             $(this).val(1)
+            $(this).closest('.cart-item').children('.cost-container').children('.cost').text(unitPrice)
         }
         else{
             cart[productId]['quantity'] = $(this).val()
+            cost = '$' + String(parseFloat(cart[productId]['quantity'] * unitPrice).toFixed(2))
+            $(this).closest('.cart-item').children('.cost-container').children('.cost').text(cost)
         }
         // set the updated cookie
         document.cookie = 'cart=' + JSON.stringify(cart) + ';domain=;path=/'
@@ -58,7 +61,8 @@ $(function(){
     })
 })
 
-// set quantity from cookie - django filter used
+
+// set quantity from cookie - replaced with django filter
 //$(document).ready(function() {
 //
 //    $('.update-quantity').each(function(){
