@@ -1,4 +1,5 @@
 from django import template
+import numpy as np
 
 register = template.Library()
 
@@ -19,3 +20,14 @@ def get_cost(dictionary, key):
         return '${:.2f}'.format(quantity * unit_price)
     except KeyError:
         return '${}'.format('0')
+
+
+@register.filter
+def get_subtotal(dictionary):
+    sum = 0
+    try:
+        for i in dictionary.values():
+            sum += np.prod(list(map(float, i.values())))
+        return '${:.2f}'.format(sum)
+    except KeyError:
+        return '$0.00'

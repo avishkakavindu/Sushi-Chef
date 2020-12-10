@@ -75,11 +75,11 @@
     {% endfor %}
     <!-- Summary -->
     <div class="row border-bottom justify-content-end">
-      <div class="col col-sm-2 ">
+      <div class="col col-sm-2">
         Sub-Total
       </div>
-      <div class="col col-sm-2  cart-summary-text-align text-right">
-        255,90 €
+      <div class="col col-sm-2 cart-summary-text-align text-right sub-total">
+        {{ cart|get_subtotal }}
       </div>
     </div>
     <div class="row border-bottom justify-content-end" style="background-color: #F8F8F8">

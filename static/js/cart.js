@@ -54,12 +54,20 @@ $(function(){
             cart[productId]['quantity'] = $(this).val()
             cost = '$' + String(parseFloat(cart[productId]['quantity'] * unitPrice).toFixed(2))
             $(this).closest('.cart-item').children('.cost-container').children('.cost').text(cost)
+            // calculate sub total
+            var sum = 0;
+            $('.cost').each(function() {
+                sum += parseFloat($(this).text().replace('$', ''));
+                $(".sub-total").text('$'+sum.toFixed(2));
+            });
         }
         // set the updated cookie
         document.cookie = 'cart=' + JSON.stringify(cart) + ';domain=;path=/'
         console.log(JSON.stringify(cart))
+
     })
 })
+
 
 
 // set quantity from cookie - replaced with django filter
