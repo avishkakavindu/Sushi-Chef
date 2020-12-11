@@ -54,11 +54,12 @@ $(function(){
             cart[productId]['quantity'] = $(this).val()
             cost = '$' + String(parseFloat(cart[productId]['quantity'] * unitPrice).toFixed(2))
             $(this).closest('.cart-item').children('.cost-container').children('.cost').text(cost)
-            // calculate sub total
+            // calculate sub total and total
             var sum = 0;
             $('.cost').each(function() {
                 sum += parseFloat($(this).text().replace('$', ''));
-                $(".sub-total").text('$'+sum.toFixed(2));
+                $(".sub-total").text('$' + sum.toFixed(2));
+                $('.total').text('$' + (sum + 5).toFixed(2))
             });
         }
         // set the updated cookie

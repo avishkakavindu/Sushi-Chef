@@ -86,16 +86,16 @@
       <div class="col col-sm-2 ">
         Delivery
       </div>
-      <div class="col col-sm-2 cart-summary-text-align text-right">
-       20 €
+      <div class="col col-sm-2 cart-summary-text-align text-right delivery">
+       $5.00
       </div>
     </div>
     <div class="row border-top justify-content-end font-weight-bold">
       <div class="col col-sm-2 ">
         Total
       </div>
-      <div class="col col-sm-2   cart-summary-text-align text-right">
-        255,90 €
+      <div class="col col-sm-2 cart-summary-text-align text-right total">
+        {{ cart|get_total }}
       </div>
     </div>
     <div class="row justify-content-end">

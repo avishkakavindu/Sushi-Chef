@@ -31,3 +31,15 @@ def get_subtotal(dictionary):
         return '${:.2f}'.format(sum)
     except KeyError:
         return '$0.00'
+
+
+@register.filter
+def get_total(dictionary):
+    sum = 0
+    delivery = 5
+    try:
+        for i in dictionary.values():
+            sum += np.prod(list(map(float, i.values())))
+        return '${:.2f}'.format(sum + delivery)
+    except KeyError:
+        return '$0.00'
