@@ -605,6 +605,10 @@ button.btn.btn-secondary:hover {
      margin: 0px;
  }
 
+ #nav-profile textarea{
+    height: 100px;
+ }
+
  .review-pic {
     height: 80px;
     width: 80px;
@@ -688,6 +692,16 @@ button.btn.btn-secondary:hover {
  .invalid-tooltip, .valid-tooltip {
     position: relative;
     right: 15px;
+ }
+
+ /* Rating system */
+
+ .rating-system {
+    color: #787878;
+ }
+
+ .rating-system .fa-star {
+    color: #FDCC0D;
  }
 
  /* --- profile.html --- */

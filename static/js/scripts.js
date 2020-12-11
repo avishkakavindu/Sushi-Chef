@@ -4,6 +4,10 @@ $(document).ready(function(){
     $('.cart-badge').text(cartItemCount)
 })
 
+// tooltips
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
 
 // change image -product
 $(".sub-img").click(function(){
@@ -45,3 +49,7 @@ if (cart == undefined){
     document.cookie = 'cart=' + JSON.stringify(cart) + ';domain=;path=/';
 }
 
+// star rating system
+function starRatingSystem(){
+
+}
