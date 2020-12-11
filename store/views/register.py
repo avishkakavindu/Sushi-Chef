@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from store.models import *
 from store.forms import CreateUserForm
 from store.decorators import unauthenticated_user
 from store.models import Customer

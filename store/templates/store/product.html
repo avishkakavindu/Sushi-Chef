@@ -240,7 +240,11 @@
                 </div>
               </div>
               <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-
+                <form class="needs-validation" action="" method="post" novalidate>
+                  {% csrf_token %}
+                  {{ review_form }}
+                  <button type="submit">Submit</button>
+                </form>
               </div>
             </div>
           </div>

@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
 from django import forms
-from .models import Customer
+from .models import Customer, ProductReview
 
 
 class CreateUserForm(UserCreationForm):
@@ -28,3 +28,10 @@ class UpdateUserForm(UserChangeForm):
         model = User
         fields = ['first_name', 'last_name',]
 
+
+class ProductReviewForm(forms.ModelForm):
+
+    class Meta:
+        model = ProductReview
+        fields = ['review', 'rating']
+        exclude = ['user', 'product']
