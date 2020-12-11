@@ -29,10 +29,6 @@
       </div>
     </div>
     <!-- Product # -->
-
-    {% for item in data %}
-      {{ cart.1.quantity }}
-    {% endfor %}
     {% for item in data %}
       {% if forloop.counter|divisibleby:2 %}
         <div class="row border-bottom pb-3 pt-1 cart-item">
@@ -50,9 +46,9 @@
           </div>
 
           <div class="col-sm">
-            <a href="product/{{ item.0.product.id }}">
+            <a href="product/{{ item.0.product.id }}" class="cart-product-link">
               <h5> {{ item.0.product.name }}</h5>
-              <p class="cart-product-desc">
+              <p class="module fades">
                 {{ item.0.product.desc }}
               </p>
             </a>

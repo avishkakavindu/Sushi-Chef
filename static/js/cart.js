@@ -31,6 +31,7 @@ function updateCartItems(productId, unitPrice, action){
     else if(action == 'delete'){
         delete cart[productId]
         console.log('delete: ')
+        calcSummary()
     }
     // set the updated cookie
     document.cookie = 'cart=' + JSON.stringify(cart) + ';domain=;path=/'
@@ -49,18 +50,13 @@ $(function(){
             cart[productId]['quantity'] = parseInt(1)
             $(this).val(1)
             $(this).closest('.cart-item').children('.cost-container').children('.cost').text(unitPrice)
+            calcSummary()
         }
         else{
             cart[productId]['quantity'] = $(this).val()
             cost = '$' + String(parseFloat(cart[productId]['quantity'] * unitPrice).toFixed(2))
             $(this).closest('.cart-item').children('.cost-container').children('.cost').text(cost)
-            // calculate sub total and total
-            var sum = 0;
-            $('.cost').each(function() {
-                sum += parseFloat($(this).text().replace('$', ''));
-                $(".sub-total").text('$' + sum.toFixed(2));
-                $('.total').text('$' + (sum + 5).toFixed(2))
-            });
+            calcSummary()
         }
         // set the updated cookie
         document.cookie = 'cart=' + JSON.stringify(cart) + ';domain=;path=/'
@@ -69,6 +65,16 @@ $(function(){
     })
 })
 
+
+// calculate total and sub total
+function calcSummary(){
+    var sum = 0;
+    $('.cost').each(function() {
+        sum += parseFloat($(this).text().replace('$', ''));
+        $(".sub-total").text('$' + sum.toFixed(2));
+        $('.total').text('$' + (sum + 5).toFixed(2))
+    });
+}
 
 
 // set quantity from cookie - replaced with django filter
