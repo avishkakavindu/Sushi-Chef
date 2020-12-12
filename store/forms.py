@@ -1,3 +1,4 @@
+import form as form
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
 from django import forms
@@ -35,3 +36,4 @@ class ProductReviewForm(forms.ModelForm):
         model = ProductReview
         fields = ['review', 'rating']
         exclude = ['user', 'product']
+        widgets = {'rating': forms.HiddenInput()}

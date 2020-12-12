@@ -21,7 +21,7 @@ $(document).ready(function() {
     // show the alert
     setTimeout(function() {
         $(".alert").alert('close');
-    }, 2000);
+    }, 5000);
 });
 
 
@@ -49,7 +49,27 @@ if (cart == undefined){
     document.cookie = 'cart=' + JSON.stringify(cart) + ';domain=;path=/';
 }
 
-// star rating system
-function starRatingSystem(){
-
+// get user
+function getUser(){
+    if($('.username').text() != undefined){
+        return $('.username').text()
+    }
+    return '0'
 }
+
+// star rating system
+$('.rate-me').mouseover(function(){
+
+    $(this).prevAll().addBack().each(function(){
+        $(this).removeClass('fa-star-o')
+        $(this).addClass('fa-star')
+        rating++
+
+    })
+    $(this).nextAll().each(function(){
+        $(this).removeClass('fa-star')
+        $(this).addClass('fa-star-o')
+    })
+    var rating = $('.rate-me.fa-star').length
+    $('#id_rating').val(rating)
+})
