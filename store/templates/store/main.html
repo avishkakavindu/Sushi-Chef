@@ -107,7 +107,7 @@
             <a href="/profile" class="profile-link">
               <span>Hello, </span> <span class="username"> {{ user.username }}</span>
             </a>
-            <a href="/logout" class="btn btn-danger my-2 my-sm-0 ml-2" type="button">log out</a>
+            <a href="/logout" class="btn btn-danger my-2 my-sm-0 ml-2" type="button">logout</a>
           {% else %}
             <a href="{% url 'login' %}?next={% firstof request.path '/' %}" class="btn btn-outline-success my-2 my-sm-0" type="button">SignIn</a>
           {% endif %}

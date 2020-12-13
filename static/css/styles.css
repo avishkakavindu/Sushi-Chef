@@ -343,6 +343,19 @@
     border: none;
 }
 
+.promo-img {
+    height: 150px;
+    width: 150px;
+    border-bottom-right-radius: calc(.25rem - 1px);
+    border-bottom-left-radius: calc(.25rem - 1px);
+    border-top-right-radius: calc(.25rem - 1px);
+    border-top-left-radius: calc(.25rem - 1px);
+}
+
+.promo-item {
+    padding-right: 0px;
+    margin: 10px;
+}
 
 /* 
  *  -- cart.html --
