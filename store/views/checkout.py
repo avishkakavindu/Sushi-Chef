@@ -2,10 +2,25 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from store.models import *
 from store.decorators import allowed_user
+import json
 
 
 # checkout page
 @login_required(login_url='/login')
 def checkout(request):
-    context = {}
+    try:
+        cart = json.loads(request.COOKIES['cart'])
+    except:
+        cart = {}
+
+    context = {
+        'data': [],
+        'cart': cart,
+    }
+
+    for item in cart:
+        product_detail = ProductImage.objects.select_related('product').filter(product=item[0], place='Main Product Image')
+        # print(product_detail[0].product.desc)
+        context['data'].append(product_detail)
+    # print(context['data'][0][0].product.desc)
     return render(request, 'store/checkout.html', context)

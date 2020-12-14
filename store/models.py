@@ -134,6 +134,7 @@ class Order(models.Model):
     city = models.CharField(max_length=100)
     state = models.CharField(max_length=100)
     zipcode = models.CharField(max_length=20)
+    delivery = models.DecimalField(max_digits=5, decimal_places=2, default=5.00)
     date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

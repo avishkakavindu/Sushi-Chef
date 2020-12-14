@@ -1,5 +1,6 @@
 {% extends 'store/main.html' %}
 {% block content %}
+{% load static %}
 {% load store_tags %}
 
   <!-- cart -->
@@ -112,6 +113,8 @@
 
   </div>
   <!-- END - cart -->
+  <script src="{% static 'js/cart.js' %}"></script>
+
 
 
 {% endblock content %}

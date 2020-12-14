@@ -13,11 +13,15 @@ for(var i=0; i<updateBtns.length; i++){
 // do changes to cart items
 function updateCartItems(productId, unitPrice, action){
     if(action == 'add'){
+
         if(cart[productId] == undefined){       // if the product not in cart
             cart[productId] = {'unit_price': unitPrice, 'quantity': 1}   // ex: {1: {'quantity': 1}}
+            console.log('undef')
         }
         else {                                  // if product is already in cart increment quantity
             cart[productId]['quantity'] += 1
+            console.log(cart[productId])
+
         }
     }
     else if(action == 'remove'){
