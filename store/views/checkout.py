@@ -1,13 +1,34 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from store.models import *
 from store.decorators import allowed_user
+from store.forms import DeliveryForm
 import json
 
 
 # checkout page
 @login_required(login_url='/login')
 def checkout(request):
+    user_detail = Customer.objects.get(user=request.user)
+
+    user_address = {
+        'address': user_detail.address,
+        'city': user_detail.city,
+        'state': user_detail.state,
+        'zipcode': user_detail.zipcode,
+    }
+
+    delivery_form = DeliveryForm(initial=user_address)
+
+    if request.method == 'POST':
+        delivery_form = DeliveryForm(request.POST)
+        if delivery_form.is_valid():
+            delivery_details = delivery_form.save(commit=False)
+            delivery_details.customer = request.user.customer
+            delivery_details.save()
+
+            return redirect(request.path)
+
     try:
         cart = json.loads(request.COOKIES['cart'])
     except:
@@ -16,11 +37,31 @@ def checkout(request):
     context = {
         'data': [],
         'cart': cart,
+        'delivery_form': delivery_form,
     }
-
+    total = calculateTotal(cart)
     for item in cart:
         product_detail = ProductImage.objects.select_related('product').filter(product=item[0], place='Main Product Image')
         # print(product_detail[0].product.desc)
         context['data'].append(product_detail)
     # print(context['data'][0][0].product.desc)
+
     return render(request, 'store/checkout.html', context)
+
+
+def calculateTotal(cart):
+    # {'2': {'unit_price': '98.00', 'quantity': 1},
+    #  '3': {'unit_price': '6.00', 'quantity': 1},
+    #  '6': {'unit_price': '49.50', 'quantity': 1}}
+    total = 0
+    for product in cart.keys():
+        quantity = cart[product]['quantity']
+        cost_detail = Product.objects.filter(id=product).values('price', 'discount')
+        cost = cost_detail[0]['price'] * quantity
+        discount = (cost_detail[0]['discount']/100) * cost
+
+        total += (cost - discount)
+
+    return '{:.2f}'.format(total)
+
+

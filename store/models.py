@@ -11,6 +11,7 @@ class Customer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     address = models.CharField(max_length=200, null=True)
     city = models.CharField(max_length=200, null=True)
+    state = models.CharField(max_length=200, null=True)
     zipcode = models.CharField(max_length=20, null=True)
     profile_pic = models.ImageField(upload_to='images/user', default="images/user/default.jpg")
     date_created = models.DateTimeField(null=True, auto_now_add=True)
@@ -130,7 +131,7 @@ class ChefReview(models.Model):
 
 class Order(models.Model):
     customer = models.ForeignKey(Customer, null=True, on_delete=models.SET_NULL)
-    address = models.TextField()
+    address = models.CharField(max_length=200)
     city = models.CharField(max_length=100)
     state = models.CharField(max_length=100)
     zipcode = models.CharField(max_length=20)
@@ -145,6 +146,7 @@ class OrderedProduct(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, null=True, on_delete=models.SET_NULL)
     quantity = models.DecimalField(max_digits=2, decimal_places=0)
+    paid = models.DecimalField(max_digits=10, decimal_places=2, null=True)
 
     def __str__(self):
         return str(self.id)

@@ -2,7 +2,7 @@ import form as form
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
 from django import forms
-from .models import Customer, ProductReview
+from .models import Customer, ProductReview, Order
 
 
 class CreateUserForm(UserCreationForm):
@@ -37,3 +37,11 @@ class ProductReviewForm(forms.ModelForm):
         fields = ['review', 'rating']
         exclude = ['user', 'product']
         widgets = {'rating': forms.HiddenInput()}
+
+
+class DeliveryForm(forms.ModelForm):
+
+    class Meta:
+        model = Order
+        fields = ['address', 'city', 'state', 'zipcode']
+        exclude = ['customer', 'delivery']
