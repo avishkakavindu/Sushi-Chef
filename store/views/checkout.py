@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
+from django.contrib import messages
 from store.models import *
 from store.decorators import allowed_user
 from store.forms import DeliveryForm
@@ -9,6 +10,11 @@ import json
 # checkout page
 @login_required(login_url='/login')
 def checkout(request):
+    try:
+        cart = json.loads(request.COOKIES['cart'])
+    except:
+        cart = {}
+
     user_detail = Customer.objects.get(user=request.user)
 
     user_address = {
@@ -23,23 +29,31 @@ def checkout(request):
     if request.method == 'POST':
         delivery_form = DeliveryForm(request.POST)
         if delivery_form.is_valid():
+            # save delivery address to Order
             delivery_details = delivery_form.save(commit=False)
             delivery_details.customer = request.user.customer
             delivery_details.save()
+            # save individual ordered product and details
+            for item in cart:
+                product = Product.objects.get(id=item)
+                quantity = cart[item]['quantity']
+                cost_detail = Product.objects.filter(id=item).values('price', 'discount')
+                unit_price = cost_detail[0]['price']
+                discount = cost_detail[0]['discount'] / 100
+                paid = quantity * unit_price - (unit_price * discount)
+                ordered_product = OrderedProduct(product=product, quantity=quantity, paid=paid, order=delivery_details)
+                ordered_product.save()
+
+                messages.success(request, 'Order saved! Thank you for the purchase!')
 
             return redirect(request.path)
 
-    try:
-        cart = json.loads(request.COOKIES['cart'])
-    except:
-        cart = {}
 
     context = {
         'data': [],
         'cart': cart,
         'delivery_form': delivery_form,
     }
-    total = calculateTotal(cart)
     for item in cart:
         product_detail = ProductImage.objects.select_related('product').filter(product=item[0], place='Main Product Image')
         # print(product_detail[0].product.desc)

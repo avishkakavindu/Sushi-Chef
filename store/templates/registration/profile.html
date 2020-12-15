@@ -5,32 +5,6 @@
 
 <div class="container mb-0">
 
-    <!-- Alerts -->
-    {% if messages %}
-      {% for message in messages %}
-        {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
-          <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>Success! </strong>
-            {{ message }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-        {% endif %}
-        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
-          <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <strong>Error! </strong>
-            {{ message }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-        {% endif %}
-      {% endfor %}
-    {% endif %}
-    <!-- END Alerts -->
-
-
     <div class="row ml-0 d-flex justify-content-center">
         <!-- related links to profile -->
         <div class="col-sm col-lg text-center related-links mr-3 mb-0 pt-3 pl-0 pr-0 ">
