@@ -18,7 +18,7 @@ $(".sub-img").click(function(){
 
 // alerts auto close
 $(document).ready(function() {
-    // show the alert
+    // close the alert
     setTimeout(function() {
         $(".alert").alert('close');
     }, 5000);

@@ -2,11 +2,15 @@ var updateBtns = document.getElementsByClassName('update-cart');
 
 for(var i=0; i<updateBtns.length; i++){
     updateBtns[i].addEventListener('click', function(){
+
         event.preventDefault();
         var [productId, unitPrice] = this.dataset.product.split('_');
         var action = this.dataset.action;
+        var product_name = $(this).parent().parent().parent().find('h3').text()
+        console.log(product_name)
 
         updateCartItems(productId, unitPrice, action);
+        $('#added-to-cart').append("<div class='alert alert-success alert-dismissable msg'><button type='button' class='close ml-1' data-dismiss='alert' aria-hidden='true'>&times;</button><i class='fa fa-check-circle-o fa-lg mr-4' aria-hidden='true'></i>"+ product_name +" added to cart successfully</div>")
     })
 }
 
@@ -21,7 +25,6 @@ function updateCartItems(productId, unitPrice, action){
         else {                                  // if product is already in cart increment quantity
             cart[productId]['quantity'] += 1
             console.log(cart[productId])
-
         }
     }
     else if(action == 'remove'){
