@@ -1,8 +1,7 @@
-import form as form
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
 from django import forms
-from .models import Customer, ProductReview, Order
+from .models import Customer, ProductReview, Order, Coupon
 
 
 class CreateUserForm(UserCreationForm):
@@ -45,3 +44,8 @@ class DeliveryForm(forms.ModelForm):
         model = Order
         fields = ['address', 'city', 'state', 'zipcode']
         exclude = ['customer', 'delivery']
+
+
+class CouponForm(forms.Form):
+
+    coupon_code = forms.CharField()

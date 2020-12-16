@@ -1,9 +1,10 @@
 from django.db import models
 from django.db.models import Avg, F
 from django.contrib.auth.models import User
-
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 from django.contrib.auth.models import User
+
 User._meta.get_field('email')._unique = True
 
 
@@ -17,7 +18,6 @@ class Customer(models.Model):
     date_created = models.DateTimeField(null=True, auto_now_add=True)
 
     def __str__(self):
-
         return str(self.user)
 
 
@@ -166,3 +166,14 @@ class Payment(models.Model):
 
     def __str__(self):
         return str(self.id)
+
+
+class Coupon(models.Model):
+    code = models.CharField(max_length=50, unique=True)
+    valid_from = models.DateTimeField()
+    valid_to = models.DateTimeField()
+    discount = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(100)])
+    active = models.BooleanField()
+
+    def __str__(self):
+        return self.code

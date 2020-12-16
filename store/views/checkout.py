@@ -48,7 +48,6 @@ def checkout(request):
 
             return redirect(request.path)
 
-
     context = {
         'data': [],
         'cart': cart,
