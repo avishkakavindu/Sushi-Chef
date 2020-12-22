@@ -34,12 +34,25 @@ def get_subtotal(dictionary):
 
 
 @register.filter
-def get_total(dictionary):
+def get_total(dictionary, coupon_discount):
     sum = 0
     delivery = 5
     try:
         for i in dictionary.values():
             sum += np.prod(list(map(float, i.values())))
+        if coupon_discount:
+            sum -= (sum * (coupon_discount/100))
         return '${:.2f}'.format(sum + delivery)
     except KeyError:
         return '$0.00'
+
+@register.filter
+def get_coupon_discount(dictionary, coupon_discount):
+    sum = 0
+    delivery = 5
+
+    for i in dictionary.values():
+        sum += np.prod(list(map(float, i.values())))
+    sum += delivery
+    discount = sum * (coupon_discount/100)
+    return '${:.2f}'.format(discount)
