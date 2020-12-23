@@ -21,7 +21,7 @@ $(document).ready(function() {
     // close the alert
     setTimeout(function() {
         $(".alert").alert('close');
-    }, 5000);
+    }, 3000);
 });
 
 

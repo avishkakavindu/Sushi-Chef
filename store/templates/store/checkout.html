@@ -27,7 +27,7 @@
                     </div>
                     <span class="text-muted">$5.00</span>
                 </li>
-                {% if coupon_discount %}
+                {% if coupon_detail.0 %}
                 <li class="list-group-item d-flex justify-content-between lh-condensed">
                     <div>
                       <h5 class="my-0">Sub Total (USD)</h5>
@@ -37,14 +37,14 @@
                 <li class="list-group-item d-flex justify-content-between lh-condensed">
                     <div>
                       <h6 class="my-0 text-success">Discount</h6>
-                      <small class="text-muted">Coupon</small>
+                      <small class="text-muted">{{ coupon_detail.1 }}% off coupon</small>
                     </div>
-                    <span class="text-success" >-{{ cart|get_coupon_discount:coupon_discount }}</span>
+                    <span class="text-success" >-{{ cart|get_coupon_discount:coupon_detail.1 }}</span>
                 </li>
                 {% endif %}
                 <li class="list-group-item d-flex justify-content-between">
                     <h5 class="font-weight-bold">Total (USD)</h5>
-                    <strong class="text-dark h6">{{ cart|get_total:coupon_discount }}</strong>
+                    <strong class="text-dark h6">{{ cart|get_total:coupon_detail.1 }}</strong>
                 </li>
             </ul>
             <form class="card p-2" method="post">

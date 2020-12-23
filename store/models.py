@@ -26,7 +26,7 @@ class Product(models.Model):
     name = models.CharField(max_length=200)
     desc = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    discount = models.DecimalField(max_digits=2, decimal_places=0)
+    discount = models.DecimalField(max_digits=2, decimal_places=0, validators=[MinValueValidator(0), MaxValueValidator(100)])
     updated_on = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

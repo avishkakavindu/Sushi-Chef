@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.http import Http404
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.utils import timezone
@@ -11,6 +12,25 @@ import json
 # checkout page
 @login_required(login_url='/login')
 def checkout(request):
+    # direct redirecting to checkout page restrictions
+    if 'HTTP_REFERER' in request.META.keys() and request:
+        try:
+            previous_url = request.META.get('HTTP_REFERER')
+            if previous_url == 'http://127.0.0.1:8000/checkout':
+                pass
+            elif previous_url == 'http://127.0.0.1:8000/cart':
+                if len(json.loads(request.COOKIES['cart'])) != 0:
+                    pass
+                else:
+                    raise Http404
+            else:
+                raise Http404
+        except:
+            raise Http404
+
+    else:
+        raise Http404
+
     try:
         cart = json.loads(request.COOKIES['cart'])
     except:
@@ -18,6 +38,7 @@ def checkout(request):
 
     user_detail = Customer.objects.get(user=request.user)
 
+    coupon_id = None
     coupon_discount = None
 
     user_address = {
@@ -34,6 +55,7 @@ def checkout(request):
         delivery_form = DeliveryForm(request.POST)
         coupon_form = CouponForm(request.POST)
 
+        # if checkout btn clicked
         if 'checkout_btn' in request.POST:
             if delivery_form.is_valid():
                 # save delivery address to Order
@@ -54,8 +76,27 @@ def checkout(request):
 
                     messages.success(request, 'Order saved! Thank you for the purchase!')
 
-                return redirect(request.path)
+                # if coupon added
+                try:
+                    coupon_id = request.session['coupon_id']
+                except KeyError:
+                    coupon_id = None
 
+                if coupon_id:
+                    coupon = Coupon.objects.get(id=coupon_id)
+                    coupon.active = False
+                    coupon.save()
+
+                # cart clear
+                response = redirect(request.path)
+                response.delete_cookie('cart')
+                return response
+
+            # checkout process error
+            messages.error(request, 'Checkout process terminated!')
+            return redirect(request.path)
+
+        # if redeem btn clicked
         if 'coupon_btn' in request.POST:
             # fill the form with user details
             user_detail = Customer.objects.get(user=request.user)
@@ -79,15 +120,18 @@ def checkout(request):
                 try:
                     coupon = Coupon.objects.get(code__iexact=code, valid_from__lte=now, valid_to__gte=now, active=True)
                     coupon_discount = coupon.discount
+                    coupon_id = coupon.id
+                    request.session['coupon_id'] = coupon_id
 
                 except Coupon.DoesNotExist:
-                    coupon_discount = None
+                    request.session['coupon_id'] = None
+                    messages.error(request, "Coupon code ({}) is invalid or has expired!".format(code))
 
     context = {
         'data': [],
         'cart': cart,
         'delivery_form': delivery_form,
-        'coupon_discount': coupon_discount
+        'coupon_detail': [coupon_id, coupon_discount]
     }
 
     for item in cart:
