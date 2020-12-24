@@ -6,19 +6,6 @@
 <div class="container mb-0">
 
     <div class="row ml-0 d-flex justify-content-center">
-        <!-- related links to profile -->
-        <div class="col-sm col-lg text-center related-links mr-3 mb-0 pt-3 pl-0 pr-0 ">
-            <p>
-              <a href="#" class="btn btn-primary btn-lg btn-block animated-btn rounded-0">
-                  <span>My Orders</span>
-              </a>
-            </p>
-            <p>
-              <a href="#" class="btn btn-primary btn-lg btn-block animated-btn rounded-0">
-                  <span>My Reviews</span>
-              </a>
-            </p>
-        </div>
         <!-- Summary of profile details -->
         <div class="col-sm col-lg-3 profile-summary text-center border p-3 mt-3 mr-3 mb-5">
             <img class="rounded-circle profile-pic" id="frame" src="{{ user_details.customer.profile_pic.url }}">
@@ -136,6 +123,45 @@
 
                 <button class="btn btn-primary float-right mt-3" type="submit">Save Changes</button>
               </form>
+        </div>
+                <!-- related links to profile -->
+        <div class="col-sm col-lg  related-links mr-3 mb-0 pt-3 pl-0 pr-0">
+            <div class="related-links border">
+                <div class="related-content-heading">
+                    <h4 class="ml-3">Account</h4>
+                </div>
+
+                <div class="related-content">
+                    <ul>
+                        <li>
+                            <a href="/profile">
+                                My Account
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                Order History
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                Wish List
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                My Reviews
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                My Coupons
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 </div>

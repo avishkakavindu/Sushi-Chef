@@ -279,7 +279,7 @@
     font-style: normal;
 }
 
-.footer p, li, address, a {
+.footer p, address, a {
     color: #a1a1a1;
     font-family: Open Sans;
     font-weight: 400;
@@ -783,25 +783,8 @@ button.btn.btn-secondary:hover {
 
 }
 
-.related-links{
-    background-color:#fcfcfc;
-}
-
 .related-links p {
     margin: 0px 0px 1px 0px;
-}
-
-.related-links a{
-    background-color:#f7b3a7;
-    border-color: #f7b3a7;
-    margin: 0px;
-    width: 100%;
-}
-
-.related-links a:hover{
-    background-color: #f17661;
-    border-color: #f7b3a7;
-    margin-bottom: 0px;
 }
 
 .related-links a:hover span {
@@ -847,4 +830,26 @@ button.btn.btn-secondary:hover {
 
 .file-field input {
     display: none;
+}
+
+.related-content-heading {
+    background-color: #f2f2f2;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.related-content ul {
+    padding-right: 20px;
+}
+
+.related-content li {
+    padding: 10px 0px 10px 0px;
+    color: #495057;
+    font-family: Open Sans, sans-serif;
+    font-size: 13px;
+    border-bottom: 1px solid #ececec;
+}
+
+.related-content li a {
+    text-decoration: none;
 }
