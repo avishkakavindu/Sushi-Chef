@@ -1,0 +1,57 @@
+{% extends "store/main.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% block content %}
+
+<div class="container mb-0">
+
+    <div class="row ml-0 d-flex justify-content-center">
+
+        <div class="col-sm col-lg-3 order-history text-center border p-3 mt-3 mr-3 mb-5">
+            <h2>{{ user_details.first_name }} {{ user_details.last_name }}</h2>
+
+        </div>
+
+                <!-- related links to profile -->
+        <div class="col-sm col-lg  related-links mr-3 mb-0 pt-3 pl-0 pr-0">
+            <div class="related-links border">
+                <div class="related-content-heading">
+                    <h4 class="ml-3">Account</h4>
+                </div>
+
+                <div class="related-content">
+                    <ul>
+                        <li>
+                            <a href="/profile">
+                                My Account
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                Order History
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                Wish List
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                My Reviews
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                My Coupons
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

@@ -844,7 +844,7 @@ button.btn.btn-secondary:hover {
 
 .related-content li {
     padding: 10px 0px 10px 0px;
-    color: #495057;
+    color: #596057;
     font-family: Open Sans, sans-serif;
     font-size: 13px;
     border-bottom: 1px solid #ececec;
@@ -852,4 +852,10 @@ button.btn.btn-secondary:hover {
 
 .related-content li a {
     text-decoration: none;
+    color: #596057;
+}
+
+.related-content li a:hover {
+    text-decoration: none;
+    color: #f17661;
 }

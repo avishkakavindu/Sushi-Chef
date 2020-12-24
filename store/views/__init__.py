@@ -6,3 +6,4 @@ from .product_detail import *
 from .promo import *
 from .profile import *
 from .register import *
+from .order_history import *
