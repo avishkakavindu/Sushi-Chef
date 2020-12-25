@@ -879,6 +879,7 @@ button.btn.btn-secondary:hover {
 
 .related-content ul {
     padding-right: 20px;
+    list-style-type: none;
 }
 
 .related-content li {
@@ -887,6 +888,7 @@ button.btn.btn-secondary:hover {
     font-family: Open Sans, sans-serif;
     font-size: 13px;
     border-bottom: 1px solid #ececec;
+
 }
 
 .related-content li a {
@@ -897,4 +899,9 @@ button.btn.btn-secondary:hover {
 .related-content li a:hover {
     text-decoration: none;
     color: #f17661;
+}
+
+.related-content li a > i {
+    margin-right: 10px;
+    font-size: 1rem;
 }

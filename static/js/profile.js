@@ -1,4 +1,3 @@
-console.log('pressed');
 // profile pic upload btn
 $(".upload-icon").click(function () {
     $("input[type='file']").trigger('click');

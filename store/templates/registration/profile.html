@@ -7,7 +7,7 @@
 
     <div class="row ml-0 d-flex justify-content-center">
         <!-- Summary of profile details -->
-        <div class="col-sm col-lg-3 profile-summary text-center border p-3 mt-3 mr-3 mb-5">
+        <div class="col-sm col-lg-3 profile-summary text-center  p-3 mt-3 mr-3 mb-5">
             <img class="rounded-circle profile-pic" id="frame" src="{{ user_details.customer.profile_pic.url }}">
             <i class="fa fa-pencil-square-o fa-2x upload-icon" aria-hidden="true"></i>
 
@@ -149,8 +149,8 @@
                 <button class="btn btn-success float-right mt-3" type="submit">Save Changes</button>
               </form>
         </div>
-                <!-- related links to profile -->
-        <div class="col-sm col-lg  related-links mr-3 mb-0 pt-3 pl-0 pr-0">
+        <!-- related links to profile -->
+        <div class="col-sm col-lg  related-links mr-3 mb-3 pt-3 pl-0 pr-0">
             <div class="related-links border">
                 <div class="related-content-heading">
                     <h4 class="ml-3">Account</h4>
@@ -160,26 +160,31 @@
                     <ul>
                         <li>
                             <a href="/profile">
+                                <i class="fa fa-info-circle" aria-hidden="true"></i>
                                 My Account
                             </a>
                         </li>
                         <li>
                             <a href="/order_history">
+                                <i class="fa fa-history" aria-hidden="true"></i>
                                 Order History
                             </a>
                         </li>
                         <li>
                             <a href="#">
+                                <i class="fa fa-heart" aria-hidden="true"></i>
                                 Wish List
                             </a>
                         </li>
                         <li>
                             <a href="#">
+                                <i class="fa fa-comments" aria-hidden="true"></i>
                                 My Reviews
                             </a>
                         </li>
                         <li>
                             <a href="#">
+                                <i class="fa fa-gift" aria-hidden="true"></i>
                                 My Coupons
                             </a>
                         </li>

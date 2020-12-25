@@ -7,6 +7,7 @@ from store.models import *
 from store.decorators import allowed_user
 from store.forms import DeliveryForm, CouponForm
 import json
+from decimal import Decimal
 
 
 # checkout page
@@ -63,6 +64,8 @@ def checkout(request):
                 delivery_details.customer = request.user.customer
                 delivery_details.save()
 
+                order_id = delivery_details.id  # id of the saved order
+
                 # save individual ordered product and details
                 for item in cart:
                     product = Product.objects.get(id=item)
@@ -70,8 +73,10 @@ def checkout(request):
                     cost_detail = Product.objects.filter(id=item).values('price', 'discount')
                     unit_price = cost_detail[0]['price']
                     discount = cost_detail[0]['discount'] / 100
-                    paid = float(quantity) * float(unit_price) - (float(unit_price) * float(discount))
-                    ordered_product = OrderedProduct(product=product, quantity=quantity, paid=paid, order=delivery_details)
+                    total_price = Decimal(quantity) * Decimal(unit_price)
+                    paid = total_price - (total_price * Decimal(discount))
+
+                    ordered_product = OrderedProduct(product=product, quantity=quantity, offer=cost_detail[0]['discount'] , paid=paid, order=delivery_details)
                     ordered_product.save()
 
                     messages.success(request, 'Order saved! Thank you for the purchase!')
@@ -85,7 +90,12 @@ def checkout(request):
                 if coupon_id:
                     coupon = Coupon.objects.get(id=coupon_id)
                     coupon.active = False
+                    # update order
+                    order = Order.objects.get(id=order_id)
+                    order.coupon = coupon
+                    order.save()
                     coupon.save()
+                    del request.session['coupon_id']
 
                 # cart clear
                 response = redirect(request.path)

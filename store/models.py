@@ -129,6 +129,16 @@ class ChefReview(models.Model):
 
 # -- End of Chef related *--
 
+class Coupon(models.Model):
+    code = models.CharField(max_length=50, unique=True)
+    valid_from = models.DateTimeField()
+    valid_to = models.DateTimeField()
+    discount = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(100)])
+    active = models.BooleanField()
+
+    def __str__(self):
+        return self.code
+
 
 class Order(models.Model):
     customer = models.ForeignKey(Customer, null=True, on_delete=models.SET_NULL)
@@ -138,6 +148,7 @@ class Order(models.Model):
     zipcode = models.CharField(max_length=20)
     delivery = models.DecimalField(max_digits=5, decimal_places=2, default=5.00)
     date = models.DateTimeField(auto_now_add=True)
+    coupon = models.ForeignKey(Coupon, null=True, blank=True, on_delete=models.DO_NOTHING)
 
     def __str__(self):
         return str(self.id)
@@ -147,6 +158,7 @@ class OrderedProduct(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, null=True, on_delete=models.SET_NULL)
     quantity = models.DecimalField(max_digits=2, decimal_places=0)
+    offer = models.IntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(100)])
     paid = models.DecimalField(max_digits=10, decimal_places=2, null=True)
 
     def __str__(self):
@@ -169,12 +181,3 @@ class Payment(models.Model):
         return str(self.id)
 
 
-class Coupon(models.Model):
-    code = models.CharField(max_length=50, unique=True)
-    valid_from = models.DateTimeField()
-    valid_to = models.DateTimeField()
-    discount = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(100)])
-    active = models.BooleanField()
-
-    def __str__(self):
-        return self.code
