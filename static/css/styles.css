@@ -6,8 +6,34 @@
 }
 
 /* --- navbar icons ---*/
-#navIcons {
+#navIcons a{
     color: #fff;
+}
+
+.fa-facebook:hover {
+    color: #8b9dc3;
+}
+
+.fa-twitter:hover {
+    color: #00acee;
+}
+
+.fa-linkedin:hover {
+    color: #0e76a8;
+}
+
+.fa-instagram:hover {
+    color: #E1306C;
+}
+
+.sticky-cart-icon {
+    font-size: 1.2rem;
+    color: #d8d8d8d;
+}
+
+.cart-badge {
+    padding: 2px 5px 2px 5px;
+    font-size: 15px;
 }
 
 /* --- dropdown hover ---*/
@@ -401,7 +427,8 @@
 
 #cart i.fa.fa-trash {
     float: right;
-    color: #700303
+    color: #700303;
+    font-size: 1.5rem;
 }
 
 #cart i.fa.fa-trash:hover {
@@ -755,8 +782,8 @@ button.btn.btn-secondary:hover {
  .upload-icon {
     position: absolute;
     z-index: 999;
-    top: 0;
-    right: 0;
+    top: 1.2rem;
+    right: 1.2rem;
  }
 
  .upload-icon:hover {
