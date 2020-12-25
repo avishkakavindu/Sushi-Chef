@@ -9,6 +9,7 @@
         <!-- Summary of profile details -->
         <div class="col-sm col-lg-3 profile-summary text-center border p-3 mt-3 mr-3 mb-5">
             <img class="rounded-circle profile-pic" id="frame" src="{{ user_details.customer.profile_pic.url }}">
+            <i class="fa fa-pencil-square-o fa-2x upload-icon" aria-hidden="true"></i>
 
             <h2>{{ user_details.first_name }} {{ user_details.last_name }}</h2>
             <hr>
@@ -22,18 +23,18 @@
               </div>
             </div>
         </div>
+
         <!-- Change profile details -->
         <div class="col-sm col-lg-6 mt-3 mb-5 self-align-center">
-            <h3>Change profile details</h3>
-            <form class="needs-validation mt-3"  method="post" enctype="multipart/form-data">
+            <h5>ACCOUNT INFORMATION</h5>
+
+            <form class="needs-validation mt-3"  method="post" enctype="multipart/form-data" novalidate>
                 {% csrf_token %}
                 <!-- file upload -->
                 <div class="file-field mb-2">
-                  <i class="fa fa-pencil-square-o fa-2x upload-icon" aria-hidden="true"></i>
                     <span class="d-none">
                         {{ customer_form.profile_pic }}
                     </span>
-                    <span id="change-pic-detail">change profile picture</span>
                 </div>
 
                 <div class="col-md mb-3">
@@ -120,8 +121,32 @@
                         {% endif %}
                     </div>
                 </div>
+                <h5>CHANGE PASSWORD</h5>
+                <hr>
+                <div class="col-md mb-3">
+                    {% for field in password_form %}
+                        <label>{{ field.label }}</label>
+                        {% if password_form.is_bound %}
+                            {% if field.errors %}
+                              {% render_field field class="form-control form-control-sm is-invalid" %}
+                                <small>
+                                    {{ field.help_text }}
+                                </small>
+                                <div class="invalid-tooltip d-block float-right" data-placement="bottom">
+                                  {% for error in field.errors %}
+                                    {{ error }}
+                                  {% endfor %}
+                                </div>
+                            {% else %}
+                              {% render_field field class="form-control form-control-sm is-valid" %}
+                            {% endif %}
+                        {% else %}
+                            {% render_field field class="form-control form-control-sm" %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
 
-                <button class="btn btn-primary float-right mt-3" type="submit">Save Changes</button>
+                <button class="btn btn-success float-right mt-3" type="submit">Save Changes</button>
               </form>
         </div>
                 <!-- related links to profile -->

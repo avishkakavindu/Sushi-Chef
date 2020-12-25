@@ -752,6 +752,18 @@ button.btn.btn-secondary:hover {
      height: 150px
  }
 
+ .upload-icon {
+    position: absolute;
+    z-index: 999;
+    top: 0;
+    right: 0;
+ }
+
+ .upload-icon:hover {
+    color: #383838;
+    text-shadow: #545b62 1px 1px 1px;
+ }
+
  .profile-summary {
     font-size: 15px;
     height: 400px;
