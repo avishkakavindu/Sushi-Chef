@@ -1,6 +1,7 @@
 {% extends "store/main.html" %}
 {% load static %}
 {% load widget_tweaks %}
+{% load store_tags %}
 {% block content %}
 
 <div class="container mb-0">
@@ -21,9 +22,24 @@
                       <th scope="col">View</th>
                     </tr>
                   </thead>
+                  <tbody>
+                    {% for order in orders %}
+                    <tr>
+                      <td scope="col">#{{ order.id }}</td>
+                      <td scope="col">{{ order.customer }}</td>
+                      <td scope="col">{{ order.ordered_products|length }}</td>
+                      <td scope="col">${{ order.total }}</td>
+                      <td scope="col">{{ order.date }}</td>
+                      <td>
+                          <a href="#">
+                              <i class="fa fa-eye" aria-hidden="true"></i>
+                          </a>
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
               </table>
             </div>
-
         </div>
 
 

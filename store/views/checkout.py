@@ -56,56 +56,6 @@ def checkout(request):
         delivery_form = DeliveryForm(request.POST)
         coupon_form = CouponForm(request.POST)
 
-        # if checkout btn clicked
-        if 'checkout_btn' in request.POST:
-            if delivery_form.is_valid():
-                # save delivery address to Order
-                delivery_details = delivery_form.save(commit=False)
-                delivery_details.customer = request.user.customer
-                delivery_details.save()
-
-                order_id = delivery_details.id  # id of the saved order
-
-                # save individual ordered product and details
-                for item in cart:
-                    product = Product.objects.get(id=item)
-                    quantity = cart[item]['quantity']
-                    cost_detail = Product.objects.filter(id=item).values('price', 'discount')
-                    unit_price = cost_detail[0]['price']
-                    discount = cost_detail[0]['discount'] / 100
-                    total_price = Decimal(quantity) * Decimal(unit_price)
-                    paid = total_price - (total_price * Decimal(discount))
-
-                    ordered_product = OrderedProduct(product=product, quantity=quantity, offer=cost_detail[0]['discount'] , paid=paid, order=delivery_details)
-                    ordered_product.save()
-
-                    messages.success(request, 'Order saved! Thank you for the purchase!')
-
-                # if coupon added
-                try:
-                    coupon_id = request.session['coupon_id']
-                except KeyError:
-                    coupon_id = None
-
-                if coupon_id:
-                    coupon = Coupon.objects.get(id=coupon_id)
-                    coupon.active = False
-                    # update order
-                    order = Order.objects.get(id=order_id)
-                    order.coupon = coupon
-                    order.save()
-                    coupon.save()
-                    del request.session['coupon_id']
-
-                # cart clear
-                response = redirect(request.path)
-                response.delete_cookie('cart')
-                return response
-
-            # checkout process error
-            messages.error(request, 'Checkout process terminated!')
-            return redirect(request.path)
-
         # if redeem btn clicked
         if 'coupon_btn' in request.POST:
             # fill the form with user details
@@ -137,6 +87,65 @@ def checkout(request):
                     request.session['coupon_id'] = None
                     messages.error(request, "Coupon code ({}) is invalid or has expired!".format(code))
 
+        # if checkout btn clicked
+        if 'checkout_btn' in request.POST:
+            if delivery_form.is_valid():
+                print(cart)
+                total_payment = calculateTotal(cart)
+                # save delivery address to Order
+                delivery_details = delivery_form.save(commit=False)
+                delivery_details.customer = request.user.customer
+
+                # if coupon added
+                try:
+                    coupon_id = request.session['coupon_id']
+
+                except KeyError:
+                    coupon_id = None
+
+                if coupon_id:
+                    coupon = Coupon.objects.get(id=coupon_id)
+                    coupon.active = False
+                    coupon_discount = coupon.discount
+
+                    total_payment -= (Decimal(total_payment) * (Decimal(coupon_discount) / 100))
+                    # update order
+                    delivery_details.coupon = coupon
+                    delivery_details.total = total_payment
+                    delivery_details.save()
+                    coupon.save()
+                    del request.session['coupon_id']
+
+                else:
+                    # update order
+                    delivery_details.total = total_payment
+                    delivery_details.save()
+
+                # save individual ordered product and details
+                for item in cart:
+                    product = Product.objects.get(id=item)
+                    quantity = cart[item]['quantity']
+                    cost_detail = Product.objects.filter(id=item).values('price', 'discount')
+                    unit_price = cost_detail[0]['price']
+                    discount = cost_detail[0]['discount'] / 100
+                    total_price = Decimal(quantity) * Decimal(unit_price)
+                    paid = total_price - (total_price * Decimal(discount))
+
+                    ordered_product = OrderedProduct(product=product, quantity=quantity,
+                                                     offer=cost_detail[0]['discount'], paid=paid,
+                                                     order=delivery_details)
+                    ordered_product.save()
+
+                messages.success(request, 'Order saved! Thank you for the purchase!')
+                # cart clear
+                response = redirect(request.path)
+                response.delete_cookie('cart')
+                return response
+
+            # checkout process error
+            messages.error(request, 'Checkout process terminated!')
+            return redirect(request.path)
+
     context = {
         'data': [],
         'cart': cart,
@@ -166,6 +175,6 @@ def calculateTotal(cart):
 
         total += (cost - discount)
 
-    return '{:.2f}'.format(total)
+    return Decimal(total)
 
 

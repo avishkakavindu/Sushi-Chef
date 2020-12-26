@@ -3,6 +3,7 @@ import numpy as np
 
 register = template.Library()
 
+delivery = 5
 
 @register.filter
 def get_quantity(dictionary, key):
@@ -49,10 +50,10 @@ def get_total(dictionary, coupon_discount):
 @register.filter
 def get_coupon_discount(dictionary, coupon_discount):
     sum = 0
-    delivery = 5
 
     for i in dictionary.values():
         sum += np.prod(list(map(float, i.values())))
     sum += delivery
     discount = sum * (coupon_discount/100)
     return '${:.2f}'.format(discount)
+

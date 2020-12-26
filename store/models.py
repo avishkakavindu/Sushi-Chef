@@ -148,14 +148,15 @@ class Order(models.Model):
     zipcode = models.CharField(max_length=20)
     delivery = models.DecimalField(max_digits=5, decimal_places=2, default=5.00)
     date = models.DateTimeField(auto_now_add=True)
-    coupon = models.ForeignKey(Coupon, null=True, blank=True, on_delete=models.DO_NOTHING)
+    total = models.DecimalField(max_digits=10, decimal_places=2)
+    coupon = models.ForeignKey(Coupon, null=True, blank=True, on_delete=models.DO_NOTHING, related_name='coupon_set')
 
     def __str__(self):
         return str(self.id)
 
 
 class OrderedProduct(models.Model):
-    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='orderedproduct_set')
     product = models.ForeignKey(Product, null=True, on_delete=models.SET_NULL)
     quantity = models.DecimalField(max_digits=2, decimal_places=0)
     offer = models.IntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(100)])
