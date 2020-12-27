@@ -907,6 +907,29 @@ button.btn.btn-secondary:hover {
 }
 
 /* --- order_history.html --- */
+
 caption {
     color: #383838;
+}
+
+/* --- order.html --- */
+
+.order-summary td {
+    font-size: smaller;
+    color: #686868
+}
+
+.order-summary td > a {
+    text-decoration: none;
+    color: #686868
+}
+
+.order-summary td > a:hover {
+    color: #000000;
+
+}
+
+
+.ordered-items td:not(#p_name) {
+    text-align: right;
 }

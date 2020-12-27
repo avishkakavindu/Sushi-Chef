@@ -47,6 +47,7 @@ def get_total(dictionary, coupon_discount):
     except KeyError:
         return '$0.00'
 
+
 @register.filter
 def get_coupon_discount(dictionary, coupon_discount):
     sum = 0

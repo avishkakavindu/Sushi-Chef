@@ -8,33 +8,57 @@
 
     <div class="row ml-0 d-flex justify-content-center">
 
-        <div class="col-sm col-lg-9 order-history p-3 mt-3 mr-3 mb-5">
+        <div class="col-sm col-lg-9 order-summary p-3 mt-3 mr-3 mb-5">
             <caption><h4 class="mb-4">Order #1234</h4></caption>
             <div class="table-responsive">
-              <table class="table table-striped table-bordered">
-                  <thead>
+              <table class="table table-bordered">
+                  <thead class="thead-light">
                     <tr>
-                      <th scope="col">Order Id</th>
-                      <th scope="col">Placed By</th>
-                      <th scope="col">No. of Dishes</th>
-                      <th scope="col">Total</th>
-                      <th scope="col">Date</th>
-                      <th scope="col">View</th>
+                      <th scope="col" colspan="2">Order Details</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {% for order in orders %}
                     <tr>
-                      <td scope="col">#{{ order.id }}</td>
-                      <td scope="col">{{ order.customer }}</td>
-                      <td scope="col">{{ order.ordered_products|length }}</td>
-                      <td scope="col">${{ order.total }}</td>
-                      <td scope="col">{{ order.date }}</td>
-                      <td>
-                          <a href="#">
-                              <i class="fa fa-eye" aria-hidden="true"></i>
+                      <td scope="col">
+                          <strong>Order Id:</strong> #{{ order_detail.0.id }}<br>
+                          <strong>Date:</strong> {{ order_detail.0.date }}<br>
+                          <strong>Total:</strong> $ {{ order_detail.0.total }}
+                      </td>
+                      <td scope="col">
+                          <strong>Delivery Address:</strong><br>
+                          {{ order_detail.0.address }},<br>
+                          {{ order_detail.0.city }},<br>
+                          {{ order_detail.0.state }},<br>
+                          {{ order_detail.0.zipcode }}
+
+                      </td>
+                    </tr>
+                  </tbody>
+              </table>
+
+              <!-- ordered items -->
+              <table class="table table-bordered ordered-items mt-5">
+                  <thead class="thead-light">
+                    <tr>
+                      <th scope="col">Dish Name</th>
+                      <th scope="col">Quantity</th>
+                      <th scope="col">Unit Price</th>
+                      <th scope="col" >Offers</th>
+                      <th scope="col">Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for dish in order_detail.0.ordered_products %}
+                    <tr>
+                      <td scope="col" id="p_name">
+                          <a href="{% url 'product' dish.the_product.id %} ">
+                            {{ dish.product }}
                           </a>
                       </td>
+                      <td scope="col">{{ dish.quantity }}</td>
+                      <td scope="col">$ {{ dish.the_product.price }}</td>
+                      <td scope="col"> {{ dish.offer }}% off</td>
+                      <td scope="col">$ {{ dish.paid }}</td>
                     </tr>
                     {% endfor %}
                   </tbody>

@@ -13,17 +13,22 @@ def get_total(items, coupon):
 @login_required(login_url='/login')
 def order(request, order_id):
     # get particular order with ordered items, and discounts
-    order = get_list_or_404(Order.objects.filter(customer=request.user.customer).prefetch_related(
+    order_detail = get_list_or_404(Order.objects.filter(customer=request.user.customer).prefetch_related(
         Prefetch(
             'orderedproduct_set',
-            OrderedProduct.objects.all(),
+            OrderedProduct.objects.all().prefetch_related(  # prefetch the product details from product model
+                Prefetch(
+                    'product',
+                    to_attr='the_product',
+                )
+            ),
             to_attr='ordered_products'
         ),
-        Prefetch('coupon', to_attr='coupon_discount')
+        Prefetch('coupon', to_attr='coupon_discount'),
     ),  id=order_id)
 
     context = {
-        'orders': order,
+        'order_detail': order_detail,
     }
 
     return render(request, 'store/order.html', context)
