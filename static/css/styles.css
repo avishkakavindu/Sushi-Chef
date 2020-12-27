@@ -905,3 +905,8 @@ button.btn.btn-secondary:hover {
     margin-right: 10px;
     font-size: 1rem;
 }
+
+/* --- order_history.html --- */
+caption {
+    color: #383838;
+}

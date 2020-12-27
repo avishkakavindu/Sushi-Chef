@@ -32,6 +32,7 @@ urlpatterns = [
     path('profile', views.profile, name="profile"),
     path('product/<str:product_id>', views.product_detail, name="product"),
     path('order_history', views.order_history, name='order_history'),
+    path('order/<str:order_id>', views.order,  name='order'),
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
