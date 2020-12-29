@@ -182,3 +182,11 @@ class Payment(models.Model):
         return str(self.id)
 
 
+class Wishlist(models.Model):
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return '{}-{}'.format(self.id, self.customer)
+
+

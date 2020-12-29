@@ -8,3 +8,4 @@ from .profile import *
 from .register import *
 from .order_history import *
 from .order import *
+from .wishlist import *

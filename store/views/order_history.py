@@ -10,6 +10,7 @@ from django.db.models import Prefetch
 def get_total(items, coupon):
     pass
 
+
 @login_required(login_url='/login')
 def order_history(request):
     # get orders with ordered items, and discounts

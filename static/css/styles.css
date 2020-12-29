@@ -929,7 +929,8 @@ caption {
 
 }
 
-
 .ordered-items td:not(#p_name) {
     text-align: right;
 }
+
+/* --- wishlist.html --- */

@@ -13,6 +13,11 @@ from django.contrib.auth.forms import PasswordChangeForm
 # @allowed_user(allowed_roles=['customer'])
 def profile(request):
     password_form = PasswordChangeForm(request.user)
+    user_details = User.objects.select_related("customer").get(username=request.user)
+    customer_form = UpdateCustomerForm(instance=request.user.customer)
+    user_form = UpdateUserForm(instance=request.user)
+
+    msg = {'success': None, 'msg': None}
 
     if request.method == 'POST':
         user_form = UpdateUserForm(request.POST, instance=request.user)
@@ -25,28 +30,22 @@ def profile(request):
 
             user_form.save()
             customer_form.save()
-            msg = "Account updated!"
+            msg = {'success': True, 'msg': "Account updated!"}
 
-            if password_form.data['new_password1'] != '' and password_form.data['new_password2'] != '':
-                print('\n\n\nldldldldld\n\n\n')
-                if password_form.is_valid():
-                    user_pass = password_form.save()
-                    update_session_auth_hash(request, user_pass)
-                    msg = "Password changed!"
+        if password_form.data['old_password'] != '' or password_form.data['new_password1'] != '' or password_form.data['new_password2'] != '':
+            if password_form.is_valid():
+                user_pass = password_form.save()
+                update_session_auth_hash(request, user_pass)
+                msg = {'success': True, 'msg': "Password changed!"}
             else:
-                password_form = PasswordChangeForm(request.user)
-
-            messages.success(request, msg)
-
-
-
+                msg = {'success': False, 'msg': 'Failed to change password!'}
         else:
-            messages.error(request, 'Failed to update profile!')
+            password_form = PasswordChangeForm(request.user)
 
-    user_details = User.objects.select_related("customer").get(username=request.user)
-    customer_form = UpdateCustomerForm(instance=request.user.customer)
-    user_form = UpdateUserForm(instance=request.user)
-
+    if msg['success']:
+        messages.success(request, msg['msg'])
+    elif not msg['success']:
+        messages.error(request, msg['msg'])
 
     context = {
         'user_details': user_details,

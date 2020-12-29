@@ -5,6 +5,7 @@ register = template.Library()
 
 delivery = 5
 
+
 @register.filter
 def get_quantity(dictionary, key):
     try:
@@ -37,7 +38,7 @@ def get_subtotal(dictionary):
 @register.filter
 def get_total(dictionary, coupon_discount):
     sum = 0
-    delivery = 5
+
     try:
         for i in dictionary.values():
             sum += np.prod(list(map(float, i.values())))
