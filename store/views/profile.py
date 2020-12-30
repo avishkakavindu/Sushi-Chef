@@ -12,11 +12,6 @@ from django.contrib.auth.forms import PasswordChangeForm
 @login_required(login_url='/login')
 # @allowed_user(allowed_roles=['customer'])
 def profile(request):
-    password_form = PasswordChangeForm(request.user)
-    user_details = User.objects.select_related("customer").get(username=request.user)
-    customer_form = UpdateCustomerForm(instance=request.user.customer)
-    user_form = UpdateUserForm(instance=request.user)
-
     msg = {'success': None, 'msg': None}
 
     if request.method == 'POST':
@@ -46,6 +41,11 @@ def profile(request):
         messages.success(request, msg['msg'])
     elif not msg['success']:
         messages.error(request, msg['msg'])
+
+    password_form = PasswordChangeForm(request.user)
+    user_details = User.objects.select_related("customer").get(username=request.user)
+    customer_form = UpdateCustomerForm(instance=request.user.customer)
+    user_form = UpdateUserForm(instance=request.user)
 
     context = {
         'user_details': user_details,

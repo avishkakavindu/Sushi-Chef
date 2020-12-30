@@ -100,3 +100,27 @@ $(function(){
     $(this).parent().parent().parent().remove();
   });
 });
+
+// add to wish list
+$('.addto-wish').click(function(e){
+    var dishid;
+    dishid = $(this).attr("data-product");
+    e.preventDefault();
+    $.ajax(
+        {
+            type:"GET",
+            url: "/wishlist",
+            data:{
+                     dish_id: dishid
+            },
+            success: function( data )
+            {
+
+                $('#added-to-cart').append("<div class='alert alert-success alert-dismissable msg'><button type='button' class='close ml-1' data-dismiss='alert' aria-hidden='true'>&times;</button><i class='fa fa-check-circle-o fa-lg mr-4' aria-hidden='true'></i>"+ data + "</div>")
+            },
+            error: function(data)
+            {
+                $('#added-to-cart').append("<div class='alert alert-danger alert-dismissable msg'><button type='button' class='close ml-1' data-dismiss='alert' aria-hidden='true'>&times;</button><i class='fa fa-check-circle-o fa-lg mr-4' aria-hidden='true'></i>"+ data + "</div>")
+            }
+         })
+});

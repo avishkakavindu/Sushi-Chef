@@ -2,11 +2,11 @@ $(document).ready(function(){
     // get item count in cart
     var cartItemCount = Object.keys(cart).length
     $('.cart-badge').text(cartItemCount)
-})
 
-// tooltips
-$(function () {
-  $('[data-toggle="tooltip"]').tooltip()
+    // tooltips
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
 })
 
 // change image -product

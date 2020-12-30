@@ -934,3 +934,11 @@ caption {
 }
 
 /* --- wishlist.html --- */
+
+.wishes {
+    color: #212529;
+}
+
+.wishes:hover {
+    text-decoration: none;
+}

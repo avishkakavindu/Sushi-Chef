@@ -24,12 +24,12 @@
                     {% for wish in wishes %}
                     <tr>
                       <td scope="col" class="text-center">
-                          <a href="/product/{{ wish.wished_dish.id }}">
+                          <a href="/product/{{ wish.wished_dish.id }}" class="wishes">
                             <img src="{{ wish.wished_img.main_image.0.image.url }}" width="70px" height="70px">
                           </a>
                       </td>
                       <td scope="col">
-                          <a href="/product/{{ wish.wished_dish.id }}">
+                          <a href="/product/{{ wish.wished_dish.id }}" class="wishes">
                             <h6>{{ wish.wished_dish.name }}</h6>
                             {{ wish.wished_dish.desc|truncatewords:8 }}
                           </a>
@@ -38,12 +38,16 @@
                       <td scope="col">$ {{ wish.wished_dish.price }} </td>
                       <td scope="col"> {{ wish.wished_dish.discount }}% off </td>
                       <td scope="col" class="text-center">
-                        <button class="btn btn-success">
-                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                        </button>
-                        <button class="btn btn-danger">
-                            <i class="fa fa-trash" aria-hidden="true"></i>
-                        </button>
+                        <form method="post">
+                            <button class="btn btn-success update-cart" data-action="add" data-product="{{ wish.wished_dish.id }}_{{ wish.wished_dish.get_sale_price|floatformat:2 }}">
+                                <span class="fa fa-shopping-cart" aria-hidden="true"></span>
+                            </button>
+
+                            {% csrf_token %}
+                            <button class="btn btn-danger" type="submit" name="delete_items" value="{{ wish.wished_dish.id }}">
+                                <span class="fa fa-trash" aria-hidden="true"></span>
+                            </button>
+                        </form>
                       </td>
                     </tr>
                     {% endfor %}
@@ -100,4 +104,5 @@
     </div>
 </div>
 
+<script src="{% static 'js/cart.js' %}"></script>
 {% endblock content %}
