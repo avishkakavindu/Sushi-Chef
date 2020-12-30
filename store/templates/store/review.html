@@ -1,0 +1,142 @@
+{% extends "store/main.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% block content %}
+
+<div class="container mb-0">
+
+    <div class="row ml-0 d-flex justify-content-center">
+      <div class="col-sm col-lg-9 order-history p-3 mt-3 mr-3 mb-5">
+        <div class="row mt-5" id="reviews">
+            <div class="col-md col-lg">
+              <!-- Review tabs -->
+              <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <a class="nav-item nav-link " id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
+                       aria-controls="nav-home" aria-selected="true">Reviews on Dishes</a>
+                    <a class="nav-item nav-link active" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
+                       aria-controls="nav-profile" aria-selected="false">Reviews on Chefs</a>
+                </div>
+              </nav>
+              <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show  mt-2" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+
+                  {% for chef_review in chef_reviews %}
+                    <!-- Review -->
+                    <div class="row mt-3 mb-3 border-bottom pb-3">
+                      <div class="col-md col-lg-3 text-center">
+                        <img src="{{ chef_review.reviewed_chef.image.url }}" class="img-thumbnail rounded-circle review-pic">
+                        <small>{{ chef_review.reviewed_chef.name }}</small>
+                      </div>
+                      <div class="col-md col-lg">
+                        <p class="review-desc">
+                          {{ chef_review.review }}
+                        </p>
+                        <!-- Star rating -->
+                        <span class="star-rating rev-rating">
+                          {% for i in five_star %}
+                            {% if i < chef_review.rating %}
+                              <i class="fa fa-star" aria-hidden="true"></i>
+                            {% else %}
+                              <i class="fa fa-star-o" aria-hidden="true"></i>
+                            {% endif %}
+                          {% endfor %}
+                        </span>
+                        <span class="review-date">{{ chef_review.date }} </span>
+                      </div>
+                    </div>
+                    <!-- End of review -->
+                  {% endfor %}
+                </div>
+                <div class="tab-pane active border-bottom mt-2" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                    <form class="needs-validation" action="" method="post" novalidate>
+                      {% csrf_token %}
+                      {% for field in review_form %}
+                        <label>{{ field.label }}</label>
+                        {% if registration_form.is_bound %}
+                            {% if field.errors %}
+                              {% render_field field class="form-control form-control-sm is-invalid" %}
+                              {% if field.name == 'username' or 'password1' %}
+                                <small>
+                                    {{ field.help_text }}
+                                </small>
+                              {% endif %}
+                              <div class="invalid-tooltip d-block float-right" data-placement="bottom">
+                              {% for error in field.errors %}
+                                  {{ error }}
+                              {% endfor %}
+                              </div>
+                            {% else %}
+                              {% render_field field class="form-control form-control-sm is-valid" %}
+                            {% endif %}
+                        {% else %}
+                            {% render_field field class="form-control form-control-sm" %}
+                        {% endif %}
+                      {% endfor %}
+
+                      <div class="rating-system">
+                        <span class="fa fa-star-o rate-me" data-toggle="tooltip" data-placement="top" title="Very bad"></span>
+                        <span class="fa fa-star-o rate-me" data-toggle="tooltip" data-placement="top" title="Poor"></span>
+                        <span class="fa fa-star-o rate-me" data-toggle="tooltip" data-placement="top" title="Ok"></span>
+                        <span class="fa fa-star-o rate-me" data-toggle="tooltip" data-placement="top" title="Good"></span>
+                        <span class="fa fa-star-o rate-me" data-toggle="tooltip" data-placement="top" title="Excellent"></span>
+                      </div>
+
+                      <button class="btn btn-success float-right mt-2" type="submit">Submit</button>
+                    </form>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+
+
+        <!-- related links to profile -->
+        <div class="col-sm col-lg  related-links mr-3 mb-3 pt-3 pl-0 pr-0">
+            <div class="related-links border">
+                <div class="related-content-heading">
+                    <h4 class="ml-3">Account</h4>
+                </div>
+
+                <div class="related-content">
+                    <ul>
+                        <li>
+                            <a href="/profile">
+                                <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                My Account
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/order_history">
+                                <i class="fa fa-history" aria-hidden="true"></i>
+                                Order History
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/wishlist">
+                                <i class="fa fa-heart" aria-hidden="true"></i>
+                                Wish List
+                            </a>
+                        </li>
+                        <li>
+                            <a href="my_reviews">
+                                <i class="fa fa-comments" aria-hidden="true"></i>
+                                My Reviews
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/my_reviews">
+                                <i class="fa fa-gift" aria-hidden="true"></i>
+                                My Coupons
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'js/cart.js' %}"></script>
+{% endblock content %}

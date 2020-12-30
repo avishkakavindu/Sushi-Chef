@@ -120,6 +120,7 @@ class Chef(models.Model):
 
 
 class ChefReview(models.Model):
+    customer = models.ForeignKey(Customer, on_delete=models.SET('Anonumous User'), related_name='chefreview_set')
     chef = models.ForeignKey(Chef, related_name='chefreview_set', on_delete=models.CASCADE)
     rating = models.DecimalField(max_digits=1, decimal_places=0)
 

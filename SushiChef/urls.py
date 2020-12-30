@@ -34,6 +34,7 @@ urlpatterns = [
     path('order_history', views.order_history, name='order_history'),
     path('order/<str:order_id>', views.order,  name='order'),
     path('wishlist', views.wishlist, name='wishlist'),
+    path('my_reviews', views.review, name='review'),
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
