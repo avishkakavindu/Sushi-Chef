@@ -10,7 +10,7 @@ from django.db.models import Prefetch
 @login_required(login_url='/login')
 def wishlist(request):
 
-    wishes = Wishlist.objects.filter(customer=request.user.customer).prefetch_related(
+    wishes = Wishlist.objects.filter(customer=request.user.customer).order_by('product').prefetch_related(
         Prefetch('product',
                  queryset=Product.objects.prefetch_related(
                      Prefetch(

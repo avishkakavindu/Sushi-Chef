@@ -93,7 +93,11 @@
                   </a>
                   <a href="#" class="addto-wish" data-product="{{ product.id }}">
                     <span class="rounded-circle h5">
-                      <i class="fa fa-heart-o" aria-hidden="true"></i>
+                      {% if product.id in wishes %}
+                        <i class="fa fa-heart" aria-hidden="true"></i>
+                      {% else %}
+                        <i class="fa fa-heart-o" aria-hidden="true"></i>
+                      {% endif %}
                     </span>
                   </a>
                 </div>

@@ -942,3 +942,7 @@ caption {
 .wishes:hover {
     text-decoration: none;
 }
+
+.addto-wish .fa-heart {
+    color: #ff0000;
+}
