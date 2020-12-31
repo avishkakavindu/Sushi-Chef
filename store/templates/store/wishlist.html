@@ -50,6 +50,11 @@
                         </form>
                       </td>
                     </tr>
+                    {% empty %}
+                       <div class="alert-warning rounded p-3" role="alert">
+                          Your Wish List is empty!
+                       </div>
+
                     {% endfor %}
                   </tbody>
               </table>

@@ -26,7 +26,10 @@ def wishlist(request):
     # delete wished dish
     if request.method == 'POST':
         dish_to_delete = request.POST['delete_items']
-        Wishlist.objects.filter(customer=request.user.customer, product=dish_to_delete).delete()
+        Wishlist.objects.filter(
+            customer=request.user.customer,
+            product=dish_to_delete
+        ).delete()
 
     if request.method == 'GET':
         try:

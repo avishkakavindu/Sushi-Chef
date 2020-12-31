@@ -2,6 +2,7 @@ from django.db import models
 from django.db.models import Avg, F
 from django.contrib.auth.models import User
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.utils import timezone
 
 from django.contrib.auth.models import User
 
@@ -91,7 +92,7 @@ class ProductReview(models.Model):
     customer = models.ForeignKey(Customer, related_name='customerreview_set', on_delete=models.SET('Anonymous User'))
     product = models.ForeignKey(Product, related_name='productreview_set', on_delete=models.CASCADE)
     review = models.TextField()
-    rating = models.DecimalField(max_digits=1, decimal_places=0, default=0)
+    rating = models.DecimalField(max_digits=1, decimal_places=0, default=0, validators=[MinValueValidator(0), MaxValueValidator(5)])
     date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -122,7 +123,8 @@ class Chef(models.Model):
 class ChefReview(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.SET('Anonumous User'), related_name='chefreview_set')
     chef = models.ForeignKey(Chef, related_name='chefreview_set', on_delete=models.CASCADE)
-    rating = models.DecimalField(max_digits=1, decimal_places=0)
+    rating = models.DecimalField(max_digits=1, decimal_places=0, validators=[MinValueValidator(0), MaxValueValidator(5)])
+    date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return str(self.id)

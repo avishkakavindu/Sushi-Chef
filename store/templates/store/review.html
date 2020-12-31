@@ -1,26 +1,72 @@
 {% extends "store/main.html" %}
 {% load static %}
 {% load widget_tweaks %}
+{% load tz %}
 {% block content %}
 
 <div class="container mb-0">
-
+    <caption><h4 class="mt-4">My Reviews</h4></caption>
     <div class="row ml-0 d-flex justify-content-center">
-      <div class="col-sm col-lg-9 order-history p-3 mt-3 mr-3 mb-5">
-        <div class="row mt-5" id="reviews">
+      <div class="col-sm col-lg-9 order-history p-3 mr-3 mb-5">
+        <div class="row mt-0" id="reviews">
             <div class="col-md col-lg">
               <!-- Review tabs -->
               <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                    <a class="nav-item nav-link " id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
-                       aria-controls="nav-home" aria-selected="true">Reviews on Dishes</a>
-                    <a class="nav-item nav-link active" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
-                       aria-controls="nav-profile" aria-selected="false">Reviews on Chefs</a>
+                    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
+                       aria-controls="nav-home" aria-selected="true">Dishes</a>
+                    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
+                       aria-controls="nav-profile" aria-selected="false">Chefs </a>
                 </div>
               </nav>
               <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade show  mt-2" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                <div class="tab-pane active fade show  mt-2" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                  {% for dish_review in dish_reviews %}
+                    <!-- Review -->
+                    <div class="row mt-3 mb-3 border-bottom pb-3">
+                      <div class="col-md col-lg-3 text-center">
+                        <img src="{{ dish_review.reviewed_dish.main_image.0.image.url }}" class="img-thumbnail rounded-circle review-pic">
+                        <small>{{ dish_review.reviewed_dish.name }}</small>
+                      </div>
+                      <div class="col-md-10 col-lg">
+                        <p class="review-desc">
+                          {{ dish_review.review }}
+                        </p>
+                        <!-- Star rating -->
+                        <span class="star-rating rev-rating">
+                          {% for i in five_star %}
+                            {% if i < dish_review.rating %}
+                              <i class="fa fa-star" aria-hidden="true"></i>
+                            {% else %}
+                              <i class="fa fa-star-o" aria-hidden="true"></i>
+                            {% endif %}
+                          {% endfor %}
+                        </span>
+                        <span class="review-date">{{ dish_review.date }} </span>
+                      </div>
+                      <div class="col-md-2 justify-content-end my-review-action">
+                          <form method="post">
+                            <button class="btn btn-success update-cart" data-action="edit" data-review="{{ dish_review.id }}">
+                                <span class="fa fa-pencil" aria-hidden="true"></span>
+                            </button>
 
+                            {% csrf_token %}
+                            <button class="btn btn-danger" type="submit" name="delete_dish_review" value="{{ dish_review.id }}">
+                                <span class="fa fa-trash" aria-hidden="true"></span>
+                            </button>
+                        </form>
+                      </div>
+                    </div>
+                    <!-- End of review -->
+                  {% empty %}
+                   <div class="alert-warning rounded p-3" role="alert">
+                      No Dish Review record found!
+                   </div>
+
+                  {% endfor %}
+                </div>
+                <!-- Chef Reviews -->
+                <div class="tab-pane border-bottom mt-2" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                   {% for chef_review in chef_reviews %}
                     <!-- Review -->
                     <div class="row mt-3 mb-3 border-bottom pb-3">
@@ -42,48 +88,27 @@
                             {% endif %}
                           {% endfor %}
                         </span>
-                        <span class="review-date">{{ chef_review.date }} </span>
+                        <span class="review-date">{{ chef_review.date|localtime }} </span>
+                      </div>
+                      <div class="col-md-2 justify-content-end my-review-action">
+                          <form method="post">
+                            <button class="btn btn-success update-cart" data-action="edit" data-review="{{ dish_review.id }}">
+                                <span class="fa fa-pencil" aria-hidden="true"></span>
+                            </button>
+
+                            {% csrf_token %}
+                            <button class="btn btn-danger" type="submit" name="delete_chef_review" value="{{ dish_review.id }}">
+                                <span class="fa fa-trash" aria-hidden="true"></span>
+                            </button>
+                        </form>
                       </div>
                     </div>
                     <!-- End of review -->
+                    {% empty %}
+                   <div class="alert-warning rounded p-3" role="alert">
+                      No Chef Review record found!
+                   </div>
                   {% endfor %}
-                </div>
-                <div class="tab-pane active border-bottom mt-2" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                    <form class="needs-validation" action="" method="post" novalidate>
-                      {% csrf_token %}
-                      {% for field in review_form %}
-                        <label>{{ field.label }}</label>
-                        {% if registration_form.is_bound %}
-                            {% if field.errors %}
-                              {% render_field field class="form-control form-control-sm is-invalid" %}
-                              {% if field.name == 'username' or 'password1' %}
-                                <small>
-                                    {{ field.help_text }}
-                                </small>
-                              {% endif %}
-                              <div class="invalid-tooltip d-block float-right" data-placement="bottom">
-                              {% for error in field.errors %}
-                                  {{ error }}
-                              {% endfor %}
-                              </div>
-                            {% else %}
-                              {% render_field field class="form-control form-control-sm is-valid" %}
-                            {% endif %}
-                        {% else %}
-                            {% render_field field class="form-control form-control-sm" %}
-                        {% endif %}
-                      {% endfor %}
-
-                      <div class="rating-system">
-                        <span class="fa fa-star-o rate-me" data-toggle="tooltip" data-placement="top" title="Very bad"></span>
-                        <span class="fa fa-star-o rate-me" data-toggle="tooltip" data-placement="top" title="Poor"></span>
-                        <span class="fa fa-star-o rate-me" data-toggle="tooltip" data-placement="top" title="Ok"></span>
-                        <span class="fa fa-star-o rate-me" data-toggle="tooltip" data-placement="top" title="Good"></span>
-                        <span class="fa fa-star-o rate-me" data-toggle="tooltip" data-placement="top" title="Excellent"></span>
-                      </div>
-
-                      <button class="btn btn-success float-right mt-2" type="submit">Submit</button>
-                    </form>
                 </div>
               </div>
             </div>

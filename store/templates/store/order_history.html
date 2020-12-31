@@ -36,6 +36,10 @@
                           </a>
                       </td>
                     </tr>
+                    {% empty %}
+                       <div class="alert-warning rounded p-3" role="alert">
+                          No Order History found!
+                       </div>
                     {% endfor %}
                   </tbody>
               </table>

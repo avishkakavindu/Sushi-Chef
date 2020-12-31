@@ -30,6 +30,26 @@ def review(request):
         ),
     )
 
+    # delete review
+    if request.method == 'POST':
+        if 'delete_chef_review' in request.POST:
+            review_id = request.POST['delete_chef_review']
+            ChefReview.objects.get(
+                id=review_id,
+                customer=request.user.customer
+            ).delete()
+
+        if 'delete_dish_review' in request.POST:
+            review_id = request.POST['delete_dish_review']
+            ProductReview.objects.get(
+                id=review_id,
+                customer=request.user.customer,
+            ).delete()
+
+
+
+
+
     context = {
         'dish_reviews': dish_reviews,
         'chef_reviews': chef_reviews,

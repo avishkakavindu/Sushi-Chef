@@ -946,3 +946,9 @@ caption {
 .addto-wish .fa-heart {
     color: #ff0000;
 }
+
+/* --- review.html --- */
+
+.my-review-action form {
+    float: right;
+}
