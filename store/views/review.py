@@ -46,6 +46,8 @@ def review(request):
                 customer=request.user.customer,
             ).delete()
 
+        messages.success(request, "Review deleted!")
+
 
 
 

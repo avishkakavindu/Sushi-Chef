@@ -3,6 +3,7 @@ from django.db.models import Avg, F
 from django.contrib.auth.models import User
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.utils import timezone
+from datetime import datetime, timedelta
 
 from django.contrib.auth.models import User
 
@@ -123,6 +124,7 @@ class Chef(models.Model):
 class ChefReview(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.SET('Anonumous User'), related_name='chefreview_set')
     chef = models.ForeignKey(Chef, related_name='chefreview_set', on_delete=models.CASCADE)
+    review = models.TextField()
     rating = models.DecimalField(max_digits=1, decimal_places=0, validators=[MinValueValidator(0), MaxValueValidator(5)])
     date = models.DateTimeField(auto_now_add=True)
 
@@ -134,10 +136,12 @@ class ChefReview(models.Model):
 
 class Coupon(models.Model):
     code = models.CharField(max_length=50, unique=True)
-    valid_from = models.DateTimeField()
-    valid_to = models.DateTimeField()
+    valid_from = models.DateTimeField(auto_now_add=True)
+    valid_to = models.DateTimeField(datetime.now()+timedelta(days=30))
     discount = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(100)])
-    active = models.BooleanField()
+    active = models.BooleanField(default=True)
+
+
 
     def __str__(self):
         return self.code

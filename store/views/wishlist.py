@@ -31,6 +31,8 @@ def wishlist(request):
             product=dish_to_delete
         ).delete()
 
+        messages.success(request, "Review deleted!")
+
     if request.method == 'GET':
         try:
             dish_id = request.GET['dish_id']
