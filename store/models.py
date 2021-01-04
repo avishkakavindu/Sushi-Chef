@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.utils import timezone
 from datetime import datetime, timedelta
-
 from django.contrib.auth.models import User
 
 
@@ -90,7 +89,7 @@ class ProductImage(models.Model):
 
 
 class ProductReview(models.Model):
-    customer = models.ForeignKey(Customer, related_name='customerreview_set', on_delete=models.SET('Anonymous User'))
+    customer = models.ForeignKey(Customer, related_name='customerreview_set', on_delete=models.CASCADE)
     product = models.ForeignKey(Product, related_name='productreview_set', on_delete=models.CASCADE)
     review = models.TextField()
     rating = models.DecimalField(max_digits=1, decimal_places=0, default=0, validators=[MinValueValidator(0), MaxValueValidator(5)])
@@ -136,15 +135,15 @@ class ChefReview(models.Model):
 
 class Coupon(models.Model):
     code = models.CharField(max_length=50, unique=True)
+    desc = models.TextField()
     valid_from = models.DateTimeField(auto_now_add=True)
-    valid_to = models.DateTimeField(datetime.now()+timedelta(days=30))
+    valid_to = models.DateTimeField(default=datetime.now()+timedelta(days=10))
     discount = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(100)])
     active = models.BooleanField(default=True)
-
-
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='coupon_set')
 
     def __str__(self):
-        return self.code
+        return '{} - {}'.format(self.customer, self.code)
 
 
 class Order(models.Model):

@@ -140,6 +140,15 @@
             </button>
           </div>
         {% endif %}
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+          <div class="alert alert-info alert-dismissible fade show" role="alert">
+            <strong><i class="fa fa-gift mr-2" aria-hidden="true"></i>Congratulations! </strong>
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        {% endif %}
       {% endfor %}
     {% endif %}
 
