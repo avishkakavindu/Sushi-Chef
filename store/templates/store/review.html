@@ -21,6 +21,7 @@
               </nav>
               <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane active fade show  mt-2" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                  {% if dish_reviews %}
                   {% for dish_review in dish_reviews %}
                     <!-- Review -->
                     <div class="row mt-3 mb-3 border-bottom pb-3">
@@ -54,15 +55,16 @@
                       </div>
                     </div>
                     <!-- End of review -->
-                  {% empty %}
-                   <div class="alert-warning rounded p-3" role="alert">
+                  {% endfor %}
+                  {% else %}
+                    <div class="alert-warning rounded p-3" role="alert">
                       No Dish Review record found!
                    </div>
-
-                  {% endfor %}
+                  {% endif %}
                 </div>
                 <!-- Chef Reviews -->
                 <div class="tab-pane border-bottom mt-2" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                  {% if chef_reviews %}
                   {% for chef_review in chef_reviews %}
                     <!-- Review -->
                     <div class="row mt-3 mb-3 border-bottom pb-3">
@@ -89,18 +91,19 @@
                       <div class="col-md-2 justify-content-end my-review-action">
                           <form method="post">
                             {% csrf_token %}
-                            <button class="btn btn-danger" type="submit" name="delete_chef_review" value="{{ dish_review.id }}">
+                            <button class="btn btn-danger" type="submit" name="delete_chef_review" value="{{ chef_review.id }}">
                                 <span class="fa fa-trash" aria-hidden="true"></span>
                             </button>
                         </form>
                       </div>
                     </div>
                     <!-- End of review -->
-                    {% empty %}
-                   <div class="alert-warning rounded p-3" role="alert">
-                      No Chef Review record found!
-                   </div>
                   {% endfor %}
+                   {% else %}
+                    <div class="alert-warning rounded p-3" role="alert">
+                      No Chef Review found!
+                   </div>
+                  {% endif %}
                 </div>
               </div>
             </div>
@@ -142,7 +145,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/my_reviews">
+                            <a href="/my_coupons">
                                 <i class="fa fa-gift" aria-hidden="true"></i>
                                 My Coupons
                             </a>

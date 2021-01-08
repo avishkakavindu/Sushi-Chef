@@ -872,7 +872,7 @@ button.btn.btn-secondary:hover {
 }
 
 .related-content-heading {
-    background-color: #f2f2f2;
+    background-color: #f8f8f8;
     padding-top: 5px;
     padding-bottom: 5px;
 }
@@ -915,8 +915,10 @@ caption {
 /* --- order.html --- */
 
 .order-summary td {
-    font-size: smaller;
-    color: #686868
+    color: #333;
+    font-size: 13px;
+    font-family: "Roboto", "Lucida Grande", Verdana, Arial, sans-serif;
+
 }
 
 .order-summary td > a {
@@ -951,4 +953,28 @@ caption {
 
 .my-review-action form {
     float: right;
+}
+
+
+/* --- coupon.html --- */
+
+.fa-check-circle {
+    color: #70bf2b;
+}
+
+.fa-times-circle {
+    color: #dd4646;
+}
+
+th {
+    background: #f6f6f6;
+    color: #333;
+    font-size: 13px;
+    font-family: "Roboto", "Lucida Grande", Verdana, Arial, sans-serif;
+}
+
+tbody, tbody a {
+    color: #505050;
+    font-size: 12px;
+    font-family: "Roboto", "Lucida Grande", Verdana, Arial, sans-serif;
 }

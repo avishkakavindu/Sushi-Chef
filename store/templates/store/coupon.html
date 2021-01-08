@@ -1,6 +1,7 @@
 {% extends "store/main.html" %}
 {% load static %}
 {% load widget_tweaks %}
+{% load store_tags %}
 {% block content %}
 
 <div class="container mb-0">
@@ -8,58 +9,46 @@
     <div class="row ml-0 d-flex justify-content-center">
 
         <div class="col-sm col-lg-9 order-history p-3 mt-3 mr-3 mb-5">
-            <caption><h4 class="mb-4">Wish List</h4></caption>
+            <caption><h4 class="mb-4">Coupons</h4></caption>
             <div class="table-responsive">
-              {% if wishes %}
-              <table class="table table-hover table-bordered">
+              {% if coupons %}
+              <table class="table table-hover">
                   <thead>
                     <tr>
-                      <th scope="col">Image</th>
-                      <th scope="col">Dish Name</th>
-                      <th scope="col">Price</th>
-                      <th scope="col">Offers</th>
-                      <th scope="col">Action</th>
+                      <th scope="col">Code</th>
+                      <th scope="col">Description</th>
+                      <th scope="col">Offer</th>
+                      <th scope="col">Used Order</th>
+                      <th scope="col">Is Valid</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {% for wish in wishes %}
+                    {% for coupon in coupons %}
                     <tr>
-                      <td scope="col" class="text-center">
-                          <a href="/product/{{ wish.wished_dish.id }}" class="wishes">
-                            <img src="{{ wish.wished_dish.main_image.0.image.url }}" width="70px" height="70px">
-                          </a>
-                      </td>
+                      <td scope="col"> {{ coupon.code }} </td>
+                      <td scope="col"> {{ coupon.desc }} </td>
+                      <td scope="col"> {{ coupon.discount }}% off </td>
                       <td scope="col">
-                          <a href="/product/{{ wish.wished_dish.id }}" class="wishes">
-                            <h6>{{ wish.wished_dish.name }}</h6>
-                            {{ wish.wished_dish.desc|truncatewords:8 }}
-                          </a>
+
+                            {{  coupon.valid_to|coupon_status:coupon.order }}
 
                       </td>
-                      <td scope="col">$ {{ wish.wished_dish.price }} </td>
-                      <td scope="col"> {{ wish.wished_dish.discount }}% off </td>
                       <td scope="col" class="text-center">
-                        <form method="post">
-                            <button class="btn btn-success update-cart" data-action="add" data-product="{{ wish.wished_dish.id }}_{{ wish.wished_dish.get_sale_price|floatformat:2 }}">
-                                <span class="fa fa-shopping-cart" aria-hidden="true"></span>
-                            </button>
-
-                            {% csrf_token %}
-                            <button class="btn btn-danger" type="submit" name="delete_items" value="{{ wish.wished_dish.id }}">
-                                <span class="fa fa-trash" aria-hidden="true"></span>
-                            </button>
-                        </form>
+                        {% if coupon.valid_to|is_active:coupon.order %}
+                          <i class="fa fa-check-circle" aria-hidden="true"></i>
+                        {% else %}
+                          <i class="fa fa-times-circle" aria-hidden="true"></i>
+                        {% endif %}
                       </td>
                     </tr>
                     {% endfor %}
                   </tbody>
               </table>
               {% else %}
-                   <div class="alert-warning rounded p-3" role="alert">
-                      Your Wish List is empty!
-                   </div>
+                <div class="alert-warning rounded p-3" role="alert">
+                    Your Wish List is empty!
+                </div>
               {% endif %}
-
             </div>
         </div>
 

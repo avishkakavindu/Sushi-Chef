@@ -1,4 +1,6 @@
 from django import template
+from django.utils import timezone
+from django.utils.safestring import mark_safe
 import numpy as np
 
 register = template.Library()
@@ -43,7 +45,7 @@ def get_total(dictionary, coupon_discount):
         for i in dictionary.values():
             sum += np.prod(list(map(float, i.values())))
         if coupon_discount:
-            sum -= (sum * (coupon_discount/100))
+            sum -= (sum * (coupon_discount / 100))
         return '${:.2f}'.format(sum + delivery)
     except KeyError:
         return '$0.00'
@@ -56,6 +58,31 @@ def get_coupon_discount(dictionary, coupon_discount):
     for i in dictionary.values():
         sum += np.prod(list(map(float, i.values())))
     sum += delivery
-    discount = sum * (coupon_discount/100)
+    discount = sum * (coupon_discount / 100)
     return '${:.2f}'.format(discount)
+
+
+def check_coupon_status(valid_to, order):
+    now = timezone.now()
+
+    if now > valid_to or not(not order):
+        return False  # expired
+    return True  # active
+
+
+@register.filter
+def is_active(valid_to, order):
+    if check_coupon_status(valid_to, order):
+        return True  # active
+    return False  # expired
+
+
+@register.filter
+def coupon_status(valid_to, order):
+    if check_coupon_status(valid_to, order):
+        return mark_safe("<span style='color: #70bf2b'>Available!</span>")
+    else:
+        if not order:
+            return mark_safe("<span style='color: #dd4646'>Expired!</span>")
+        return mark_safe("<a href='order/{}'>#{}</a>".format(order[0], order[0]))
 

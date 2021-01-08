@@ -34,6 +34,7 @@ def review(request):
     if request.method == 'POST':
         if 'delete_chef_review' in request.POST:
             review_id = request.POST['delete_chef_review']
+
             ChefReview.objects.get(
                 id=review_id,
                 customer=request.user.customer

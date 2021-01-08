@@ -35,6 +35,7 @@ urlpatterns = [
     path('order/<str:order_id>', views.order,  name='order'),
     path('wishlist', views.wishlist, name='wishlist'),
     path('my_reviews', views.review, name='review'),
+    path('my_coupons', views.coupon, name='coupon'),
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
