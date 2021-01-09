@@ -71,23 +71,23 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
+            <li class="nav-item active" id="home">
               <a class="nav-link" href="/">
                 <i class="fa fa-home"></i>
                   HOME
                 <span class="sr-only">(current)</span>
               </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" id="menu">
               <a class="nav-link" href="/menu">MENU</a>
           </li>
-            <li class="nav-item">
+            <li class="nav-item" id="promotions">
               <a class="nav-link" href="/promo">PROMOTIONS</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" id="crt">
               <a class="nav-link" href="/cart">CART</a>
             </li>
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown" id="about">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 ABOUT
               </a>
@@ -98,19 +98,22 @@
               </div>
             </li>
           </ul>
-          <form class="form-inline d-flex justify-content-center active-pink md-form form-sm mt-0">
-            <i class="fa fa-search" aria-hidden="true"></i>
-            <input class="form-control form-control-sm ml-2 w-75" type="text" placeholder="Search"
-              aria-label="Search">
+          <form class="form-inline d-flex active-pink md-form form-sm mr-3" method="get" id="search">
+            <div class="input-group">
+              {% render_field product_filter.form.name__icontains class="form-control form-control-sm" %}
+              <div class="input-group-prepend">
+                <button type="submit" class="input-group-text btn fa fa-search" id="inputGroupPrepend2"></button>
+              </div>
+            </div>
           </form>
 
           {% if user.is_authenticated %}
-            <a href="/profile" class="profile-link">
+            <a href="/profile" class="profile-link" id="uname">
               <span>Hello, </span> <span class="username"> {{ user.username }}</span>
             </a>
-            <a href="/logout" class="btn btn-danger my-2 my-sm-0 ml-2" type="button">logout</a>
+            <a href="/logout" class="btn btn-danger my-2 my-sm-0 ml-2" type="button" id="lout">logout</a>
           {% else %}
-            <a href="{% url 'login' %}?next={% firstof request.path '/' %}" class="btn btn-outline-success my-2 my-sm-0" type="button">SignIn</a>
+            <a href="{% url 'login' %}?next={% firstof request.path '/' %}" class="btn btn-outline-success my-2 my-sm-0" type="button" id="sin">SignIn</a>
           {% endif %}
         </div>
       </div>

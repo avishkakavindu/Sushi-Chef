@@ -9,7 +9,9 @@
     <div class="row ml-0 d-flex justify-content-center">
 
         <div class="col-sm col-lg-9 order-history p-3 mt-3 mr-3 mb-5">
-            <caption><h4 class="mb-4">Coupons</h4></caption>
+            <caption>
+                <h4 class="mb-4"><i class="fa fa-gift mr-2" aria-hidden="true"></i>Coupons</h4>
+            </caption>
             <div class="table-responsive">
               {% if coupons %}
               <table class="table table-hover">
@@ -25,8 +27,13 @@
                   <tbody>
                     {% for coupon in coupons %}
                     <tr>
-                      <td scope="col"> {{ coupon.code }} </td>
-                      <td scope="col"> {{ coupon.desc }} </td>
+                      <td scope="col" class="coupon-code text-center"> {{ coupon.code }} </td>
+                      <td scope="col">
+                          <p class="m-0">
+                            {{ coupon.desc }}
+                          </p>
+                          <small class="foat-right">Valid until: {{ coupon.valid_to }}</small>
+                      </td>
                       <td scope="col"> {{ coupon.discount }}% off </td>
                       <td scope="col">
 
@@ -46,7 +53,7 @@
               </table>
               {% else %}
                 <div class="alert-warning rounded p-3" role="alert">
-                    Your Wish List is empty!
+                    Sorry, You don't have any coupons...
                 </div>
               {% endif %}
             </div>

@@ -1,6 +1,7 @@
 from django.db.models import Prefetch
 from django.shortcuts import render
-from store.models import *
+from store.filters import ProductFilter
+from store.models import Product, Wishlist, ProductImage
 
 
 # menu page
@@ -18,9 +19,9 @@ def menu(request):
         wishes = []
 
     context = {
-        'products': products,
+        # 'products': products,
         'five_star': [0, 1, 2, 3, 4],
-        'wishes': wishes
+        'wishes': wishes,
     }
 
     return render(request, 'store/menu.html', context)

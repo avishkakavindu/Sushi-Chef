@@ -966,6 +966,12 @@ caption {
     color: #dd4646;
 }
 
+.coupon-code {
+    font-size: 15px;
+    color: #000;
+    font-weight: 500;
+}
+
 th {
     background: #f6f6f6;
     color: #333;
@@ -977,4 +983,36 @@ tbody, tbody a {
     color: #505050;
     font-size: 12px;
     font-family: "Roboto", "Lucida Grande", Verdana, Arial, sans-serif;
+}
+
+.input-group-text {
+    background-color: #fff;
+    border: none;
+}
+
+@media only screen and (max-width: 768px) {
+	#home {
+		order: 2;
+	}
+	#menu {
+		order: 4;
+	}
+	#promotions {
+		order: 3;
+	}
+	#crt {
+		order: 5;
+	}
+	#about {
+	    order: 6;
+	}
+	#search {
+	    order: 7;
+	}
+	#uname {
+	    order: 1;
+	}
+	#lout {
+	    order: 2;
+	}
 }

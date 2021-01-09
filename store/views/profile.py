@@ -14,6 +14,11 @@ from django.contrib.auth.forms import PasswordChangeForm
 def profile(request):
     msg = {'success': None, 'msg': None}
 
+    password_form = PasswordChangeForm(request.user)
+    user_details = User.objects.select_related("customer").get(username=request.user)
+    customer_form = UpdateCustomerForm(instance=request.user.customer)
+    user_form = UpdateUserForm(instance=request.user)
+
     if request.method == 'POST':
         user_form = UpdateUserForm(request.POST, instance=request.user)
         customer_form = UpdateCustomerForm(request.POST, request.FILES, instance=request.user.customer)
@@ -26,6 +31,7 @@ def profile(request):
             user_form.save()
             customer_form.save()
             msg = {'success': True, 'msg': "Account updated!"}
+            user_details = User.objects.select_related("customer").get(username=request.user)
 
         if password_form.data['old_password'] != '' or password_form.data['new_password1'] != '' or password_form.data['new_password2'] != '':
             if password_form.is_valid():
@@ -41,11 +47,6 @@ def profile(request):
         messages.success(request, msg['msg'])
     elif not msg['success']:
         messages.error(request, msg['msg'])
-
-    password_form = PasswordChangeForm(request.user)
-    user_details = User.objects.select_related("customer").get(username=request.user)
-    customer_form = UpdateCustomerForm(instance=request.user.customer)
-    user_form = UpdateUserForm(instance=request.user)
 
     context = {
         'user_details': user_details,

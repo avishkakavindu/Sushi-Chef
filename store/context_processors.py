@@ -1,10 +1,31 @@
-# from django.contrib.auth.forms import AuthenticationForm
-# from django.contrib.auth.forms import authenticate
-# from django.shortcuts import render
-# from django.contrib import messages
-# from .forms import CreateUserForm
-#
-#
+from django.db.models import Prefetch
+from django.shortcuts import render
+from store.filters import ProductFilter
+from store.models import Product, ProductImage, Wishlist
+
+
+def include_search_bar(request):
+    queryset = Product.objects.order_by('name').prefetch_related(
+        Prefetch(
+            'productimage_set',
+            ProductImage.objects.filter(place='Main Product Image'),
+            to_attr='main_image'
+        ),
+    )
+    product_filter = ProductFilter(request.GET, queryset=queryset)
+    products = product_filter.qs
+
+    context = {
+        'product_filter': product_filter,
+        'products': products,
+    }
+
+    return context
+
+
+
+
+
 # # Registration form
 # def include_registration_form(request):
 #     form = CreateUserForm()
