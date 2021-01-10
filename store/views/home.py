@@ -1,5 +1,6 @@
 from django.db.models import Prefetch
 from django.shortcuts import render
+from django.db.models import Q
 from store.models import *
 
 
@@ -11,7 +12,7 @@ def home(request):
             ProductImage.objects.filter(place='Main Product Image'),
             to_attr='main_image'
         )
-    ).order_by('?')[3:]  # random 3 record pass
+    ).order_by('?')[2:]  # random 3 record pass
 
     chefs = Chef.objects.all()
 

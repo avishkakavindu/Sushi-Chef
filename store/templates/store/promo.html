@@ -38,8 +38,8 @@
               <div class="updated-on text-center">
                 <p class="card-text"><small class="text-muted"> {{ promo.updated_on }}</small></p>
               </div>
-              <p class="card-text mb-auto">
-                {{ promo.desc }}
+              <p class="card-text mb-auto" style="max-height: 100px">
+                {{ promo.desc|truncatewords:10 }}
               </p>
             </div>
             <div class="align-self-end border-left">

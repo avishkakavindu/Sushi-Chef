@@ -267,7 +267,10 @@
 #chefsSection span {
     font-family: 'Brush Script MT';
     font-size: xx-large;
-    color : #f17661;
+}
+
+#chefsSection span i {
+    font-size: 20px;
 }
 
 #chefs img {
@@ -563,9 +566,16 @@ button.btn.btn-secondary:hover {
      color: #fff;
      padding: 5px;
      position: absolute;
-     left: 0;
      font-weight: bolder;
      text-shadow: 1px 1px 2px rgba(0,0,0,0.3)
+ }
+
+  .bonus-left {
+    left: 0;
+  }
+
+  .bonus-right {
+     right: 0;
  }
 
 .p-desc {
@@ -644,6 +654,11 @@ button.btn.btn-secondary:hover {
  #product {
     margin: 0;
  }
+
+.product-title {
+    font-family: Brush Script MT, Brush Script Std, cursive;
+    color: #282828;
+}
 
  .p-desc {
      margin-top: 10px;

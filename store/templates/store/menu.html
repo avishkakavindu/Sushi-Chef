@@ -37,15 +37,17 @@
             <a href="/product/{{ product.id }}" class="product-link">
               <img src="{{ product.main_image.0.image.url }}" class="img-fluid mt-3">
               {% if product.discount != 0 %}
-              <span class="bonus">{{ product.discount }}% off</span>
+              <span class="bonus bonus-left">{{ product.discount }}% off</span>
               {% endif %}
             </a>
             <!-- Description and price-->
             <div class="product-desc text-center border border-top-0 pb-3">
-              <h3><a href="/product/{{ product.id }}">{{ product.name }}</a></h3>
+              <a href="/product/{{ product.id }}" style="text-decoration: none">
+                <h3 class="product-title mt-3">{{ product.name }}</h3>
+              </a>
               <div class="p-desc">
                 <p class="mb-0">
-                  {{ product.desc }}
+                  {{ product.name }} - {{ product.desc }}
                 </p>
               </div>
               <!-- Star rating -->
