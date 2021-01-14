@@ -295,6 +295,10 @@
     color: #FFDF00;
 }
 
+.product-gal {
+    min-height: 350px;
+}
+
 /* --- foooter --- */
 .footer {
     background: url("../images/staticimg/sand.png") #1a1a1a repeat scroll top center;
@@ -561,7 +565,6 @@ button.btn.btn-secondary:hover {
  */
 
  .bonus {
-     background-color: #77e365;
      font-size: 100%;
      color: #fff;
      padding: 5px;
@@ -569,6 +572,13 @@ button.btn.btn-secondary:hover {
      font-weight: bolder;
      text-shadow: 1px 1px 2px rgba(0,0,0,0.3)
  }
+  .bonus-danger {
+    background-color: #dc3545;
+  }
+
+   .bonus-success {
+    background-color: #77e365;
+  }
 
   .bonus-left {
     left: 0;
@@ -605,7 +615,7 @@ button.btn.btn-secondary:hover {
 }
 
 .star-rating i {
-    font-size: small;
+    font-size: 15px;
     color: #FFDF00;
 }
 
@@ -658,6 +668,7 @@ button.btn.btn-secondary:hover {
 .product-title {
     font-family: Brush Script MT, Brush Script Std, cursive;
     color: #282828;
+    font-size: 2rem;
 }
 
  .p-desc {
@@ -961,7 +972,7 @@ caption {
 }
 
 .addto-wish .fa-heart {
-    color: #ff0000;
+    color: #fff;
 }
 
 /* --- review.html --- */

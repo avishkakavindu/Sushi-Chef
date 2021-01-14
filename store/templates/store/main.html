@@ -98,7 +98,7 @@
               </div>
             </li>
           </ul>
-          <form class="form-inline d-flex active-pink md-form form-sm mr-3" method="get" id="search">
+          <form class="form-inline d-flex active-pink md-form form-sm mr-3" method="get" id="search" action="{% url 'menu' %}">
             <div class="input-group">
               {% render_field product_filter.form.name__icontains class="form-control form-control-sm" %}
               <div class="input-group-prepend">

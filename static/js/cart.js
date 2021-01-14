@@ -121,8 +121,8 @@ $(function(){
 $('.addto-wish').click(function(e){
     var dishid;
     dishid = $(this).attr("data-product");
-    $(this).find('.fa').removeClass('fa-heart-o')
-    $(this).find('.fa').addClass('fa-heart');
+    $(this).find('.fa').removeClass('fa-heart')
+    $(this).find('.fa').addClass('fa-heart-o');
     e.preventDefault();
     $.ajax(
         {

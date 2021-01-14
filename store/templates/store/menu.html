@@ -37,21 +37,21 @@
             <a href="/product/{{ product.id }}" class="product-link">
               <img src="{{ product.main_image.0.image.url }}" class="img-fluid mt-3">
               {% if product.discount != 0 %}
-              <span class="bonus bonus-left">{{ product.discount }}% off</span>
+              <span class="bonus bonus-left bonus-success">{{ product.discount }}% off</span>
               {% endif %}
             </a>
             <!-- Description and price-->
             <div class="product-desc text-center border border-top-0 pb-3">
               <a href="/product/{{ product.id }}" style="text-decoration: none">
-                <h3 class="product-title mt-3">{{ product.name }}</h3>
+                <h3 class="product-title pt-2">{{ product.name }}</h3>
               </a>
-              <div class="p-desc">
+              <div class="p-desc mb-2">
                 <p class="mb-0">
                   {{ product.name }} - {{ product.desc }}
                 </p>
               </div>
               <!-- Star rating -->
-              <span class="star-rating">
+              <span class="star-rating ">
                 {% for i in five_star %}
                   {% if i < product.get_avg_rating.1 %}
                     <i class="fa fa-star" aria-hidden="true"></i>
@@ -96,9 +96,9 @@
                   <a href="#" class="addto-wish" data-product="{{ product.id }}">
                     <span class="rounded-circle h5">
                       {% if product.id in wishes %}
-                        <i class="fa fa-heart" aria-hidden="true"></i>
-                      {% else %}
                         <i class="fa fa-heart-o" aria-hidden="true"></i>
+                      {% else %}
+                        <i class="fa fa-heart" aria-hidden="true"></i>
                       {% endif %}
                     </span>
                   </a>
