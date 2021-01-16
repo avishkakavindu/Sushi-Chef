@@ -5,6 +5,10 @@
     display: inline-block;
 }
 
+.make-blue {
+    color: #0275d8;
+}
+
 /* --- navbar icons ---*/
 #navIcons a{
     color: #fff;

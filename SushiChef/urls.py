@@ -14,7 +14,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.contrib.auth.forms import SetPasswordForm
+from django.urls import path, include, reverse_lazy
 from store import views
 from django.conf import settings
 from django.conf.urls.static import static
@@ -27,10 +28,26 @@ urlpatterns = [
     path('', include('django.contrib.auth.urls')),
     path('register', views.register, name='register'),
 
-    path('password_reset', auth_views.PasswordResetView.as_view(), name='password_reset'),             # allows a user to reset their password by generating a one-time use link
-    path('password_reset_done', auth_views.PasswordChangeDoneView.as_view(), name='password_reset_done'),   # after password reset email sent
-    path('password_reset_confirm/<uidb64>/<token>', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),  # present a form to enter new password
-    path('password_reset_complete', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),    # inform success
+    path(
+        'password_reset',
+        auth_views.PasswordResetView.as_view(),
+        name='password_reset'
+    ),  # allows a user to reset their password by generating a one-time use link
+    path(
+        'password_reset_done',
+        auth_views.PasswordResetDoneView.as_view(),
+        name='password_reset_done'
+    ),   # after password reset email sent
+    path(
+        'password_reset_confirm/<uidb64>/<token>',
+        auth_views.PasswordResetConfirmView.as_view(template_name='registration/password_reset_confirm.html'),
+        name='password_reset_confirm'
+    ),  # present a form to enter new password
+    path(
+        'password_reset_complete',
+        auth_views.PasswordResetCompleteView.as_view(template_name='registration/password_reset_complete.html'),
+        name='password_reset_complete'
+    ),    # inform success
 
 
     path('profile', views.profile, name="profile"),
