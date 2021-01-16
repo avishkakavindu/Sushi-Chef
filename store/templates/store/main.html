@@ -113,7 +113,7 @@
             </a>
             <a href="/logout" class="btn btn-danger my-2 my-sm-0 ml-2" type="button" id="lout">logout</a>
           {% else %}
-            <a href="{% url 'login' %}?next={% firstof request.path '/' %}" class="btn btn-outline-success my-2 my-sm-0" type="button" id="sin">SignIn</a>
+            <a href="{% url 'login' %}?next={% firstof request.path '/' %}" class="btn btn-outline-success my-2 my-sm-0" type="button" id="sin">Sign In</a>
           {% endif %}
         </div>
       </div>

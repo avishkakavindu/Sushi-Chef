@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+from SushiChef import myconfig
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -143,3 +145,13 @@ MEDIA_ROOT = BASE_DIR
 # Login configs
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/login'
+
+
+# SMTP Configurations
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = myconfig.EMAIL_HOST_USER
+EMAIL_HOST_PASSWORD = myconfig.EMAIL_HOST_PASSWORD
+EMAIL_USE_TLS = True

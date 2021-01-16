@@ -21,35 +21,37 @@
     <!-- END Alerts -->
 
     <div class="col-lg-5 col-sm border mb-3 mt-3 pt-3 pb-3">
-        <legend class="border-bottom mb-3 pb-3"> Register </legend>
-        <form class="needs-validation" action="" method="post" novalidate>
-        {% csrf_token %}
-            {% for field in registration_form %}
-                <label>{{ field.label }}</label>
-                {% if registration_form.is_bound %}
-                    {% if field.errors %}
-                      {% render_field field class="form-control form-control-sm is-invalid" %}
-                      {% if field.name == 'username' or 'password1' %}
-                        <small>
-                            {{ field.help_text }}
-                        </small>
-                      {% endif %}
-                      <div class="invalid-tooltip d-block float-right" data-placement="bottom">
-                      {% for error in field.errors %}
-                          {{ error }}
-                      {% endfor %}
-                      </div>
+        <div class="border-bottom mb-3 pb-3"> <h5>Register</h5> </div>
+        <div class="border-bottom pl-3 pr-3 pb-3">
+            <form class="needs-validation" action="" method="post" novalidate>
+            {% csrf_token %}
+                {% for field in registration_form %}
+                    <label>{{ field.label }}</label>
+                    {% if registration_form.is_bound %}
+                        {% if field.errors %}
+                          {% render_field field class="form-control form-control-sm is-invalid" %}
+                          {% if field.name == 'username' or 'password1' %}
+                            <small>
+                                {{ field.help_text }}
+                            </small>
+                          {% endif %}
+                          <div class="invalid-tooltip d-block float-right" data-placement="bottom">
+                          {% for error in field.errors %}
+                              {{ error }}
+                          {% endfor %}
+                          </div>
+                        {% else %}
+                          {% render_field field class="form-control form-control-sm is-valid" %}
+                        {% endif %}
                     {% else %}
-                      {% render_field field class="form-control form-control-sm is-valid" %}
+                        {% render_field field class="form-control form-control-sm" %}
                     {% endif %}
-                {% else %}
-                    {% render_field field class="form-control form-control-sm" %}
-                {% endif %}
-            {% endfor %}
-            <div class="text-right form-sm mt-3">
-                <button type="submit" class="btn btn-success">Sign up <i class="fa fa-sign-in ml-1"></i></button>
-            </div>
-        </form>
+                {% endfor %}
+                <div class="text-right form-sm mt-3">
+                    <button type="submit" class="btn btn-success">Sign up <i class="fa fa-sign-in ml-1"></i></button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 {% endblock content %}
