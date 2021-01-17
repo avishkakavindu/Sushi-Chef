@@ -11,105 +11,111 @@
         Your Cart <i class="fa fa-shopping-cart" aria-hidden="true"></i>
       </h4>
     </div>
-    <!-- cart titles -->
-    <div class="row border-bottom">
-      <div class="col-sm-1 d-md-flex justify-content-center align-items-center remove-btn d-none d-md-block">
+    {% if data %}
+      <!-- cart titles -->
+      <div class="row border-bottom">
+        <div class="col-sm-1 d-md-flex justify-content-center align-items-center remove-btn d-none d-md-block">
 
+        </div>
+        <div class="col-sm-3 d-none d-sm-block">
+          <h6>Product</h6>
+        </div>
+        <div class="col-sm-3 d-none d-sm-block">
+          <h6> Description</h6>
+        </div>
+        <div class="col-sm-2 d-none d-sm-block">
+          <h6>Quantity</h6>
+        </div>
+        <div class="col-sm text-center d-none d-sm-block">
+          <h6>Price</h6>
+        </div>
       </div>
-      <div class="col-sm-3 d-none d-sm-block">
-        <h6>Product</h6>
-      </div>
-      <div class="col-sm-3 d-none d-sm-block">
-        <h6> Description</h6>
-      </div>
-      <div class="col-sm-2 d-none d-sm-block">
-        <h6>Quantity</h6>
-      </div>
-      <div class="col-sm text-center d-none d-sm-block">
-        <h6>Price</h6>
-      </div>
-    </div>
-    <!-- Product # -->
-    {% for item in data %}
-      {% if forloop.counter|divisibleby:2 %}
-        <div class="row border-bottom pb-3 pt-1 cart-item">
-      {% else %}
-        <div class="row border-bottom pb-3 pt-1 cart-item" style="background-color: #F8F8F8">
-      {% endif %}
-          <div class="col-sm-1 d-md-flex justify-content-center align-items-center remove-btn">
-            <button type="button" class="btn bg-transparent update-cart"
-                    data-action="delete" data-product="{{ item.0.product.id }}_{{ item.0.product.get_sale_price|floatformat:2 }}">
-              <i class="fa fa-trash" aria-hidden="true"></i>
-            </button>
-          </div>
-          <div class="col-sm">
-            <img class="img-fluid img-thumbnail" src="{{ item.0.image.url }}" alt="" />
-          </div>
+      <!-- Product # -->
+      {% for item in data %}
+        {% if forloop.counter|divisibleby:2 %}
+          <div class="row border-bottom pb-3 pt-1 cart-item">
+        {% else %}
+          <div class="row border-bottom pb-3 pt-1 cart-item" style="background-color: #F8F8F8">
+        {% endif %}
+            <div class="col-sm-1 d-md-flex justify-content-center align-items-center remove-btn">
+              <button type="button" class="btn bg-transparent update-cart"
+                      data-action="delete" data-product="{{ item.0.product.id }}_{{ item.0.product.get_sale_price|floatformat:2 }}">
+                <i class="fa fa-trash" aria-hidden="true"></i>
+              </button>
+            </div>
+            <div class="col-sm">
+              <img class="img-fluid img-thumbnail" src="{{ item.0.image.url }}" alt="" />
+            </div>
 
-          <div class="col-sm">
-            <a href="product/{{ item.0.product.id }}" class="cart-product-link">
-              <h5> {{ item.0.product.name }}</h5>
-              <p class="module fades">
-                {{ item.0.product.desc }}
-              </p>
-            </a>
-          </div>
+            <div class="col-sm">
+              <a href="product/{{ item.0.product.id }}" class="cart-product-link">
+                <h5> {{ item.0.product.name }}</h5>
+                <p class="module fades">
+                  {{ item.0.product.desc }}
+                </p>
+              </a>
+            </div>
 
-          <!-- quantity -->
-          <div class="col col-sm input-group my-auto text-center">
-            <div class="quantity ml-5">
-              <input type="number" class="update-quantity" data-action="q_add" min="1" max="20" step="1"
-                     value="{{ cart|get_quantity:item.0.product.id }}" style="width: 50px"
-                data-product="{{ item.0.product.id }}_{{ item.0.product.get_sale_price|floatformat:2 }}">
+            <!-- quantity -->
+            <div class="col col-sm input-group my-auto text-center">
+              <div class="quantity ml-5">
+                <input type="number" class="update-quantity" data-action="q_add" min="1" max="20" step="1"
+                       value="{{ cart|get_quantity:item.0.product.id }}" style="width: 50px"
+                  data-product="{{ item.0.product.id }}_{{ item.0.product.get_sale_price|floatformat:2 }}">
+              </div>
+            </div>
+            <!-- cost -->
+            <div class="col col-sm mt-lg-5  text-center cost-container">
+                <span class="cost">{{ cart|get_cost:item.0.product.id }}</span>
             </div>
           </div>
-          <!-- cost -->
-          <div class="col col-sm mt-lg-5  text-center cost-container">
-              <span class="cost">{{ cart|get_cost:item.0.product.id }}</span>
-          </div>
-        </div>
 
-    {% endfor %}
-    <!-- Summary -->
-    <div class="row border-bottom justify-content-end">
-      <div class="col col-sm-2">
-        Sub-Total
+      {% endfor %}
+      <!-- Summary -->
+      <div class="row border-bottom justify-content-end">
+        <div class="col col-sm-2">
+          Sub-Total
+        </div>
+        <div class="col col-sm-2 cart-summary-text-align text-right sub-total">
+          {{ cart|get_subtotal }}
+        </div>
       </div>
-      <div class="col col-sm-2 cart-summary-text-align text-right sub-total">
-        {{ cart|get_subtotal }}
+      <div class="row border-bottom justify-content-end" style="background-color: #F8F8F8">
+        <div class="col col-sm-2 ">
+          Delivery
+        </div>
+        <div class="col col-sm-2 cart-summary-text-align text-right delivery">
+         $5.00
+        </div>
+      </div>
+      <div class="row border-top justify-content-end font-weight-bold">
+        <div class="col col-sm-2 ">
+          Total
+        </div>
+        <div class="col col-sm-2 cart-summary-text-align text-right total">
+          {{ cart|get_total:0 }}
+        </div>
+      </div>
+      <div class="row justify-content-end">
+        <div class="col col-sm-2 text-right">
+          <button type="button" class="btn btn-outline-primary">
+            <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+            <span> Shop more</span>
+          </button>
+        </div>
+        <div class="col col-sm-2 text-right">
+          <a class="btn btn-success" href="/checkout" role="button">
+            <i class="fa fa-credit-card" aria-hidden="true"></i>
+            <span> CHECKOUT</span>
+          </a>
+        </div>
       </div>
     </div>
-    <div class="row border-bottom justify-content-end" style="background-color: #F8F8F8">
-      <div class="col col-sm-2 ">
-        Delivery
+    {% else %}
+      <div class="alert-warning rounded p-3" role="alert" style="margin-bottom: 135px;">
+        Your cart is empty!
       </div>
-      <div class="col col-sm-2 cart-summary-text-align text-right delivery">
-       $5.00
-      </div>
-    </div>
-    <div class="row border-top justify-content-end font-weight-bold">
-      <div class="col col-sm-2 ">
-        Total
-      </div>
-      <div class="col col-sm-2 cart-summary-text-align text-right total">
-        {{ cart|get_total:0 }}
-      </div>
-    </div>
-    <div class="row justify-content-end">
-      <div class="col col-sm-2 text-right">
-        <button type="button" class="btn btn-outline-primary">
-          <i class="fa fa-shopping-bag" aria-hidden="true"></i>
-          <span> Shop more</span>
-        </button>
-      </div>
-      <div class="col col-sm-2 text-right">
-        <a class="btn btn-success" href="/checkout" role="button">
-          <i class="fa fa-credit-card" aria-hidden="true"></i>
-          <span> CHECKOUT</span>
-        </a>
-      </div>
-    </div>
-  </div>
+    {% endif %}
 
   </div>
   <!-- END - cart -->

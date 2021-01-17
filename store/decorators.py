@@ -14,7 +14,7 @@ def unauthenticated_user(views_func):
 
 
 # allowed user filtration
-def allowed_user(allowed_roles=[]):
+def allowed_user(allowed_roles=['customer']):
     def decorator(view_func):
         def wrapper_func(request, *args, **kwargs):
             group = None

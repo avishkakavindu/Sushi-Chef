@@ -26,7 +26,9 @@
                     <!-- Review -->
                     <div class="row mt-3 mb-3 border-bottom pb-3">
                       <div class="col-md-10 col-lg-3 text-center">
-                        <img src="{{ dish_review.reviewed_dish.main_image.0.image.url }}" class="img-thumbnail rounded-circle review-pic">
+                        <a href="/product/{{ dish_review.reviewed_dish.id }}" style="text-decoration:none">
+                            <img src="{{ dish_review.reviewed_dish.main_image.0.image.url }}" class="img-thumbnail rounded-circle review-pic">
+                        </a>
                         <small>{{ dish_review.reviewed_dish.name }}</small>
                       </div>
                       <div class="col-md-10 col-lg">

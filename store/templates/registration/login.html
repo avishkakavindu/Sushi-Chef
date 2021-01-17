@@ -35,22 +35,38 @@
             {% csrf_token %}
                 {% for field in form %}
                     <label>{{ field.label }}</label>
-                    {% if field.errors %}
-                        {% render_field field class="form-control form-control-sm is-invalid" %}
-                        {% if field.name == 'username' or 'password1' %}
-                            <small>
-                                {{ field.help_text }}
-                            </small>
+                    {% if form.is_bound %}
+                        {% if field.errors %}
+                            {% render_field field class="form-control form-control-sm is-invalid" %}
+                            {% if field.name == 'username' or 'password' %}
+                                <small>
+                                    {{ field.help_text }}
+                                </small>
+                            {% endif %}
+                            <div class="invalid-tooltip d-block float-right" data-placement="bottom">
+                            {% for error in field.errors %}
+                                {{ error }}
+                            {% endfor %}
+                            </div>
+                        {% else %}
+                              {% render_field field class="form-control form-control-sm is-valid" %}
                         {% endif %}
-                        <div class="invalid-tooltip d-block float-right" data-placement="bottom">
-                        {% for error in field.errors %}
-                            {{ error }}
-                        {% endfor %}
-                        </div>
-                    {% elif registration_form.is_bound %}
-                        {% render_field field class="form-control form-control-sm is-valid" %}
                     {% else %}
-                        {% render_field field class="form-control form-control-sm" %}
+                        {% if field.errors %}
+                            {% render_field field class="form-control form-control-sm is-invalid" %}
+                            {% if field.name == 'username' or 'password' %}
+                                <small>
+                                    {{ field.help_text }}
+                                </small>
+                            {% endif %}
+                            <div class="invalid-tooltip d-block float-right" data-placement="bottom">
+                            {% for error in field.errors %}
+                                {{ error }}
+                            {% endfor %}
+                            </div>
+                        {% else %}
+                              {% render_field field class="form-control form-control-sm is-valid" %}
+                        {% endif %}
                     {% endif %}
                 {% endfor %}
                 <div class="text-left form-sm mt-3">
@@ -59,7 +75,7 @@
                     </p>
                 </div>
                 <div class="text-right form-sm mt-0">
-                    <a href="#" class="mr-2" style="color: #0066ff">Forgot password?</a><button type="submit" class="btn btn-success">Sign in <i class="fa fa-sign-in ml-1"></i></button>
+                    <a href="/password_reset" class="mr-2" style="color: #0066ff">Forgot password?</a><button type="submit" class="btn btn-success">Sign in <i class="fa fa-sign-in ml-1"></i></button>
                 </div>
             </form>
         </div>

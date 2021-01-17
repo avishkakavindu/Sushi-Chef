@@ -1,10 +1,20 @@
 import random, string
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, pre_save
 from django.contrib.auth.signals import user_logged_in
 from django.contrib import messages
 from django.dispatch import receiver
 from django.utils import timezone
+from django.contrib.auth.models import User
 from .models import Customer, Coupon
+
+
+@receiver(pre_save, sender=User)
+def set_new_user_inactive(sender, instance, **kwargs):
+    if instance._state.adding is True:
+        print("Creating Inactive User")
+        instance.is_active = False
+    else:
+        print("Updating User Record")
 
 
 def generate_coupon():
@@ -34,5 +44,3 @@ def send_coupon_alert(sender, user, request, **kwargs):
 
     if coupons.exists():
         messages.info(request, "You have a coupon!")
-
-
