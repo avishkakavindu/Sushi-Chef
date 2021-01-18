@@ -73,3 +73,5 @@ $('.rate-me').mouseover(function(){
     var rating = $('.rate-me.fa-star').length
     $('#id_rating').val(rating)
 })
+
+// hide card details form on select cash on delivery

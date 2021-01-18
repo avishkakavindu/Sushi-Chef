@@ -174,9 +174,8 @@ class OrderedProduct(models.Model):
 
 class Payment(models.Model):
     PAYMENT_METHOD = (
-        ('Credit Card', 'Credit Card'),
-        ('Debit Card', 'Debit Card'),
-        ('Paypal', 'Paypal'),
+        ('Payhere', 'Payhere'),
+        ('Cash On Delivery', 'Cash On Delivery'),
     )
 
     order = models.ForeignKey(Order, null=True, on_delete=models.SET_NULL)
