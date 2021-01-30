@@ -126,23 +126,24 @@
                         <div class="col-sm-6">
                             <h6>Payment method</h6>
                             <div class="custom-control custom-radio">
-                                <input id="payhere" name="paymentmethod" type="radio" class="custom-control-input" checked required>
+                                <input id="payhere" name="paymentmethod" type="radio" class="custom-control-input" value="payhere" checked required>
                                 <label class="custom-control-label" for="payhere">Payhere</label>
                             </div>
                             <div class="custom-control custom-radio">
-                                <input id="cashondelivery" name="paymentmethod" type="radio" class="custom-control-input" required>
+                                <input id="cashondelivery" name="paymentmethod" type="radio" class="custom-control-input" value="cashondelivery" required>
                                 <label class="custom-control-label" for="cashondelivery">Cash On Delivery</label>
                             </div>
                         </div>
                     </div>
                     <hr>
-                    <div class="col-sm-12 text-center">
-                        <button type="submit" class="btn btn-success btn-block" name="checkout_btn">Complete Order</button>
+                    <div class="col-sm-12 text-center cod-btn">
 
                     </div>
 
                 </form>
-                <button type="submit" id="payhere-payment" >PayHere Pay</button>
+                <div class="col-sm-12 text-center ph-btn">
+                     <button type="submit" class="btn btn-success btn-block" id="payhere-payment" name="checkout_btn">Complete Order</button>
+                </div>
             </div>
     </div>
   </div>

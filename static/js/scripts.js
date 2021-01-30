@@ -74,4 +74,20 @@ $('.rate-me').mouseover(function(){
     $('#id_rating').val(rating)
 })
 
-// hide card details form on select cash on delivery
+// payhere or cash on delivery
+console.log($("input[name='paymentmethod']").val())
+$("input[name='paymentmethod']").change(function(){
+    if($(this).val() === 'payhere'){
+        $('.cod-btn').empty()
+        $('.ph-btn').empty().append(
+            '<button type="submit" class="btn btn-success btn-block" id="payhere-payment" name="checkout_btn">Complete Order</button>'
+        )
+    }
+    else{
+        $('.ph-btn').empty()
+        $('.cod-btn').empty().append(
+            '<button type="submit" class="btn btn-success btn-block" id="payhere-payment" name="checkout_btn">Complete Order</button>'
+        )
+    }
+})
+
