@@ -12,3 +12,4 @@ from .wishlist import *
 from .review import *
 from .coupon import *
 from .email_verification import *
+

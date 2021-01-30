@@ -58,13 +58,23 @@ class Product(models.Model):
     @property
     def get_rating_breakdown(self):
         all_obj = ProductReview.objects.filter(product=self)
-        breakdown = {
-            'one_star': all_obj.filter(rating=1).count() / self.get_rating_count * 100,
-            'two_star': all_obj.filter(rating=2).count() / self.get_rating_count * 100,
-            'three_star': all_obj.filter(rating=3).count() / self.get_rating_count * 100,
-            'four_star': all_obj.filter(rating=4).count() / self.get_rating_count * 100,
-            'five_star': all_obj.filter(rating=5).count() / self.get_rating_count * 100,
-        }
+        rating_count = self.get_rating_count
+        try:
+            breakdown = {
+                'one_star': all_obj.filter(rating=1).count() / rating_count * 100,
+                'two_star': all_obj.filter(rating=2).count() / rating_count * 100,
+                'three_star': all_obj.filter(rating=3).count() / rating_count * 100,
+                'four_star': all_obj.filter(rating=4).count() / rating_count * 100,
+                'five_star': all_obj.filter(rating=5).count() / rating_count * 100,
+            }
+        except ZeroDivisionError:
+            breakdown = {
+                'one_star': 0,
+                'two_star': 0,
+                'three_star': 0,
+                'four_star': 0,
+                'five_star': 0,
+            }
         return breakdown
 
     # get reviews
@@ -89,7 +99,7 @@ class ProductImage(models.Model):
 
 
 class ProductReview(models.Model):
-    customer = models.ForeignKey(Customer, related_name='customerreview_set', on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer, related_name='productreview_set', on_delete=models.CASCADE)
     product = models.ForeignKey(Product, related_name='productreview_set', on_delete=models.CASCADE)
     review = models.TextField()
     rating = models.DecimalField(max_digits=1, decimal_places=0, default=0, validators=[MinValueValidator(0), MaxValueValidator(5)])
@@ -185,6 +195,20 @@ class Payment(models.Model):
 
     def __str__(self):
         return str(self.id)
+
+
+class PayherePaymentDetail(models.Model):
+    merchant_id = models.CharField(max_length=20)
+    order_id = models.CharField(max_length=20)
+    payment_id = models.CharField(max_length=20)
+    payhere_amount = models.DecimalField(max_digits=10, decimal_places=2)
+    payhere_currency = models.CharField(max_length=3)
+    method = models.CharField(max_length=10)
+    card_holder_name = models.CharField(max_length=255)
+    card_no = models.CharField(max_length=20)
+
+    def __str__(self):
+        return 'order: {}-id: {}'.format(self.order_id, self.id)
 
 
 class Wishlist(models.Model):

@@ -167,7 +167,6 @@
 }
 
 .carousel-caption > h4,h5 {
-    font-family: Open Sans;
     font-weight: 400;
     font-style: normal;
 }
@@ -318,7 +317,6 @@
 
 .footer p, address, a {
     color: #a1a1a1;
-    font-family: Open Sans;
     font-weight: 400;
     font-style: normal;
     font-size: small;
