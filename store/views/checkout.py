@@ -90,7 +90,6 @@ def checkout(request):
         # if checkout btn clicked
         if 'checkout_btn' in request.POST:
             if delivery_form.is_valid():
-                print(cart)
                 total_payment = calculateTotal(cart)
                 # save delivery address to Order
                 delivery_details = delivery_form.save(commit=False)
@@ -136,7 +135,11 @@ def checkout(request):
                                                      order=delivery_details)
                     ordered_product.save()
 
-                messages.success(request, 'Order saved! Thank you for the purchase!')
+                if request.POST['paymentmethod'] == 'cashondelivery':
+                    messages.success(request, 'Order saved! Thank you for the purchase!')
+                else:
+                    messages.success(request, 'Order saved! Thank you for the payhere purchase!')
+
                 # cart clear
                 response = redirect(request.path)
                 response.delete_cookie('cart')

@@ -1,6 +1,7 @@
 {% extends 'store/main.html' %}
 {% block content %}
 {% load store_tags %}
+{% load static %}
 {% load widget_tweaks %}
 
     <!-- payhere API -->
@@ -139,11 +140,11 @@
                     <div class="col-sm-12 text-center cod-btn">
 
                     </div>
-
                 </form>
                 <div class="col-sm-12 text-center ph-btn">
-                     <button type="submit" class="btn btn-success btn-block" id="payhere-payment" name="checkout_btn">Complete Order</button>
+                        <button type="submit" class="btn btn-success btn-block" id="payhere-payment" name="checkout_btn">Proceed to pay</button>
                 </div>
+
             </div>
     </div>
   </div>
@@ -169,7 +170,7 @@
         };
 
         // Put the payment variables here
-        var payment = {
+        const payment = {
             "sandbox": true,
             "merchant_id": "1216558",    // Replace your Merchant ID
             "return_url": undefined,     // Important
@@ -199,4 +200,5 @@
         };
     </script>
 
+    <script src="{% static 'js/checkout.js' %}"></script>
 {% endblock content %}
