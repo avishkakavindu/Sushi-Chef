@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.http import Http404
+from django.http import Http404, HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.utils import timezone
@@ -138,8 +138,7 @@ def checkout(request):
                 if request.POST['paymentmethod'] == 'cashondelivery':
                     messages.success(request, 'Order saved! Thank you for the purchase!')
                 else:
-                    messages.success(request, 'Order saved! Thank you for the payhere purchase!')
-
+                    return HttpResponse(delivery_details.id)
                 # cart clear
                 response = redirect(request.path)
                 response.delete_cookie('cart')
@@ -153,7 +152,8 @@ def checkout(request):
         'data': [],
         'cart': cart,
         'delivery_form': delivery_form,
-        'coupon_detail': [coupon_id, coupon_discount]
+        'coupon_detail': [coupon_id, coupon_discount],
+        'user_details': user_detail
     }
 
     for item in cart:

@@ -133,7 +133,7 @@ $('.addto-wish').click(function(e){
             },
             success: function( data )
             {
-
+                console.log(data)
                 $('#added-to-cart').append("<div class='alert alert-success alert-dismissable msg'><button type='button' class='close ml-1' data-dismiss='alert' aria-hidden='true'>&times;</button><i class='fa fa-check-circle-o fa-lg mr-4' aria-hidden='true'></i>"+ data + "</div>")
             },
             error: function(data)

@@ -3,7 +3,7 @@ $("input[name='paymentmethod']").change(function(){
     if($(this).val() === 'payhere'){
         $('.cod-btn').empty()
         $('.ph-btn').empty().append(
-            '<button type="submit" class="btn btn-success btn-block" id="payhere-payment" name="checkout_btn">proceed to pay</button>'
+            '<button type="submit" class="btn btn-success btn-block payhere-payment" id="payhere-payment" name="checkout_btn">proceed to pay</button>'
         )
     }
     else{

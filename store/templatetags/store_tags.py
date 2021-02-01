@@ -46,9 +46,9 @@ def get_total(dictionary, coupon_discount):
             sum += np.prod(list(map(float, i.values())))
         if coupon_discount:
             sum -= (sum * (coupon_discount / 100))
-        return '${:.2f}'.format(sum + delivery)
+        return '{:.2f}'.format(sum + delivery)
     except KeyError:
-        return '$0.00'
+        return '0.00'
 
 
 @register.filter

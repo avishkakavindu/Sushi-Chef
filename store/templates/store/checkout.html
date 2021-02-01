@@ -48,7 +48,7 @@
                 {% endif %}
                 <li class="list-group-item d-flex justify-content-between">
                     <h5 class="font-weight-bold">Total (USD)</h5>
-                    <strong class="text-dark h6">{{ cart|get_total:coupon_detail.1 }}</strong>
+                    <strong class="text-dark h6">${{ cart|get_total:coupon_detail.1 }}</strong>
                 </li>
             </ul>
             <form class="card p-2" method="post">
@@ -64,7 +64,7 @@
         <!-- checkout form -->
         <div class="col-sm-8 border rounded mt-2 mt-sm-0" id="checkoutForm">
             <h4 class="font-weight-bold">Delivery Details</h4>
-            <form method="post">
+            <form method="post" class="checkout-form">
                 {% csrf_token %}
                 <div class="form-group row">
                     <div class="col-sm-6">
@@ -142,7 +142,7 @@
                     </div>
                 </form>
                 <div class="col-sm-12 text-center ph-btn">
-                        <button type="submit" class="btn btn-success btn-block" id="payhere-payment" name="checkout_btn">Proceed to pay</button>
+                    <button type="submit" class="btn btn-success btn-block payhere-payment" id="payhere-payment" name="checkout_btn">Proceed to pay</button>
                 </div>
 
             </div>
@@ -169,35 +169,55 @@
             console.log("Error:"  + error);
         };
 
-        // Put the payment variables here
-        const payment = {
-            "sandbox": true,
-            "merchant_id": "1216558",    // Replace your Merchant ID
-            "return_url": undefined,     // Important
-            "cancel_url": undefined,     // Important
-            "notify_url": "http://sample.com/notify",
-            "order_id": "ItemNo12345",
-            "items": "Door bell wireles",
-            "amount": "1000.00",
-            "currency": "LKR",
-            "first_name": "Saman",
-            "last_name": "Perera",
-            "email": "samanp@gmail.com",
-            "phone": "0771234567",
-            "address": "No.1, Galle Road",
-            "city": "Colombo",
-            "country": "Sri Lanka",
-            "delivery_address": "No. 46, Galle road, Kalutara South",
-            "delivery_city": "Kalutara",
-            "delivery_country": "Sri Lanka",
-            "custom_1": "",
-            "custom_2": ""
-        };
+        // handle order saving
+        $('.ph-btn').on('click', '.payhere-payment', function(e){
+            e.preventDefault();
+            console.log($('.checkout-form').serialize() + '&checkout_btn=')
+            $.ajax(
+                {
+                    type:"POST",
+                    url: "/checkout",
+                    data:$('.checkout-form').serialize() + '&checkout_btn=',
+                    success: function( data )
+                    {
+                        // Put the payment variables here
+                        const payment = {
+                            "sandbox": true,
+                            "merchant_id": "1216558",    // Replace your Merchant ID
+                            "return_url": undefined,     // Important
+                            "cancel_url": undefined,     // Important
+                            "notify_url": "http://sample.com/notify",
+                            "order_id": data,
+                            "items": "{% for item in data %}{{item.name}},{% endfor %}",
+                            "amount": "{{ cart|get_total:coupon_detail.1 }}",
+                            "currency": "USD",
+                            "first_name": "{{ user_details.user.first_name }}",
+                            "last_name": "{{ user_details.user.last_name }}",
+                            "email": "{{ user_details.user.email }}",
+                            "phone": "0771234567",
+                            "address": "{{ user_details.address }}",
+                            "city": "{{ user_details.city }}",
+                            "country": "Sri Lanka",
+                            "delivery_address": "{{ user_details.address }}, {{ user_details.city }}, {{ user_details.state }}, {{ user_details.zipcode }}",
+                            "delivery_city": "{{ user_details.city }}",
+                            "delivery_country": "Sri Lanka",
+                            "custom_1": "",
+                            "custom_2": ""
+                        };
+                        payhere.startPayment(payment);
+                    },
+                    error: function(data)
+                    {
+                        console.log('Error')
+                    }
+                 })
+
+        });
 
         // Show the payhere.js popup, when "PayHere Pay" is clicked
-        document.getElementById('payhere-payment').onclick = function (e) {
-            payhere.startPayment(payment);
-        };
+        // document.getElementById('payhere-payment').onclick = function (e) {
+        //     payhere.startPayment(payment);
+        // };
     </script>
 
     <script src="{% static 'js/checkout.js' %}"></script>
