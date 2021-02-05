@@ -35,7 +35,9 @@ def order(request, order_id):
             to_attr='ordered_products'
         ),
         Prefetch('coupon', to_attr='coupon_discount'),
+
     ),  id=order_id)
+    payment_detail = PayherePaymentDetail.objects.get(order_id=order_id)
 
     # ordered items details
     items = order_detail[0].ordered_products
@@ -48,6 +50,7 @@ def order(request, order_id):
 
     context = {
         'order_detail': order_detail,
+        'payment_detail': payment_detail,
         # calculate sub total and total
         'order_summary': get_order_summary(items, coupon_discount, delivery),
     }

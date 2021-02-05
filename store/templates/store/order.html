@@ -23,6 +23,17 @@
                           <strong>Order Id:</strong> #{{ order_detail.0.id }}<br>
                           <strong>Date:</strong> {{ order_detail.0.date }}<br>
                           <strong>Total:</strong> $ {{ order_detail.0.total }}
+                          <p class="mt-1 mb-0">
+                              <b>Payment details:</b><br> {{ order_detail.0.payment_method|capfirst }}<br>
+                              {% if order_detail.0.payment_method == 'payhere' %}
+                              <div class="payhere-order-summary ml-2">
+                                    Currency: {{ payment_detail.payhere_currency }}<br>
+                                    Method: {{ payment_detail.method }}<br>
+                                    Card Holder: {{ payment_detail.card_holder_name }}<br>
+                                    Card No: {{ payment_detail.card_no }}<br>
+                              </div>
+                              {% endif %}
+                          </p>
                       </td>
                       <td scope="col">
                           <strong>Delivery Address:</strong><br>
@@ -30,7 +41,6 @@
                           {{ order_detail.0.city }},<br>
                           {{ order_detail.0.state }},<br>
                           {{ order_detail.0.zipcode }}
-
                       </td>
                     </tr>
                   </tbody>

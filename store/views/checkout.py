@@ -118,6 +118,7 @@ def checkout(request):
                 else:
                     # update order
                     delivery_details.total = total_payment
+                    delivery_details.payment_method = request.POST.get('paymentmethod')
                     delivery_details.save()
 
                 # save individual ordered product and details

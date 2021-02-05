@@ -157,6 +157,11 @@ class Coupon(models.Model):
 
 
 class Order(models.Model):
+    PAYMENT_METHOD = (
+        ('payhere', 'Payhere'),
+        ('cashondelivery', 'Cash on delivery'),
+    )
+
     customer = models.ForeignKey(Customer, null=True, on_delete=models.SET_NULL)
     address = models.CharField(max_length=200)
     city = models.CharField(max_length=100)
@@ -166,6 +171,7 @@ class Order(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     total = models.DecimalField(max_digits=10, decimal_places=2)
     coupon = models.ForeignKey(Coupon, null=True, blank=True, on_delete=models.DO_NOTHING, related_name='coupon_set')
+    payment_method = models.CharField(max_length=50, choices=PAYMENT_METHOD)
 
     def __str__(self):
         return str(self.id)
@@ -182,30 +188,14 @@ class OrderedProduct(models.Model):
         return str(self.id)
 
 
-class Payment(models.Model):
-    PAYMENT_METHOD = (
-        ('Payhere', 'Payhere'),
-        ('Cash On Delivery', 'Cash On Delivery'),
-    )
-
-    order = models.ForeignKey(Order, null=True, on_delete=models.SET_NULL)
-    payment_method = models.CharField(max_length=50, choices=PAYMENT_METHOD)
-    payment = models.DecimalField(max_digits=10, decimal_places=2)
-    date = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return str(self.id)
-
-
 class PayherePaymentDetail(models.Model):
     merchant_id = models.CharField(max_length=20)
-    order_id = models.CharField(max_length=20)
-    payment_id = models.CharField(max_length=20)
     payhere_amount = models.DecimalField(max_digits=10, decimal_places=2)
     payhere_currency = models.CharField(max_length=3)
     method = models.CharField(max_length=10)
     card_holder_name = models.CharField(max_length=255)
     card_no = models.CharField(max_length=20)
+    order_id = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='payherepayment_set')
 
     def __str__(self):
         return 'order: {}-id: {}'.format(self.order_id, self.id)
