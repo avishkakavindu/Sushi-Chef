@@ -4,4 +4,4 @@ __pycache__
 .idea
 static/admin
 /images/user/
-
+/SushiChef/myconfig.py
