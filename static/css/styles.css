@@ -67,8 +67,8 @@
 }
 
 .profile-link:hover {
-    color: #280000 ;
     text-decoration: none;
+    color: #280000 ;
     text-shadow: 1px 1px 1px #989898;
 }
 
