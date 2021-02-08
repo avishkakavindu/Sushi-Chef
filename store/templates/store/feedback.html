@@ -1,0 +1,52 @@
+{% extends "store/main.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% load tz %}
+{% block content %}
+
+<script>
+    $('body').css("background-color", "#040b14");
+</script>
+<div class="container d-flex justify-content-center mb-4">
+    <!-- Alerts -->
+    {% if messages %}
+      {% for message in messages %}
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Success! </strong>
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        {% endif %}
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Error! </strong>
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+
+    <!-- END Alerts -->
+    <div class="col-lg-5 col-sm mb-5 mt-5 p-0" style="background: #41c516d; color: #ffffff">
+        <div class="border-bottom mb-3 p-3"> <h4>Feedbacks</h4> </div>
+            <div class="pl-3 pr-3 pb-3">
+                <form method="post">
+                    {% csrf_token %}
+                    {% for field in feedback_form %}
+                      {% render_field field class="form-control form-control-sm" %}
+                    {% endfor %}
+                    <div class="text-right form-sm mt-3">
+                        <button class="btn btn-outline-success" type="submit">submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
