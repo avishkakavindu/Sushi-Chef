@@ -7,61 +7,8 @@
 <div class="container mb-0">
 
     <div class="row ml-0 d-flex justify-content-center">
-
-        <div class="col-sm col-lg-9 order-history p-3 mt-3 mr-3 mb-5">
-            <caption>
-                <h4 class="mb-4"><i class="fa fa-gift mr-2" aria-hidden="true"></i>Coupons</h4>
-            </caption>
-            <div class="table-responsive">
-              {% if coupons %}
-              <table class="table table-hover">
-                  <thead>
-                    <tr>
-                      <th scope="col">Code</th>
-                      <th scope="col">Description</th>
-                      <th scope="col">Offer</th>
-                      <th scope="col">Used Order</th>
-                      <th scope="col">Is Valid</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {% for coupon in coupons %}
-                    <tr>
-                      <td scope="col" class="coupon-code text-center"> {{ coupon.code }} </td>
-                      <td scope="col">
-                          <p class="m-0">
-                            {{ coupon.desc }}
-                          </p>
-                          <small class="foat-right">Valid until: {{ coupon.valid_to }}</small>
-                      </td>
-                      <td scope="col"> {{ coupon.discount }}% off </td>
-                      <td scope="col">
-
-                            {{  coupon.valid_to|coupon_status:coupon.order }}
-
-                      </td>
-                      <td scope="col" class="text-center">
-                        {% if coupon.valid_to|is_active:coupon.order %}
-                          <i class="fa fa-check-circle" aria-hidden="true"></i>
-                        {% else %}
-                          <i class="fa fa-times-circle" aria-hidden="true"></i>
-                        {% endif %}
-                      </td>
-                    </tr>
-                    {% endfor %}
-                  </tbody>
-              </table>
-              {% else %}
-                <div class="alert-warning rounded p-3" role="alert">
-                    Sorry, You don't have any coupons...
-                </div>
-              {% endif %}
-            </div>
-        </div>
-
-
-        <!-- related links to profile -->
-        <div class="col-sm col-lg  related-links mr-3 mb-3 pt-3 pl-0 pr-0">
+         <!-- related links to profile -->
+        <div class="col-sm col-lg order-md-2 related-links mr-3 mb-3 pt-3 pl-0 pr-0">
             <div class="related-links border">
                 <div class="related-content-heading">
                     <h4 class="ml-3">Account</h4>
@@ -104,6 +51,59 @@
                 </div>
             </div>
         </div>
+
+        <!-- coupons -->
+        <div class="col-sm col-lg-9 order-md-1 order-history p-3 mt-3 mr-3 mb-5">
+            <caption>
+                <h4 class="mb-4"><i class="fa fa-gift mr-2" aria-hidden="true"></i>Coupons</h4>
+            </caption>
+            <div class="table-responsive">
+              {% if coupons %}
+              <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">Code</th>
+                      <th scope="col">Description</th>
+                      <th scope="col">Offer</th>
+                      <th scope="col">Used Order</th>
+                      <th scope="col">Is Valid</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for coupon in coupons %}
+                    <tr>
+                      <td scope="col" class="coupon-code text-center"> {{ coupon.code }} </td>
+                      <td scope="col">
+                          <p class="m-0">
+                            {{ coupon.desc }}
+                          </p>
+                          <small class="foat-right text-danger">Valid until: {{ coupon.valid_to }}</small>
+                      </td>
+                      <td scope="col"> {{ coupon.discount }}% off </td>
+                      <td scope="col">
+
+                            {{  coupon.valid_to|coupon_status:coupon.order }}
+
+                      </td>
+                      <td scope="col" class="text-center">
+                        {% if coupon.valid_to|is_active:coupon.order %}
+                          <i class="fa fa-check-circle" aria-hidden="true"></i>
+                        {% else %}
+                          <i class="fa fa-times-circle" aria-hidden="true"></i>
+                        {% endif %}
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+              </table>
+              {% else %}
+                <div class="alert-warning rounded p-3" role="alert">
+                    Sorry, You don't have any coupons...
+                </div>
+              {% endif %}
+            </div>
+        </div>
+
     </div>
 </div>
 

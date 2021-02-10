@@ -5,20 +5,58 @@
 {% block content %}
 
 <div class="container mb-0">
-    <caption><h4 class="mt-4">My Reviews</h4></caption>
     <div class="row ml-0 d-flex justify-content-center">
-      <div class="col-sm col-lg-9 order-history p-3 mr-3 mb-5">
+      <div class="col-sm col-lg order-history p-3 mr-3 mb-5">
         <div class="row mt-0" id="reviews">
-            <div class="col-md col-lg">
-              <!-- Review tabs -->
-              <nav>
-                <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
-                       aria-controls="nav-home" aria-selected="true">Dishes</a>
-                    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
-                       aria-controls="nav-profile" aria-selected="false">Chefs </a>
+            <!-- related links to profile -->
+            <div class="col-sm col-lg order-md-2 related-links ml-3 mb-3 pt-3 pl-0 pr-0">
+            <div class="related-links border">
+                <div class="related-content-heading">
+                    <h4 class="ml-3">Account</h4>
                 </div>
-              </nav>
+
+                <div class="related-content">
+                    <ul>
+                        <li>
+                            <a href="/profile">
+                                <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                My Account
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/order_history">
+                                <i class="fa fa-history" aria-hidden="true"></i>
+                                Order History
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/wishlist">
+                                <i class="fa fa-heart" aria-hidden="true"></i>
+                                Wish List
+                            </a>
+                        </li>
+                        <li>
+                            <a href="my_reviews">
+                                <i class="fa fa-comments" aria-hidden="true"></i>
+                                My Reviews
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/my_coupons">
+                                <i class="fa fa-gift" aria-hidden="true"></i>
+                                My Coupons
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+            <!-- reviews -->
+            <div class="col-md col-lg-9 order-md-1">
+                <caption><h4 class="mt-4">My Reviews</h4></caption>
+              <!-- Review tabs -->
               <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane active fade show  mt-2" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                   {% if dish_reviews %}
@@ -112,51 +150,6 @@
           </div>
       </div>
 
-
-        <!-- related links to profile -->
-        <div class="col-sm col-lg  related-links mr-3 mb-3 pt-3 pl-0 pr-0">
-            <div class="related-links border">
-                <div class="related-content-heading">
-                    <h4 class="ml-3">Account</h4>
-                </div>
-
-                <div class="related-content">
-                    <ul>
-                        <li>
-                            <a href="/profile">
-                                <i class="fa fa-info-circle" aria-hidden="true"></i>
-                                My Account
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/order_history">
-                                <i class="fa fa-history" aria-hidden="true"></i>
-                                Order History
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/wishlist">
-                                <i class="fa fa-heart" aria-hidden="true"></i>
-                                Wish List
-                            </a>
-                        </li>
-                        <li>
-                            <a href="my_reviews">
-                                <i class="fa fa-comments" aria-hidden="true"></i>
-                                My Reviews
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/my_coupons">
-                                <i class="fa fa-gift" aria-hidden="true"></i>
-                                My Coupons
-                            </a>
-                        </li>
-
-                    </ul>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 

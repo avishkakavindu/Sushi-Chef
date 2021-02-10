@@ -1,11 +1,8 @@
-from django.db import models
-from django.db.models import Avg, F
-from django.contrib.auth.models import User
-from django.core.validators import MinValueValidator, MaxValueValidator
-from django.utils import timezone
 from datetime import datetime, timedelta
 from django.contrib.auth.models import User
-
+from django.core.validators import MinValueValidator, MaxValueValidator
+from django.db import models
+from django.db.models import Avg, F
 
 User._meta.get_field('email')._unique = True
 
@@ -167,6 +164,7 @@ class Order(models.Model):
     city = models.CharField(max_length=100)
     state = models.CharField(max_length=100)
     zipcode = models.CharField(max_length=20)
+    telephone_no = models.CharField(max_length=10)
     delivery = models.DecimalField(max_digits=5, decimal_places=2, default=5.00)
     date = models.DateTimeField(auto_now_add=True)
     total = models.DecimalField(max_digits=10, decimal_places=2)
@@ -175,6 +173,15 @@ class Order(models.Model):
 
     def __str__(self):
         return str(self.id)
+
+    @property
+    def tpno(self):
+        position = [3, 8]
+        tp = self.telephone_no
+
+        for i in position:
+            tp = tp[:i] + " " + tp[i:]
+        return tp
 
 
 class OrderedProduct(models.Model):
@@ -209,3 +216,8 @@ class Wishlist(models.Model):
         return '{}-{}'.format(self.id, self.customer)
 
 
+class Feedback(models.Model):
+    feedback = models.TextField()
+
+    def __str__(self):
+        return '{}'.format(self.id)

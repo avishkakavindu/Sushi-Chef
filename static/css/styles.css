@@ -1,3 +1,10 @@
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+}
 /* --- logo ---*/
 #site-logo {
     padding: 22px 22px 10px;
@@ -27,16 +34,16 @@
 }
 
 .fa-instagram:hover {
-    color: #E1306C;
+    color: #e1306c;
 }
 
 .sticky-cart-icon {
     font-size: 1.2rem;
-    color: #d8d8d8d;
+    color: #d8d8d8;
 }
 
 .cart-badge {
-    padding: 2px 5px 2px 5px;
+    padding: 1px 4px 1px 4px;
     font-size: 15px;
 }
 
@@ -78,8 +85,8 @@
 }
 
 .navbar {
-    padding-top: 0px;
-    padding-bottom: 0px;
+    padding-top: 0;
+    padding-bottom: 0;
 }
 
 .navbar .btn-outline-success {
@@ -132,7 +139,6 @@
     .carousel-caption {
         position: absolute;
         left: auto;
-        right: auto;
         width: 50%;
         top: 25%;
         right:0;
@@ -209,14 +215,13 @@
 
 /* --- jumbotron --- */
 .jumbotron {
-    background-color: #f5f5f5;
     padding-top: 5vh;
     padding-bottom: 0;
-    background: url("/static/images/staticimg/background.png");
+    background: #f5f5f5 url("/static/images/staticimg/background.png");
 }
 
 .jumbotron  h1 {
-    font-family: 'Brush Script MT';
+    font-family: 'Brush Script MT', cursive;
     align-self: center;
 }
 
@@ -232,20 +237,20 @@
 
 /* --- album --- */
 #welcome span {
-    font-family: 'Brush Script MT';
+    font-family: 'Brush Script MT', cursive;
     font-size: xx-large;
     color : #f17661;
 }
 
 #welcome h2 {
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', cursive;
     font-style: normal;
     color: #202022;
     font-size: x-large;
 }
 
 #welcome p {
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', cursive;
     font-size: small;
     color: #989898;
 }
@@ -260,7 +265,7 @@
 }
 
 #chefsSection h2 {
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', cursive;
     font-style: normal;
     color: #202022;
     font-size: x-large;
@@ -268,7 +273,7 @@
 }
 
 #chefsSection span {
-    font-family: 'Brush Script MT';
+    font-family: 'Brush Script MT', cursive;
     font-size: xx-large;
 }
 
@@ -302,16 +307,22 @@
     min-height: 350px;
 }
 
+.product-img {
+    min-height: 330px;
+    min-width: 330px;
+}
+
 /* --- foooter --- */
 .footer {
     background: url("../images/staticimg/sand.png") #1a1a1a repeat scroll top center;
-    margin: 0px auto;
-    padding: 20px 0px;
+    margin: 0 auto;
+    padding: 20px 0;
+    float: bottom;
 }
 
 .footer h5 {
     color: #fff;
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', cursive;
     font-style: normal;
 }
 
@@ -332,6 +343,10 @@
 .footer hr {
     border-top: 1px solid #383838;;
     margin: 1px;
+}
+
+.spacer {
+    height: 30vh;
 }
 
 
@@ -374,7 +389,7 @@
 
 
 #promo .col-lg {
-    margin: 0px;
+    margin: 0;
 }
 
 #promo .btn-primary:hover {
@@ -390,14 +405,11 @@
 .promo-img {
     height: 150px;
     width: 150px;
-    border-bottom-right-radius: calc(.25rem - 1px);
-    border-bottom-left-radius: calc(.25rem - 1px);
-    border-top-right-radius: calc(.25rem - 1px);
-    border-top-left-radius: calc(.25rem - 1px);
+    border-radius: calc(.25rem - 1px);
 }
 
 .promo-item {
-    padding-right: 0px;
+    padding-right: 0;
     margin: 10px;
 }
 
@@ -414,7 +426,7 @@
 #cart {
     background-color: #fff;
     padding-top: 20px;
-    margin-bottom: 0px;
+    margin-bottom: 0;
     padding-bottom: 15px;
 }
 
@@ -431,7 +443,7 @@
 
 #cart .row div {
     margin-top: 10px;
-    margin-bottom: 0px;
+    margin-bottom: 0;
 }
 
 #cart i.fa.fa-trash {
@@ -446,7 +458,7 @@
 
 .cart-title {
     background-color:#f17661;
-    margin-top: 0px;
+    margin-top: 0;
 }
 
 @media screen and (min-width: 767px) {
@@ -613,7 +625,7 @@ button.btn.btn-secondary:hover {
 
 /* --rating system -- */
 .star-rating {
-    margin-top: 0px;
+    margin-top: 0;
 }
 
 .star-rating i {
@@ -646,7 +658,7 @@ button.btn.btn-secondary:hover {
 
 .cart-options a {  
     color: #fff;
-    padding: 0px;
+    padding: 0;
  }
 
  .cart-options span:hover {
@@ -679,12 +691,12 @@ button.btn.btn-secondary:hover {
  }
 
  #product h1 {
-     font-family: Open Sans;
+     font-family: Open Sans, cursive;
      margin-bottom: 0;
  }
 
  #product .row {
-     margin: 0px;
+     margin: 0;
  }
 
  .main-img {
@@ -694,11 +706,11 @@ button.btn.btn-secondary:hover {
  
  .sub-img {
      width: 100px;
-     margin: 0 0px 10px 10px;
+     margin: 0 0 10px 10px;
  }
 
  #reviews {
-     margin: 0px;
+     margin: 0;
  }
 
  #nav-profile textarea{
@@ -715,7 +727,7 @@ button.btn.btn-secondary:hover {
  .graphical-avg {
      border: 1px solid #dee2e6;
      background-color: #fafafa;
-     padding: 20px 0px 20px 15px;
+     padding: 20px 0 20px 15px;
      margin: 10px ;
  }
 
@@ -744,7 +756,7 @@ button.btn.btn-secondary:hover {
  }
 
  .progress {
-     margin: 0px;
+     margin: 0;
      height: 5px;
  }
 
@@ -763,7 +775,7 @@ button.btn.btn-secondary:hover {
 
  .quantity {
      width: 50px;
-     margin: 3px 0px 3px 5px;
+     margin: 3px 0 3px 5px;
  }
 
  .pricing .btn-outline-success {
@@ -851,7 +863,7 @@ button.btn.btn-secondary:hover {
 }
 
 .related-links p {
-    margin: 0px 0px 1px 0px;
+    margin: 0 0 1px 0;
 }
 
 .related-links a:hover span {
@@ -884,7 +896,7 @@ button.btn.btn-secondary:hover {
  }
 
 #change-pic-detail {
-    font-family: Open Sans;
+    font-family: Open Sans, cursive;
     font-weight: 400;
     font-style: normal;
     font-size: small;
@@ -911,7 +923,7 @@ button.btn.btn-secondary:hover {
 }
 
 .related-content li {
-    padding: 10px 0px 10px 0px;
+    padding: 10px 0 10px 0;
     color: #596057;
     font-family: Open Sans, sans-serif;
     font-size: 13px;
@@ -1043,4 +1055,131 @@ tbody, tbody a {
 	#lout {
 	    order: 2;
 	}
+}
+
+
+/* about.html -- */
+#hero {
+  width: 100%;
+  height: 100vh;
+  background: top center;
+  background-size: cover;
+}
+
+#hero:before {
+  content: "";
+  background: rgba(5, 13, 24, 0.3);
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+
+#hero .hero-container {
+  position: relative;
+  z-index: 2;
+  min-width: 300px;
+}
+
+#hero h1 {
+  margin: 0 0 10px 0;
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 56px;
+  color: #fff;
+}
+
+#hero p {
+  color: #fff;
+  margin-bottom: 50px;
+  font-size: 26px;
+  font-family: "Poppins", sans-serif;
+}
+
+#hero p span {
+  color: #fff;
+  padding-bottom: 4px;
+  letter-spacing: 1px;
+  border-bottom: 3px solid #149ddd;
+}
+
+@media (min-width: 1024px) {
+  #hero {
+    background-attachment: fixed;
+  }
+}
+
+@media (max-width: 768px) {
+  #hero h1 {
+    font-size: 28px;
+    line-height: 36px;
+  }
+  #hero h2 {
+    font-size: 18px;
+    line-height: 24px;
+    margin-bottom: 30px;
+  }
+}
+
+
+#header {
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  transition: all ease-in-out 0.5s;
+  z-index: 9997;
+  transition: all 0.5s;
+  padding: 0 15px;
+  background: #040b14;
+  overflow-y: auto;
+}
+
+#header .profile img {
+  margin: 15px auto;
+  display: block;
+  width: 120px;
+  border: 8px solid #2c2f3f;
+}
+
+#header .profile h1 {
+  font-size: 24px;
+  margin: 0;
+  padding: 0;
+  font-weight: 600;
+  -moz-text-align-last: center;
+  text-align-last: center;
+  font-family: "Poppins", sans-serif;
+}
+
+#header .profile h1 a, #header .profile h1 a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+#header .profile .social-links a {
+  font-size: 18px;
+  display: inline-block;
+  background: #212431;
+  color: #fff;
+  line-height: 1;
+  padding: 8px 0;
+  margin-right: 4px;
+  border-radius: 50%;
+  text-align: center;
+  width: 36px;
+  height: 36px;
+  transition: 0.3s;
+}
+
+#header .profile .social-links a:hover {
+  background: #149ddd;
+  color: #fff;
+  text-decoration: none;
+}
+
+#main {
+  margin-left: 300px;
 }

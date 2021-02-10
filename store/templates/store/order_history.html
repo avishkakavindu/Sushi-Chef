@@ -8,51 +8,9 @@
 
     <div class="row ml-0 d-flex justify-content-center">
 
-        <div class="col-sm col-lg-9 order-history p-3 mt-3 mr-3 mb-5">
-            <caption>
-                <h4 class="mb-4"> <i class="fa fa-history mr-2" aria-hidden="true"></i>Order History</h4>
-            </caption>
-            <div class="table-responsive">
-              {% if orders %}
-              <table class="table table-hover">
-                  <thead>
-                    <tr>
-                      <th scope="col">Order Id</th>
-                      <th scope="col">Placed By</th>
-                      <th scope="col">No. of Dishes</th>
-                      <th scope="col">Total</th>
-                      <th scope="col">Date</th>
-                      <th scope="col">View</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {% for order in orders %}
-                    <tr>
-                      <td scope="col">#{{ order.id }}</td>
-                      <td scope="col">{{ order.customer }}</td>
-                      <td scope="col">{{ order.ordered_products|length }}</td>
-                      <td scope="col">${{ order.total }}</td>
-                      <td scope="col">{{ order.date }}</td>
-                      <td>
-                          <a href="order/{{ order.id }}">
-                              <i class="fa fa-eye" aria-hidden="true"></i>
-                          </a>
-                      </td>
-                    </tr>
-                    {% endfor %}
-                  </tbody>
-              </table>
-              {% else %}
-                <div class="alert-warning rounded p-3" role="alert">
-                    No Order History found!
-                </div>
-              {% endif %}
-            </div>
-        </div>
-
 
         <!-- related links to profile -->
-        <div class="col-sm col-lg  related-links mr-3 mb-3 pt-3 pl-0 pr-0">
+        <div class="col-sm col-lg order-md-2 related-links mr-3 mb-3 pt-3 pl-0 pr-0">
             <div class="related-links border">
                 <div class="related-content-heading">
                     <h4 class="ml-3">Account</h4>
@@ -95,6 +53,50 @@
                 </div>
             </div>
         </div>
+
+        <div class="col-sm col-lg-9 order-md-1 order-history p-3 mt-3 mr-3 mb-5">
+            <caption>
+                <h4 class="mb-4"> <i class="fa fa-history mr-2" aria-hidden="true"></i>Order History</h4>
+            </caption>
+            <div class="table-responsive">
+              {% if orders %}
+              <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">Order Id</th>
+                      <th scope="col">Placed By</th>
+                      <th scope="col">No. of Dishes</th>
+                      <th scope="col">Total</th>
+                      <th scope="col">Date</th>
+                      <th scope="col">View</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for order in orders %}
+                    <tr>
+                      <td scope="col">#{{ order.id }}</td>
+                      <td scope="col">{{ order.customer }}</td>
+                      <td scope="col">{{ order.ordered_products|length }}</td>
+                      <td scope="col">${{ order.total }}</td>
+                      <td scope="col">{{ order.date }}</td>
+                      <td>
+                          <a href="order/{{ order.id }}">
+                              <i class="fa fa-eye" aria-hidden="true"></i>
+                          </a>
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+              </table>
+              {% else %}
+                <div class="alert-warning rounded p-3" role="alert">
+                    No Order History found!
+                </div>
+              {% endif %}
+            </div>
+        </div>
+
+
     </div>
 </div>
 

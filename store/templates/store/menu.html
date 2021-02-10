@@ -35,7 +35,7 @@
         <div class="col-md-6 col-lg-3 mb-5">
           <div class="product">
             <a href="/product/{{ product.id }}" class="product-link">
-              <img src="{{ product.main_image.0.image.url }}" class="img-fluid mt-3">
+              <img src="{{ product.main_image.0.image.url }}" class="img-fluid menu-img mt-3">
               {% if product.discount != 0 %}
               <span class="bonus bonus-left bonus-success">{{ product.discount }}% off</span>
               {% endif %}

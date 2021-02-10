@@ -14,4 +14,15 @@ $("input[name='paymentmethod']").change(function(){
     }
 })
 
+// show alert
+function showAlert(msg){
+         $('#payhere-alert').html('<div class="alert alert-warning alert-dismissible fade show" id="payhere-alert" role="alert">\n' +
+             '                <p id="msg">'+msg+'</p>\n' +
+             '              <button type="button" class="close" data-dismiss="alert" aria-label="Close">\n' +
+             '                <span aria-hidden="true">&times;</span>\n' +
+             '              </button>\n' +
+             '            </div>');
+         $('#alert').show();
+        }
+
 

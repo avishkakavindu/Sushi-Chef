@@ -1,13 +1,12 @@
-from django.contrib.auth.decorators import login_required
-from django.http import Http404, HttpResponse
-from django.shortcuts import render, redirect
-from django.contrib import messages
-from django.utils import timezone
-from store.models import *
-from store.decorators import allowed_user
-from store.forms import DeliveryForm, CouponForm
 import json
 from decimal import Decimal
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.contrib.sites.shortcuts import get_current_site
+from django.http import Http404, HttpResponse
+from django.shortcuts import render, redirect
+from store.forms import DeliveryForm, CouponForm
+from store.models import *
 
 
 # checkout page
@@ -17,9 +16,12 @@ def checkout(request):
     if 'HTTP_REFERER' in request.META.keys() and request:
         try:
             previous_url = request.META.get('HTTP_REFERER')
-            if previous_url == 'http://127.0.0.1:8000/checkout':
+            domain = get_current_site(request).domain
+            protocol = 'https' if request.is_secure() else 'http'
+
+            if previous_url == '{}://{}/checkout'.format(protocol, domain):
                 pass
-            elif previous_url == 'http://127.0.0.1:8000/cart':
+            elif previous_url == '{}://{}/cart'.format(protocol, domain):
                 if len(json.loads(request.COOKIES['cart'])) != 0:
                     pass
                 else:
@@ -136,14 +138,18 @@ def checkout(request):
                                                      order=delivery_details)
                     ordered_product.save()
 
+                order_id = delivery_details.id
+
                 if request.POST['paymentmethod'] == 'cashondelivery':
                     messages.success(request, 'Order saved! Thank you for the purchase!')
+
+                    # cart clear
+                    response = redirect('order', order_id=order_id)
+                    response.delete_cookie('cart')
+                    return response
                 else:
-                    return HttpResponse(delivery_details.id)
-                # cart clear
-                response = redirect(request.path)
-                response.delete_cookie('cart')
-                return response
+                    # return order_id for ajax req
+                    return HttpResponse(order_id)
 
             # checkout process error
             messages.error(request, 'Checkout process terminated!')
@@ -175,10 +181,8 @@ def calculateTotal(cart):
         quantity = cart[product]['quantity']
         cost_detail = Product.objects.filter(id=product).values('price', 'discount')
         cost = cost_detail[0]['price'] * quantity
-        discount = (cost_detail[0]['discount']/100) * cost
+        discount = (cost_detail[0]['discount'] / 100) * cost
 
         total += (cost - discount)
 
     return Decimal(total)
-
-

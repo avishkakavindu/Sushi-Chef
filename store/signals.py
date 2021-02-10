@@ -10,11 +10,19 @@ from .models import Customer, Coupon
 
 @receiver(pre_save, sender=User)
 def set_new_user_inactive(sender, instance, **kwargs):
-    if instance._state.adding is True:
+    if instance._state.adding is True and instance.is_superuser == False:
         print("Creating Inactive User")
         instance.is_active = False
     else:
-        print("Updating User Record")
+        print("Updating User Record!")
+
+
+@receiver(post_save, sender=User)
+def save_profile(sender, instance, created, **kwargs):
+    user = instance
+    if created and user.is_superuser:
+        customer = Customer(user=user)
+        customer.save()
 
 
 def generate_coupon():

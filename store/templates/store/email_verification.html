@@ -1,0 +1,57 @@
+{% extends "store/main.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% block content %}
+<div class="container d-flex justify-content-center mb-4">
+    <!-- Alerts -->
+    {% if messages %}
+      {% for message in messages %}
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Success! </strong>
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        {% endif %}
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Error! </strong>
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+    <!-- END Alerts -->
+
+    <div class="col-lg-8 col-sm mb-5 mt-5 p-4 pb-0 border">
+        <div class="mb-3 border-bottom" > <h5><i class="fa fa-envelope-o mr-2" aria-hidden="true"></i>Please Verify Your Email Address</h5> </div>
+        <div class="pl-3 pr-3">
+            <div class="text-left form-sm mt-3 border-bottom">
+                <p>
+                    <small>
+                        We now need to verify your email address. We've sent an email to {{ email }} to verify your address.
+                        Please click the link in that email to continue, and check your spam folder.
+                    </small>
+                </p>
+            </div>
+            <div>
+                <p>
+                    <form id="resend" action="{% url 'register' %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" id="email" name="email" value="{{ email }}">
+                        <label>Need to resend email?</label>
+                        <a href="#" class="text-primary" onclick="document.getElementById('resend').submit();">Re-send Email</a>
+                    </form>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

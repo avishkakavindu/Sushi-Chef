@@ -1,7 +1,14 @@
 from django.core.mail import EmailMessage
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
 from six import text_type
 import threading
+from django.core.mail import EmailMultiAlternatives
+from decouple import config
+
+
+config.encoding = 'cp1251'
 
 
 class TokenGenerator(PasswordResetTokenGenerator):
@@ -26,5 +33,10 @@ class EmailThread(threading.Thread):
 class Util:
     @staticmethod
     def send_email(data):
-        email = EmailMessage(subject=data['email_subject'], body=data['email_body'], to=[data['receiver']])
-        EmailThread(email).start()
+        msg_plain = render_to_string('email/email_normal_email.txt', data['email_body'])
+        msg_html = render_to_string('email/email_normal_email.html', data['email_body'])
+
+        msg = EmailMultiAlternatives(data['email_subject'], msg_plain, config('EMAIL_HOST_USER'), [data['receiver']])
+        msg.attach_alternative(msg_html, "text/html")
+
+        EmailThread(msg).start()

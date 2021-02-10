@@ -1,15 +1,15 @@
-from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.models import Group, User
-from store.forms import CreateUserForm
+from django.contrib.sites.shortcuts import get_current_site
+from django.core.exceptions import ObjectDoesNotExist
+from django.shortcuts import render, redirect
+from django.urls import reverse
+from django.utils.encoding import force_bytes
+from django.utils.http import urlsafe_base64_encode
 from store.decorators import unauthenticated_user
+from store.forms import CreateUserForm
 from store.models import Customer
 from store.util import Util, token_generator
-from django.utils.encoding import force_bytes, force_text, DjangoUnicodeDecodeError
-from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from django.contrib.sites.shortcuts import get_current_site
-from django.urls import reverse
-from django.core.exceptions import ObjectDoesNotExist
 
 
 # Register page
@@ -18,10 +18,25 @@ def register(request):
     form = CreateUserForm()
 
     if request.method == 'POST':
+        print('\n\n', request.POST, '\n')
         form = CreateUserForm(request.POST)
 
+        domain = get_current_site(request).domain
+
+        data = {
+            'receiver': '',
+            'email_body': {
+                            'username': '',
+                            'email_body': '',
+                            'link': '',
+                            'link_text': 'Verify Your Email',
+                            'email_reason': "You're receiving this email because you signed up in {}".format(domain),
+                            'site_name': domain
+                        },
+            'email_subject': 'Verify your Email',
+        }
+
         try:
-            print(request.POST)
             user = User.objects.get(email=request.POST['email'])
 
             if user.is_active:
@@ -31,18 +46,16 @@ def register(request):
                 uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
                 token = token_generator.make_token(user)
 
-                domain = get_current_site(request).domain
                 link = reverse('activate', kwargs={'uidb64': uidb64, 'token': token})
-                url = 'http://{}{}'.format(domain, link)
+                schema = request.is_secure() and "https" or "http"
+                url = '{}://{}{}'.format(schema, domain, link)
 
-                email_body = "Hi {},\nPlease use following url to verify your email\n {}\n\n Thanks for using our " \
-                             "site!\nThe {} team".format(user.username, url, domain)
+                email_body = 'Verify your email to finish signing up for Sushi Chef'
 
-                data = {
-                    'receiver': user.email,
-                    'email_body': email_body,
-                    'email_subject': 'Verify your Email',
-                }
+                data['receiver'] = user.email
+                data['email_body']['username'] = user.username
+                data['email_body']['email_body'] = email_body
+                data['email_body']['link'] = url
 
                 Util.send_email(data)
 
@@ -50,7 +63,13 @@ def register(request):
                     request,
                     'Verification email was sent. Please verify your email.'
                 )
+
+                context = {
+                    'email': user.email
+                }
+                return render(request, 'store/email_verification.html', context)
             return redirect('login')
+
         except ObjectDoesNotExist:
             if form.is_valid():
                 user = form.save()
@@ -65,18 +84,16 @@ def register(request):
                 uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
                 token = token_generator.make_token(user)
 
-                domain = get_current_site(request).domain
                 link = reverse('activate', kwargs={'uidb64': uidb64, 'token': token})
-                url = 'http://{}{}'.format(domain, link)
+                schema = request.is_secure() and "https" or "http"
+                url = '{}://{}{}'.format(schema, domain, link)
 
-                email_body = "Hi {},\nPlease use following url to verify your email\n {}\n\n Thanks for using our " \
-                             "site!\nThe {} team".format(username, url, domain)
+                email_body = 'Verify your email to finish signing up for Sushi Chef'
 
-                data = {
-                    'receiver': user.email,
-                    'email_body': email_body,
-                    'email_subject': 'Verify your Email',
-                }
+                data['receiver'] = user.email
+                data['email_body']['username'] = user.username
+                data['email_body']['email_body'] = email_body
+                data['email_body']['link'] = url
 
                 Util.send_email(data)
 
@@ -84,7 +101,12 @@ def register(request):
                     request,
                     'Account was created for {} and verification email was sent. Please verify your email.'.format(username)
                 )
-                return redirect('login')
+
+                context = {
+                    'email': user.email
+                }
+
+                return render(request, 'store/email_verification.html', context)
 
             else:
                 messages.error(request, "Something went wrong. Account not created!")

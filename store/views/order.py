@@ -1,11 +1,8 @@
+from decimal import Decimal
 from django.contrib.auth.decorators import login_required
-from django.contrib import messages
+from django.db.models import Prefetch
 from django.shortcuts import render, get_list_or_404
 from store.models import *
-from store.decorators import allowed_user
-from store.forms import UpdateCustomerForm, UpdateUserForm
-from django.db.models import Prefetch
-from decimal import Decimal
 
 
 def get_order_summary(items, coupon_discount, delivery):
@@ -37,7 +34,10 @@ def order(request, order_id):
         Prefetch('coupon', to_attr='coupon_discount'),
 
     ),  id=order_id)
-    payment_detail = PayherePaymentDetail.objects.get(order_id=order_id)
+    try:
+        payment_detail = PayherePaymentDetail.objects.get(order_id=order_id)
+    except:
+        payment_detail = {}
 
     # ordered items details
     items = order_detail[0].ordered_products

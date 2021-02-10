@@ -1,10 +1,7 @@
 from django.contrib.auth.decorators import login_required
-from django.contrib import messages
-from django.shortcuts import render, get_object_or_404
-from store.models import *
-from store.decorators import allowed_user
-from store.forms import UpdateCustomerForm, UpdateUserForm
 from django.db.models import Prefetch
+from django.shortcuts import render
+from store.models import *
 
 
 def get_total(items, coupon):
@@ -21,7 +18,7 @@ def order_history(request):
             to_attr='ordered_products'
         ),
         Prefetch('coupon', to_attr='coupon_discount')
-    )
+    ).order_by('-id')
 
     context = {
         'orders': order,

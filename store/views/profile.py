@@ -1,11 +1,10 @@
-from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
-from django.shortcuts import render, get_object_or_404, redirect
-from store.models import *
-from store.decorators import allowed_user
-from store.forms import UpdateCustomerForm, UpdateUserForm
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
+from django.shortcuts import render
+from store.forms import UpdateCustomerForm, UpdateUserForm
+from store.models import *
 
 
 # menu page

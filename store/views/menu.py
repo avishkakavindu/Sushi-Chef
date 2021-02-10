@@ -1,6 +1,5 @@
 from django.db.models import Prefetch
 from django.shortcuts import render
-from store.filters import ProductFilter
 from store.models import Product, Wishlist, ProductImage
 
 

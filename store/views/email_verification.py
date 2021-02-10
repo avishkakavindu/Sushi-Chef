@@ -1,13 +1,10 @@
-from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.contrib.auth.models import Group, User
-from django.utils.encoding import force_bytes, force_text, DjangoUnicodeDecodeError
-from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-
-from store.forms import CreateUserForm
+from django.contrib.auth.models import User
+from django.shortcuts import redirect
+from django.utils.encoding import force_text
+from django.utils.http import urlsafe_base64_decode
 from store.decorators import unauthenticated_user
-from store.models import Customer
-from store.util import Util, token_generator
+from store.util import token_generator
 
 
 @unauthenticated_user

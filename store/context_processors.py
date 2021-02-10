@@ -1,7 +1,6 @@
 from django.db.models import Prefetch
-from django.shortcuts import render
 from store.filters import ProductFilter
-from store.models import Product, ProductImage, Wishlist
+from store.models import Product, ProductImage
 
 
 def include_search_bar(request):

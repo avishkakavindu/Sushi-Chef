@@ -1,0 +1,70 @@
+{% extends "store/main.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% load tz %}
+{% block content %}
+
+<div class="container mb-0" style="background: #040b14;">
+  <div class="row">
+    <div class="col-sm-3 mb-3">
+      <header id="header">
+        <div class="d-flex flex-column">
+
+          <div class="profile align-middle">
+            <img src="{% static 'images/staticimg/profile-img.jpg' %}" alt="" class="img-fluid rounded-circle">
+            <h1 class="text-light"><a href="index.html">Avishka Dambawinna</a></h1>
+            <div class="social-links mt-3 text-center">
+              <a href="https://twitter.com/Avishkakavindu" class="twitter"><i class="fa fa-twitter"></i></a>
+              <a href="https://www.facebook.com/avishka.kavindu.96" class="facebook"><i class="fa fa-facebook"></i></a>
+              <a href="https://github.com/avishkakavindu" class="github"><i class="fa fa-github"></i></a>
+              <a href="https://stackoverflow.com/users/8388057/avishka-dambawinna" class="stackoverflow"><i class="fa fa-stack-overflow"></i></a>
+              <a href="https://www.linkedin.com/in/avishka-dambawinna-6263b317b/" class="linkedin"><i class="fa fa-linkedin"></i></a>
+            </div>
+          </div>
+        </div>
+      </header><!-- End Header -->
+    </div>
+    <div class="col-sm">
+
+      <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
+        <div class="hero-container" data-aos="fade-in">
+          <h1>Avishka Dambawinna</h1>
+          <p>I'm <span class="typed" id="typed" data-typed-items="a Backend... aaarrrggg!!!, a Learner"></span></p>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+<script>
+  $(".spacer").remove();
+  $('body').css("background-color", "#040b14");
+!(function($) {
+  "use strict";
+
+  // Hero typed
+  if ($('#typed').length) {
+    var typed_strings = $("#typed").data('typed-items');
+    typed_strings = typed_strings.split(',')
+    new Typed('#typed', {
+      strings: typed_strings,
+      loop: true,
+      typeSpeed: 100,
+      backSpeed: 50,
+      backDelay: 2000
+    });
+  }
+  // Init AOS
+  function aos_init() {
+    AOS.init({
+      duration: 1000,
+      easing: "ease-in-out-back",
+      once: true
+    });
+  }
+  $(window).on('load', function() {
+    aos_init();
+  });
+
+})(jQuery);
+</script>
+{% endblock content %}

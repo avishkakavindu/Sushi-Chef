@@ -13,4 +13,7 @@ from .review import *
 from .coupon import *
 from .email_verification import *
 from .payhere import *
+from .about import *
+from .feedback import *
+from .login import *
 

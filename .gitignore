@@ -5,3 +5,4 @@ __pycache__
 static/admin
 /images/user/
 /SushiChef/myconfig.py
+/.env
