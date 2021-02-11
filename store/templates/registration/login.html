@@ -3,55 +3,36 @@
 {% load widget_tweaks %}
 {% block content %}
 <div class="container d-flex justify-content-center mb-4">
-    <!-- Alerts -->
-    {% if messages %}
-      {% for message in messages %}
-        {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
-          <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>Success! </strong>
-            {{ message }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-        {% endif %}
-        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
-          <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <strong>Error! </strong>
-            {{ message }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-        {% endif %}
-      {% endfor %}
-    {% endif %}
-    {% if form.non_field_errors %}
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <strong>Error! </strong>
-            {{ form.non_field_errors|striptags }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-
-    {% endif %}
-    <!-- END Alerts -->
-
     <div class="col-lg-5 col-sm border mb-5 mt-5 p-0">
-        <div class="border-bottom mb-3 p-3"> <h5>Sign In</h5> </div>
+        <div class="border-bottom mb-3 p-3">
+            <h5>Sign In</h5>
+        </div>
+        {% if messages %}
+            <div class="badge badge-danger login-error pt-4 pb-4" style="width: 100%">
+                <p class="mb-2">
+                     {% for message in messages %} {{ message }} {% endfor %}
+                </p>
+                {% if not is_active %}
+                    <form id="resend" action="{% url 'register' %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" id="email" name="email" value="{{ email }}">
+                        <a href="#" class="text-primary" onclick="document.getElementById('resend').submit();">Re-send Verification Email</a>
+                    </form>
+              {% endif %}
+            </div>
+        {% endif %}
         <div class="border-bottom pl-3 pr-3 pb-3">
             <form class="needs-validation" action="{% url 'login' %}" method="post">
-              {% csrf_token %}
-              <div class="form-group">
-                <label for="username">Username or Email:</label>
-                <input type="text" class="form-control form-control-sm  {% if error %} is-invalid{% endif %}" id="username" placeholder="Enter username or email" name="username">
-              </div>
-               <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" class="form-control form-control-sm {% if error %} is-invalid{% endif %}" id="password" placeholder="Enter password" name="password">
-              </div>
-              <div class="text-left form-sm mt-3">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="username">Username or Email:</label>
+                    <input type="text" class="form-control form-control-sm  {% if error %} is-invalid{% endif %}" id="username" placeholder="Enter username or email" name="username">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" class="form-control form-control-sm {% if error %} is-invalid{% endif %}" id="password" placeholder="Enter password" name="password">
+                </div>
+                <div class="text-left form-sm mt-3">
                     <p>
                         Don't have an account? <a href="/register" style="color: #0066ff">Register</a>
                     </p>

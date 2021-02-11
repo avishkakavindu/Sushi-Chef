@@ -87,7 +87,7 @@ WSGI_APPLICATION = 'SushiChef.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'sushichefdb',
+        'NAME': 'sushichefold',
         'USER': 'postgres',
         'PASSWORD': 'root',
         'HOST': 'localhost',
@@ -166,3 +166,4 @@ EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = True
 
+DOMAIN = '{}'.format(ALLOWED_HOSTS[0])

@@ -18,10 +18,10 @@ def register(request):
     form = CreateUserForm()
 
     if request.method == 'POST':
-        print('\n\n', request.POST, '\n')
         form = CreateUserForm(request.POST)
 
         domain = get_current_site(request).domain
+        schema = request.is_secure() and "https" or "http"
 
         data = {
             'receiver': '',
@@ -47,7 +47,6 @@ def register(request):
                 token = token_generator.make_token(user)
 
                 link = reverse('activate', kwargs={'uidb64': uidb64, 'token': token})
-                schema = request.is_secure() and "https" or "http"
                 url = '{}://{}{}'.format(schema, domain, link)
 
                 email_body = 'Verify your email to finish signing up for Sushi Chef'
@@ -85,7 +84,6 @@ def register(request):
                 token = token_generator.make_token(user)
 
                 link = reverse('activate', kwargs={'uidb64': uidb64, 'token': token})
-                schema = request.is_secure() and "https" or "http"
                 url = '{}://{}{}'.format(schema, domain, link)
 
                 email_body = 'Verify your email to finish signing up for Sushi Chef'

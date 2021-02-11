@@ -11,7 +11,7 @@ def home(request):
             ProductImage.objects.filter(place='Main Product Image'),
             to_attr='main_image'
         )
-    ).order_by('?')[2:]  # random 3 record pass
+    ).order_by('?')[0:4]  # random 4 record pass
 
     chefs = Chef.objects.all()
 

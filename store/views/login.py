@@ -6,7 +6,9 @@ from django.shortcuts import render, redirect
 
 def login(request):
     context = {
-        'error': False
+        'error': False,
+        'is_active': 'True',
+        'email': ''
     }
     if request.method == 'POST':
         username_or_email = request.POST['username']
@@ -23,9 +25,21 @@ def login(request):
         if user is not None:
             auth.login(request, user)
             # messages.success(request, "Login successfull")
-            return redirect('index')
+            return redirect('profile')
         else:
-            messages.error(request, 'Invalid credentials, Please check username/email or password.')
-            context['error'] = True
+            try:
+                user = User.objects.get(username=username)
+
+                if user.is_active:
+                    messages.error(request, 'Invalid credentials, Please check username/email or password.')
+                    context['error'] = True
+                else:
+                    context['error'] = True
+                    context['is_active'] = False
+                    context['email'] = User.objects.get(username=username).email
+                    messages.error(request, 'Inactive account detected, Please please verify your email address.')
+            except User.DoesNotExist:
+                messages.error(request, 'Invalid credentials, Please check username/email or password.')
+                context['error'] = True
 
     return render(request, "registration/login.html", context=context)
