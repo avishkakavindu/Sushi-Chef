@@ -53,7 +53,7 @@ function updateCartItems(productId, unitPrice, action){
     }
     else if(action == 'delete'){
         delete cart[productId]
-        console.log('delete: ')
+        // console.log('delete: ')
         calcSummary()
     }
     // set the updated cookie
@@ -83,7 +83,7 @@ $(function(){
         }
         // set the updated cookie
         document.cookie = 'cart=' + JSON.stringify(cart) + ';domain=;path=/'
-        console.log(JSON.stringify(cart))
+        // console.log(JSON.stringify(cart))
 
     })
 })
@@ -95,7 +95,7 @@ function calcSummary(){
     $('.cost').each(function() {
         sum += parseFloat($(this).text().replace('$', ''));
         $(".sub-total").text('$' + sum.toFixed(2));
-        $('.total').text('$' + (sum + 5).toFixed(2))
+        $('.total').text('$' + (sum + 5).toFixed(2));
     });
 }
 
@@ -113,7 +113,11 @@ function calcSummary(){
 // remove item from cart
 $(function(){
   $("i.fa-trash").on('click', function(e) {
+    var [productId, unitPrice, product_name] = $(this).parent().attr('data-product').split('_');
     $(this).parent().parent().parent().remove();
+    delete cart[productId];
+    document.cookie = 'cart=' + JSON.stringify(cart) + ';domain=;path=/'
+    calcSummary();
   });
 });
 
@@ -142,3 +146,7 @@ $('.addto-wish').click(function(e){
             }
          })
 });
+
+function delete_cookie(name) {
+  document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+}

@@ -12,6 +12,7 @@
     <div class="row mt-3">
         <!-- cart summary -->
         <div class="col-sm">
+            {{ lol }}
             <h4> Your Cart <span class="badge badge-warning cart-badge">3</span></h4>
             <ul class="list-group mb-3 z-depth-1">
                 {% for item in data %}
@@ -20,7 +21,7 @@
                       <h6 class="my-0">{{ item.name }}</h6>
                       <small class="text-muted module checkout-fades">{{ item.desc }}</small>
                     </div>
-                    <span class="text-muted">{{ cart|get_cost:item.id }}</span>
+                    <span class="text-muted">{{ crt|get_cost:item.id }}</span>
                 </li>
                 {% endfor %}
 
@@ -36,19 +37,19 @@
                     <div>
                       <h5 class="my-0">Sub Total (USD)</h5>
                     </div>
-                    <span class="text-muted" >{{ cart|get_total:0 }}</span>
+                    <span class="text-muted" >{{ crt|get_total:0 }}</span>
                 </li>
                 <li class="list-group-item d-flex justify-content-between lh-condensed">
                     <div>
                       <h6 class="my-0 text-success">Discount</h6>
                       <small class="text-muted">{{ coupon_detail.1 }}% off coupon</small>
                     </div>
-                    <span class="text-success" >-{{ cart|get_coupon_discount:coupon_detail.1 }}</span>
+                    <span class="text-success" >-{{ crt|get_coupon_discount:coupon_detail.1 }}</span>
                 </li>
                 {% endif %}
                 <li class="list-group-item d-flex justify-content-between">
                     <h5 class="font-weight-bold">Total (USD)</h5>
-                    <strong class="text-dark h6">${{ cart|get_total:coupon_detail.1 }}</strong>
+                    <strong class="text-dark h6">${{ crt|get_total:coupon_detail.1 }}</strong>
                 </li>
             </ul>
             <form class="card p-2" method="post">
@@ -173,9 +174,9 @@
         var orderID = '';
         // Called when user completed the payment. It can be a successful payment or failure
         payhere.onCompleted = function onCompleted(orderId) {
-            $.cookie("cart", null, { path: '/' });
+            document.cookie = "cart= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
             //Note: validate the payment and show success or failure page to the customer
-            window.location = window.location.origin + '/order/' + orderId;
+            location.replace(window.location.origin + '/order/' + orderId);
 
         };
 
@@ -209,7 +210,7 @@
                             "notify_url": "https://sushi-chef.herokuapp.com/payhere-detail",
                             "order_id": data,
                             "items": "{% for item in data %}{{item.name}},{% endfor %}",
-                            "amount": "{{ cart|get_total:coupon_detail.1 }}",
+                            "amount": "{{ crt|get_total:coupon_detail.1 }}",
                             "currency": "USD",
                             "first_name": "{{ user_details.user.first_name }}",
                             "last_name": "{{ user_details.user.last_name }}",

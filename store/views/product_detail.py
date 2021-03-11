@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, get_list_or_404, redirect
 from django.contrib import messages
 from django.db.models import Prefetch
-from store.models import Product, ProductReview
+from store.models import Product, ProductReview, Customer, User
 from store.forms import ProductReviewForm
 
 
@@ -24,7 +24,12 @@ def product_detail(request, product_id):
         if form.is_valid():
             review = form.save(commit=False)
             review.product = Product.objects.get(pk=product_id)
-            review.customer = request.user.customer
+            try:
+                review.customer = request.user.customer
+            except:
+                guest = User.objects.get(username='guest')
+                review.customer = Customer.objects.get(user=guest)
+
             review.save()
 
             messages.success(request, 'Review saved! Thank you for the review!')

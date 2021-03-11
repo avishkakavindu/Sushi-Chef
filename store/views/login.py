@@ -31,15 +31,15 @@ def login(request):
                 user = User.objects.get(username=username)
 
                 if user.is_active:
-                    messages.error(request, 'Invalid credentials, Please check username/email or password.')
+                    messages.error(request, 'Invalid credentials, \nPlease check username/email or password.')
                     context['error'] = True
                 else:
                     context['error'] = True
                     context['is_active'] = False
                     context['email'] = User.objects.get(username=username).email
-                    messages.error(request, 'Inactive account detected, Please please verify your email address.')
+                    messages.error(request, 'Inactive account detected, \nPlease please verify your email address.')
             except User.DoesNotExist:
-                messages.error(request, 'Invalid credentials, Please check username/email or password.')
+                messages.error(request, 'Invalid credentials, \nPlease check username/email or password.')
                 context['error'] = True
 
     return render(request, "registration/login.html", context=context)

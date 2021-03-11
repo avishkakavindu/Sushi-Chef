@@ -47,7 +47,7 @@
               </a>
               <div class="p-desc mb-2">
                 <p class="mb-0">
-                  {{ product.name }} - {{ product.desc }}
+                  <strong>{{ product.name }}</strong> - {{ product.desc }}
                 </p>
               </div>
               <!-- Star rating -->
@@ -82,7 +82,7 @@
               <!-- cart icons -->
               <div class="d-flex justify-content-center">
                 <div class="d-flex cart-options">
-                  <a href="#">
+                  <a href="/product/{{ product.id }}">
                     <span class="rounded-circle mr-1 h5">
                       <i class="fa fa-info-circle" aria-hidden="true"></i>
                     </span>

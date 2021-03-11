@@ -7,6 +7,8 @@ from django.http import Http404, HttpResponse
 from django.shortcuts import render, redirect
 from store.forms import DeliveryForm, CouponForm
 from store.models import *
+from django.utils import timezone
+
 
 
 # checkout page
@@ -157,7 +159,7 @@ def checkout(request):
 
     context = {
         'data': [],
-        'cart': cart,
+        'crt': cart,
         'delivery_form': delivery_form,
         'coupon_detail': [coupon_id, coupon_discount],
         'user_details': user_detail
@@ -178,7 +180,7 @@ def calculateTotal(cart):
     #  '6': {'unit_price': '49.50', 'quantity': 1}}
     total = 0
     for product in cart.keys():
-        quantity = cart[product]['quantity']
+        quantity = Decimal(cart[product]['quantity'])
         cost_detail = Product.objects.filter(id=product).values('price', 'discount')
         cost = cost_detail[0]['price'] * quantity
         discount = (cost_detail[0]['discount'] / 100) * cost

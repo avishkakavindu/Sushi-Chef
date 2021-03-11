@@ -24,4 +24,6 @@ def cart(request):
         context['data'].append(product_detail)
     # print(context['data'][0][0].product.desc)
 
-    return render(request, 'store/cart.html', context)
+
+
+    return render(request, 'store/cart.html', {'context': context})

@@ -17,7 +17,7 @@ def home(request):
 
     # product = Product.objects.prefetch_related(Prefetch('review_set', ProductReview.objects.annotate(n=Count(
     # 'rating')),to_attr='r_count'))
-
+    # print('\n\n\n', chefs)
     context = {
         'products': products,
         'five_star': [0, 1, 2, 3, 4],

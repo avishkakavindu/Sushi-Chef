@@ -8,11 +8,10 @@
             <h5>Sign In</h5>
         </div>
         {% if messages %}
-            <div class="badge badge-danger login-error pt-4 pb-4" style="width: 100%">
-                <p class="mb-2">
-                     {% for message in messages %} {{ message }} {% endfor %}
-                </p>
-                {% if not is_active %}
+            {% for message in messages %}
+                <div class="badge {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}badge-danger login-error{% else %}badge-success login-success {% endif %} pt-3 pb-3" style="width: 100%">
+                    {{ message|linebreaks }}
+                    {% if not is_active %}
                     <form id="resend" action="{% url 'register' %}" method="post">
                         {% csrf_token %}
                         <input type="hidden" id="email" name="email" value="{{ email }}">
@@ -20,6 +19,7 @@
                     </form>
               {% endif %}
             </div>
+            {% endfor %}
         {% endif %}
         <div class="border-bottom pl-3 pr-3 pb-3">
             <form class="needs-validation" action="{% url 'login' %}" method="post">

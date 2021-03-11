@@ -1,9 +1,13 @@
 import hashlib
 from decouple import config
 from django.contrib import messages
+from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
+
 from store.models import *
 
 
+@csrf_exempt
 def payhere(request):
     if request.method == 'POST':
         payload = request.POST
@@ -41,3 +45,4 @@ def payhere(request):
                 payhere_record.save()
         except:
             messages.error(request, 'Payhere payment process failed!')
+            HttpResponse('Failed')

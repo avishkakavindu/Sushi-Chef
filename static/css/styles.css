@@ -5,6 +5,11 @@ html {
 body {
     height: 100%;
 }
+
+.nav-active {
+    color: #f17661;
+}
+
 /* --- logo ---*/
 #site-logo {
     padding: 22px 22px 10px;
@@ -15,6 +20,29 @@ body {
 .make-blue {
     color: #0275d8;
 }
+
+/* --- login errors --- */
+.login-error {
+    color: #721c24;
+    background-color: #f8d7da;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+}
+
+.login-error > p {
+    margin-bottom: 10px;
+}
+
+.login-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+.login-success > p {
+    margin-bottom: 0;
+}
+
 
 /* --- navbar icons ---*/
 #navIcons a{

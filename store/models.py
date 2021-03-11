@@ -9,10 +9,10 @@ User._meta.get_field('email')._unique = True
 
 class Customer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    address = models.CharField(max_length=200, null=True)
-    city = models.CharField(max_length=200, null=True)
-    state = models.CharField(max_length=200, null=True)
-    zipcode = models.CharField(max_length=20, null=True)
+    address = models.CharField(max_length=200, default='', null=True)
+    city = models.CharField(max_length=200, default='',null=True)
+    state = models.CharField(max_length=200, default='',null=True)
+    zipcode = models.CharField(max_length=20, default='',null=True)
     profile_pic = models.ImageField(upload_to='images/user', default="images/user/default.jpg")
     date_created = models.DateTimeField(null=True, auto_now_add=True)
 
@@ -96,7 +96,7 @@ class ProductImage(models.Model):
 
 
 class ProductReview(models.Model):
-    customer = models.ForeignKey(Customer, related_name='productreview_set', on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer, related_name='productreview_set', blank=True, null=True ,on_delete=models.CASCADE)
     product = models.ForeignKey(Product, related_name='productreview_set', on_delete=models.CASCADE)
     review = models.TextField()
     rating = models.DecimalField(max_digits=1, decimal_places=0, default=0, validators=[MinValueValidator(0), MaxValueValidator(5)])

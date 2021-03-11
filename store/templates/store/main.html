@@ -1,6 +1,13 @@
 <!doctype html>
 <html lang="en">
   {% load static %}
+  {% url 'index' as home %}
+  {% url 'menu' as menu %}
+  {% url 'promo' as promo %}
+  {% url 'cart' as cart %}
+
+
+
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -21,7 +28,7 @@
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.5/typed.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
@@ -73,21 +80,22 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          {% with request.resolver_match.url_name as url_name %}
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item active" id="home">
+            <li class="nav-item {% if request.path == home %} active {% endif %}" id="home">
               <a class="nav-link" href="/">
                 <i class="fa fa-home"></i>
                   HOME
                 <span class="sr-only">(current)</span>
               </a>
             </li>
-            <li class="nav-item" id="menu">
+            <li class="nav-item {% if url_name == 'menu' %} active {% endif %}" id="menu">
               <a class="nav-link" href="{% url 'menu' %}">MENU</a>
           </li>
-            <li class="nav-item" id="promotions">
+            <li class="nav-item {% if url_name == 'promo' %} active {% endif %}" id="promotions">
               <a class="nav-link" href="{% url 'promo' %}">PROMOTIONS</a>
             </li>
-            <li class="nav-item" id="crt">
+            <li class="nav-item {% if url_name == 'cart' %} active {% endif %}" id="crt">
               <a class="nav-link" href="{% url 'cart' %}">CART</a>
             </li>
             <li class="nav-item dropdown" id="about">
@@ -101,6 +109,8 @@
               </div>
             </li>
           </ul>
+          {% endwith %}
+
           <form class="form-inline d-flex active-pink md-form form-sm mr-3" method="get" id="search" action="{% url 'menu' %}">
             <div class="input-group">
               {% render_field product_filter.form.name__icontains class="form-control form-control-sm" %}
@@ -177,7 +187,7 @@
                 <li><a href="/">Home</a></li>
                 <li><a href="/about">About</a></li>
                 <li><a href="/menu">Menu</a></li>
-                <li><a href="/contact">Contact</a></li>
+                <li><a href="#">Contact</a></li>
             </ul>
           </div>
           <div class="col-md-3" id="footer-contact">

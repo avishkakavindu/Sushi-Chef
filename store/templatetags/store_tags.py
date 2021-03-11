@@ -7,12 +7,11 @@ register = template.Library()
 
 delivery = 5
 
-
 @register.filter
 def get_quantity(dictionary, key):
     try:
         return dictionary.get(str(key))['quantity']
-    except KeyError:
+    except:
         return str(1)
 
 
@@ -21,8 +20,9 @@ def get_cost(dictionary, key):
     try:
         quantity = float(dictionary.get(str(key))['quantity'])
         unit_price = float(dictionary.get(str(key))['unit_price'])
+
         return '${:.2f}'.format(quantity * unit_price)
-    except KeyError:
+    except:
         return '${}'.format('0')
 
 
@@ -33,7 +33,7 @@ def get_subtotal(dictionary):
         for i in dictionary.values():
             sum += np.prod(list(map(float, i.values())))
         return '${:.2f}'.format(sum)
-    except KeyError:
+    except:
         return '$0.00'
 
 
@@ -47,7 +47,7 @@ def get_total(dictionary, coupon_discount):
         if coupon_discount:
             sum -= (sum * (coupon_discount / 100))
         return '{:.2f}'.format(sum + delivery)
-    except KeyError:
+    except:
         return '0.00'
 
 
